@@ -1,15 +1,46 @@
-# RAG QA Dataset Generator
+# ContextQAForge
 
-A production-ready Python pipeline for generating high-quality QA datasets for evaluating Retrieval-Augmented Generation (RAG) systems using Pluto-style structured prompt engineering.
+Generate evaluation-ready QA datasets from your documents for RAG systems. Given a folder of PDFs, TXTs, or Markdown files, the pipeline produces RAGAS-compatible question-answer pairs grounded in the actual document content.
 
-## Features
+## Pipeline Architecture
 
-- **Multi-format document loading**: Supports TXT, PDF, and Markdown files
-- **Intelligent chunking**: Configurable chunk size and overlap with sentence boundary detection
-- **FAISS vector store**: Efficient similarity search for context retrieval
-- **Pluto-style QA generation**: Structured prompting with few-shot examples and diversity controls
-- **RAGAS-compatible output**: JSON format ready for RAG evaluation
-- **Quality controls**: Duplicate detection, retry logic, and generic question filtering
+```
+Documents (PDF/TXT/MD)
+        |
+        v
+[1. Load & Chunk] ── Split into 500-char chunks with overlap
+        |
+        v
+[2. Embed & Index] ── OpenAI embeddings → FAISS vector store
+        |
+        v
+[3. Build Topic Tree] ── gpt-4o-mini extracts hierarchical topics
+        |                   (degree=3, depth=3 → 27 leaf paths)
+        v
+[4. Generate Query Seeds] ── Expand each topic into rich search terms
+        |                       (1 batch call to gpt-4o-mini)
+        v
+[5. Retrieve & Generate] ─ For each QA pair:
+        |                    a. Pick next topic path from tree
+        |                    b. Use query seed for vector search → get diverse contexts
+        |                    c. LLM generates 3 QA pairs per call (batch)
+        |                    d. Grounding check: answer must come from contexts
+        v
+   dataset.json (RAGAS format)
+```
+
+### How QA generation works
+
+The key principle: **contexts are truth, topic is guidance.**
+
+1. The topic tree suggests what *angle* to ask about
+2. The query seed retrieves the most relevant document chunks
+3. The LLM generates questions that can only be answered from those chunks
+4. A grounding check verifies the answer is semantically derived from the contexts (not the LLM's general knowledge)
+
+### How context diversity works
+
+The pipeline tracks which chunks have been used and excludes them from subsequent retrievals. This ensures each QA pair covers a different part of the document. When 70% of chunks have been used, the pool resets.
 
 ## Installation
 
@@ -22,32 +53,28 @@ Set your OpenAI API key:
 export OPENAI_API_KEY="your-api-key"
 ```
 
-Or copy `.env.example` to `.env` and fill in your credentials.
+Or copy `.env.example` to `.env` and fill in your key.
 
 ## Quick Start
 
 ```bash
-python main.py /path/to/documents --num-samples 50 --output dataset.json
+python main.py ./documents --num-samples 10
 ```
+
+This generates 10 QA pairs from documents in the `./documents` folder and saves to `dataset.json`.
 
 ## Usage
 
-### Basic Usage
-
-```bash
-python main.py ./documents
-```
-
-### Advanced Options
+### CLI
 
 ```bash
 python main.py ./documents \
-    --chunk-size 1500 \
-    --chunk-overlap 300 \
-    --top-k 7 \
-    --num-samples 200 \
-    --model gpt-4.1 \
-    --output custom_dataset.json
+    --num-samples 50 \
+    --batch-size 3 \
+    --chunk-size 500 \
+    --top-k 5 \
+    --model gpt-4o \
+    --output dataset.json
 ```
 
 ### Python API
@@ -58,12 +85,10 @@ from main import run_pipeline, save_dataset
 import logging
 
 config = PipelineConfig(
-    chunk_size=1000,
-    chunk_overlap=200,
-    top_k=5,
     num_samples=50,
-    model_name="gpt-4o",
-    openai_api_key="your-api-key"
+    document_domain="health",
+    language="pt-BR",
+    openai_api_key="your-key",
 )
 
 logger = logging.getLogger(__name__)
@@ -71,56 +96,89 @@ dataset = run_pipeline("./documents", config, logger)
 save_dataset(dataset, "output.json", logger)
 ```
 
-## Configuration
+### Environment Variables
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `chunk_size` | 1000 | Characters per chunk |
-| `chunk_overlap` | 200 | Overlap between chunks |
-| `top_k` | 5 | Number of chunks to retrieve |
-| `num_samples` | 100 | QA pairs to generate |
-| `model_name` | gpt-4o | OpenAI chat model |
-| `embedding_model` | text-embedding-3-small | OpenAI embedding model |
-| `temperature` | 0.7 | Generation temperature |
+All settings can be configured via `.env` file (see `.env.example`):
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `CHUNK_SIZE` | 500 | Characters per chunk |
+| `CHUNK_OVERLAP` | 100 | Overlap between chunks |
+| `TOP_K` | 5 | Chunks retrieved per QA pair |
+| `NUM_SAMPLES` | 100 | Target QA pairs |
+| `MODEL_NAME` | gpt-4o | LLM for QA generation |
+| `TOPIC_MODEL` | gpt-4o-mini | LLM for topic tree + query seeds (cheaper) |
+| `EMBEDDING_MODEL` | text-embedding-3-small | Embedding model |
+| `BATCH_SIZE` | 3 | QA pairs per LLM call |
+| `TREE_DEGREE` | 3 | Children per topic node |
+| `TREE_DEPTH` | 3 | Topic tree depth |
+| `TEMPERATURE` | 0.7 | Generation temperature |
+| `MAX_RETRIES` | 3 | Retries per failed generation |
+| `DOCUMENT_DOMAIN` | general | Domain focus (health, nutrition, etc.) |
+| `LANGUAGE` | pt-BR | Output language for QA pairs |
+| `DEDUP_OVERLAP_THRESHOLD` | 0.8 | Chunk dedup word-overlap threshold |
+
+### CLI Arguments
+
+```
+python main.py ./documents \
+    --chunk-size 500 \
+    --chunk-overlap 100 \
+    --top-k 5 \
+    --num-samples 100 \
+    --model gpt-4o \
+    --embedding-model text-embedding-3-small \
+    --temperature 0.7 \
+    --batch-size 3 \
+    --tree-degree 3 \
+    --tree-depth 3 \
+    --output dataset.json
+```
 
 ## Output Format
+
+RAGAS-compatible JSON:
 
 ```json
 [
   {
-    "question": "What company did the creator of Python work for during the 2000s?",
-    "ground_truth": "Guido van Rossum, the creator of Python, worked at Google from 2005 to 2012.",
+    "question": "Qual a quantidade de sódio diária recomendada para reduzir a pressão arterial?",
+    "answer": "Reduzir a ingestão de sódio para menos de 2 g/dia é mais benéfico para a pressão arterial.",
     "contexts": [
-      "Python was created by Guido van Rossum...",
-      "Guido van Rossum worked at Google..."
+      "Reducing sodium intake to <2 g/day was more beneficial for blood pressure...",
+      "Higher sodium intake was associated with higher risk of stroke..."
     ],
-    "metadata": {
-      "type": "multi-hop",
-      "difficulty": "medium"
-    }
+    "ground_truth": "Reduzir a ingestão de sódio para menos de 2 g/dia é mais benéfico para a pressão arterial."
   }
 ]
 ```
 
+- `question` — generated question in the configured language
+- `answer` / `ground_truth` — answer extracted from the document contexts
+- `contexts` — the retrieved document chunks used to generate the answer
+
 ## QA Types
 
-- **single-hop**: Direct lookup from one context
-- **multi-hop**: Requires connecting multiple contexts
-- **inference**: Requires reasoning from contexts
-- **unanswerable**: Cannot be answered from contexts
-- **paraphrase**: Uses different wording than context
+| Type | Description |
+|------|-------------|
+| single-hop | Direct lookup from one context chunk |
+| multi-hop | Connects information across multiple chunks |
+| inference | Requires reasoning from the contexts |
+| paraphrase | Uses different wording than the source text |
 
 ## Project Structure
 
 ```
-.
-├── config.py          # Configuration management
-├── models.py          # Pydantic data models
-├── loader.py          # Document loading (txt, pdf, md)
-├── chunker.py         # Text chunking
-├── embedder.py        # OpenAI embeddings
-├── vector_store.py    # FAISS storage
-├── generator.py       # Pluto-style QA generation
-├── main.py            # Pipeline orchestration
-└── requirements.txt   # Dependencies
+├── main.py            # Pipeline orchestration & CLI
+├── config.py          # All configuration (dataclass + env vars)
+├── models.py          # Pydantic models (QAPair, DatasetEntry)
+├── loader.py          # Document loading (PDF, TXT, MD)
+├── chunker.py         # Text chunking with quality filtering
+├── embedder.py        # OpenAI embeddings + EmbeddingCache
+├── vector_store.py    # FAISS vector store with diversity filtering
+├── topic_tree.py      # Hierarchical topic tree + query seed generation
+├── generator.py       # Pluto-style batch QA generation + grounding check
+├── tests/             # Test suite
+├── requirements.txt   # Dependencies
+└── .env.example       # Example environment configuration
 ```
