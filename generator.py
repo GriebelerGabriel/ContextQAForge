@@ -1,4 +1,9 @@
-"""Pluto-style QA generation module with topic tree support."""
+"""QA generation module with section-based context.
+
+Generates QA pairs grounded in document sections from the topic tree.
+Uses the stronger model (gpt-4o) for QA, cheaper model was already used
+for tree refinement.
+"""
 
 import json
 import logging
@@ -13,11 +18,10 @@ logger = logging.getLogger(__name__)
 
 from config import PipelineConfig
 from models import DatasetEntry, QAPair
-from topic_tree import TopicTree
 
 
 class QAGenerator:
-    """Generates QA pairs using Pluto-style structured prompting."""
+    """Generates QA pairs from document sections."""
 
     # Question types with descriptions for diversity
     QA_TYPES: List[Dict] = [
@@ -83,12 +87,10 @@ class QAGenerator:
     # Maximum number of past questions to check for duplicates
     DEDUP_WINDOW = 50
 
-    def __init__(self, config: PipelineConfig, embedder=None):
+    def __init__(self, config: PipelineConfig):
         self.config = config
         self.client = OpenAI(api_key=config.openai_api_key)
         self.generated_questions: Set[str] = set()
-        self.topic_tree: Optional[TopicTree] = None
-        self.embedder = embedder  # For semantic grounding check
 
     def _get_system_prompt(self) -> str:
         """Generate system prompt based on config domain and language."""
@@ -179,142 +181,13 @@ Output must be valid JSON with exactly these fields:
     "difficulty": "easy|medium|hard"
 }}}}"""
 
-    def set_topic_tree(self, tree: TopicTree) -> None:
-        """Set an externally built topic tree."""
-        self.topic_tree = tree
-
-    def _build_prompt(
-        self,
-        contexts: List[str],
-        qa_type: str,
-        difficulty: str,
-        topic_path: Optional[List[str]] = None,
-    ) -> str:
-        """Build a structured prompt for QA generation with topic guidance."""
-        # Get example for this type
-        example = self.FEW_SHOT_EXAMPLES.get(qa_type, self.FEW_SHOT_EXAMPLES["single-hop"])
-
-        # Build context section
-        context_text = "\n\n".join([f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts)])
-
-        # Build topic string - always use the full path if available
-        if topic_path:
-            topic_str = " -> ".join(topic_path)
-        else:
-            topic_str = "General document content"
-
-        prompt = f"""Generate a QA pair based on the following contexts.
-
-=== TOPIC GUIDANCE ===
-Suggested topic angle: {topic_str}
-Use this topic as inspiration for the question's angle, but the contexts are the source of truth.
-
-=== CONTEXTS (SOURCE OF TRUTH) ===
-{context_text}
-
-=== EXAMPLE ({qa_type}, {difficulty}) ===
-Contexts:
-"""
-        prompt += "\n\n".join([f"{ctx}" for ctx in example["contexts"]])
-        prompt += f"""
-
-Question: {example["question"]}
-Ground Truth: {example["ground_truth"]}
-Type: {qa_type}
-Difficulty: {example["difficulty"]}
-
-=== YOUR TASK ===
-Generate a NEW {qa_type} question at {difficulty} difficulty level.
-
-CRITICAL REQUIREMENTS:
-1. The question MUST require the SPECIFIC information in the contexts to answer
-2. The contexts are the source of truth — ground answers only in what the contexts say
-3. Do NOT ask questions answerable from general/popular knowledge
-4. Ask about specific details: numbers, names, recommendations, lists, or procedures from the text
-5. The ground_truth MUST cite or closely paraphrase information from the contexts
-6. Use the topic "{topic_str}" as a suggested angle, but prioritize what the contexts actually contain
-
-Output ONLY the JSON object, no additional text:
-"""
-        return prompt
-
-    def _build_batch_prompt(
-        self,
-        contexts: List[str],
-        num_pairs: int,
-        qa_types: List[str],
-        difficulties: List[str],
-        topic_path: Optional[List[str]] = None,
-    ) -> str:
-        """Build a structured prompt for batch QA generation with topic guidance."""
-        # Build context section
-        context_text = "\n\n".join([f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts)])
-
-        # Build topic string
-        if topic_path:
-            topic_str = " -> ".join(topic_path)
-        else:
-            topic_str = "General document content"
-
-        # Build type/difficulty assignments
-        type_difficulty_str = "\n".join([
-            f"{i+1}. Type: {qa_types[i % len(qa_types)]}, Difficulty: {difficulties[i % len(difficulties)]}"
-            for i in range(num_pairs)
-        ])
-
-        prompt = f"""Generate {num_pairs} distinct QA pairs based on the following contexts.
-
-=== TOPIC GUIDANCE ===
-Suggested topic angle: {topic_str}
-Use this topic as inspiration for the questions' angles, but the contexts are the source of truth.
-
-=== CONTEXTS (SOURCE OF TRUTH) ===
-{context_text}
-
-=== TYPES AND DIFFICULTIES FOR EACH PAIR ===
-{type_difficulty_str}
-
-=== EXAMPLE ({qa_types[0]}, {difficulties[0]}) ===
-Contexts:
-"""
-        prompt += "\n\n".join([f"{ctx}" for ctx in self.FEW_SHOT_EXAMPLES[qa_types[0]]["contexts"]])
-        prompt += f"""
-
-Question: {self.FEW_SHOT_EXAMPLES[qa_types[0]]["question"]}
-Ground Truth: {self.FEW_SHOT_EXAMPLES[qa_types[0]]["ground_truth"]}
-Type: {qa_types[0]}
-Difficulty: {self.FEW_SHOT_EXAMPLES[qa_types[0]]["difficulty"]}
-
-=== YOUR TASK ===
-Generate {num_pairs} NEW QA pairs, one for each type/difficulty combination listed above.
-
-CRITICAL REQUIREMENTS:
-1. Every question MUST require the SPECIFIC information in the contexts to answer
-2. The contexts are the source of truth — ground answers only in what the contexts say
-3. Do NOT ask questions answerable from general/popular knowledge
-4. Ask about specific details: numbers, names, recommendations, lists, or procedures from the text
-5. Each ground_truth MUST cite or closely paraphrase information from the contexts
-6. Questions must be DISTINCT from each other (no duplicates or near-duplicates)
-7. Use the topic "{topic_str}" as a suggested angle, but prioritize what the contexts actually contain
-
-Output ONLY a JSON array with {num_pairs} objects, no additional text:
-[
-  {{"question": "...", "ground_truth": "...", "type": "...", "difficulty": "..."}},
-  ...
-]
-"""
-        return prompt
-
     def _is_generic_question(self, question: str) -> bool:
         """Heuristic to detect generic/popular-knowledge questions."""
-        # Too short
         if len(question) < 20:
             return True
 
         question_lower = question.lower()
 
-        # Generic starters that suggest popular knowledge
-        # Note: Removed Portuguese patterns (o que é, quando, onde) as they block valid questions
         generic_patterns = [
             r"^what is",
             r"^who is",
@@ -329,10 +202,9 @@ Output ONLY a JSON array with {num_pairs} objects, no additional text:
         for pattern in generic_patterns:
             if re.match(pattern, question_lower):
                 words_after = len(question_lower.split()) - 2
-                if words_after < 5:  # Raised from 2 to 5
+                if words_after < 5:
                     return True
 
-        # Generic question patterns — too broad, answerable from popular knowledge
         generic_phrases = [
             "como proteger",
             "o que sao",
@@ -351,118 +223,151 @@ Output ONLY a JSON array with {num_pairs} objects, no additional text:
 
         for phrase in generic_phrases:
             if question_lower.startswith(phrase):
-                # Only reject if the question is short (no specific detail added)
-                if len(question_lower) < 50:  # Lowered from 80 to 50
+                if len(question_lower) < 50:
                     return True
 
         return False
 
     def _is_duplicate(self, question: str) -> bool:
-        """Check if question is too similar to existing ones (bounded window)."""
+        """Check if question is too similar to existing ones."""
         question_normalized = question.lower().strip().rstrip("?")
 
         if question_normalized in self.generated_questions:
             return True
 
-        # Only check against a bounded window of recent questions
         recent = list(self.generated_questions)[-self.DEDUP_WINDOW:]
         question_words = set(question_normalized.split())
         for existing in recent:
             existing_words = set(existing.split())
             overlap = len(question_words & existing_words) / max(len(question_words), 1)
-            if overlap > 0.65:  # Tightened from 0.8 to catch near-duplicates
+            if overlap > 0.65:
                 return True
 
         return False
 
-    def _is_ground_truth_grounded(self, ground_truth: str, contexts: List[str], qa_type: str) -> bool:
+    def _is_ground_truth_grounded(self, ground_truth: str, contexts: List[str]) -> bool:
         """Check that ground truth is grounded in the provided contexts.
 
-        Uses semantic similarity via embeddings (language-independent).
-        Falls back to entity/number matching if no embedder is available.
+        Uses heuristic matching: shared numbers with units, entity overlap,
+        or word overlap >= 15%.
         """
         if not ground_truth.strip():
             return False
 
-        # Strategy 1: Semantic check using embeddings (works cross-language)
-        if self.embedder is not None:
-            try:
-                import numpy as np
-                gt_embedding = self.embedder.embed_query(ground_truth)
-                for ctx in contexts:
-                    ctx_embedding = self.embedder.embed_query(ctx)
-                    similarity = float(np.dot(gt_embedding, ctx_embedding) / (
-                        np.linalg.norm(gt_embedding) * np.linalg.norm(ctx_embedding) + 1e-8
-                    ))
-                    if similarity >= 0.5:
-                        return True
-                return False
-            except Exception:
-                pass  # Fall through to entity check
-
-        # Strategy 2: Entity/number extraction (no API calls, language-independent)
-        # Check if the ground truth contains specific numbers or entities from the contexts
         import re as _re
         context_text = " ".join(contexts)
 
-        # Extract numbers (with units) from contexts
-        ctx_numbers = set(_re.findall(r'\b\d+[.,]?\d*\s*(?:mg|g|ml|mmol|%|mcg|kg|lb|cal|kcal|cm|mm)\b', context_text.lower()))
-        gt_numbers = set(_re.findall(r'\b\d+[.,]?\d*\s*(?:mg|g|ml|mmol|%|mcg|kg|lb|cal|kcal|cm|mm)\b', ground_truth.lower()))
-
-        # If ground truth mentions specific quantities from the contexts, it's grounded
+        # Check specific quantities from contexts
+        ctx_numbers = set(_re.findall(
+            r'\b\d+[.,]?\d*\s*(?:mg|g|ml|mmol|%|mcg|kg|lb|cal|kcal|cm|mm)\b',
+            context_text.lower()
+        ))
+        gt_numbers = set(_re.findall(
+            r'\b\d+[.,]?\d*\s*(?:mg|g|ml|mmol|%|mcg|kg|lb|cal|kcal|cm|mm)\b',
+            ground_truth.lower()
+        ))
         if gt_numbers and gt_numbers & ctx_numbers:
             return True
 
-        # Extract capitalized entities (names, acronyms) from contexts
+        # Check named entities
         ctx_entities = set(_re.findall(r'\b[A-Z][a-zA-Z]{2,}\b', context_text))
         gt_entities = set(_re.findall(r'\b[A-Z][a-zA-Z]{2,}\b', ground_truth))
-
-        # If ground truth mentions named entities from the contexts, it's grounded
-        significant_entities = gt_entities & ctx_entities
-        if len(significant_entities) >= 2:
+        if len(gt_entities & ctx_entities) >= 2:
             return True
 
-        # Fallback: loose word overlap (lowered to 15%)
+        # Fallback: word overlap
         gt_words = set(ground_truth.lower().split())
         context_words = set(context_text.lower().split())
         overlap = len(gt_words & context_words) / max(len(gt_words), 1)
-        return overlap >= 0.15
+        return overlap >= self.config.grounding_threshold
 
-    def generate_qa(
+    def generate_qa_from_section(
         self,
-        contexts: List[str],
-        qa_type: Optional[Literal["single-hop", "multi-hop", "inference", "paraphrase"]] = None,
-        difficulty: Optional[Literal["easy", "medium", "hard"]] = None,
-        iteration: int = 0,
-        topic_path: Optional[List[str]] = None,
-    ) -> Optional[QAPair]:
-        """
-        Generate a QA pair from contexts with topic tree guidance.
+        chunks: List[str],
+        topic_path: List[str],
+        source: str,
+        num_pairs: int = 1,
+    ) -> List[QAPair]:
+        """Generate QA pairs from a section's chunks.
 
         Args:
-            contexts: List of context strings
-            qa_type: Type of question to generate (random if None)
-            difficulty: Difficulty level (random if None)
-            iteration: Current iteration for logging
-            topic_path: Topic path from topic tree (if available)
+            chunks: List of text chunks from a leaf node
+            topic_path: Path in the topic tree (e.g., ["Doc Topics", "Sodium", "Recommended Levels"])
+            source: Source document filename
+            num_pairs: Number of QA pairs to generate
 
         Returns:
-            QAPair or None if generation failed
+            List of QAPair objects (may be fewer than num_pairs if filtered)
         """
-        # Randomly select type and difficulty if not specified
-        if qa_type is None:
-            qa_type = random.choice([t["type"] for t in self.QA_TYPES])
-        if difficulty is None:
-            difficulty = random.choice(self.DIFFICULTIES)
+        if not chunks:
+            return []
 
-        # Retry loop with exponential backoff
+        # Select 1-3 chunks as context
+        if len(chunks) <= 3:
+            contexts = chunks
+        else:
+            # Pick up to 3 diverse chunks
+            contexts = random.sample(chunks, min(3, len(chunks)))
+
+        if num_pairs == 1:
+            pair = self._generate_single(contexts, topic_path, source)
+            return [pair] if pair else []
+        else:
+            return self._generate_batch(contexts, topic_path, source, num_pairs)
+
+    def _generate_single(
+        self,
+        contexts: List[str],
+        topic_path: List[str],
+        source: str,
+    ) -> Optional[QAPair]:
+        """Generate a single QA pair."""
+        qa_type = random.choice([t["type"] for t in self.QA_TYPES])
+        difficulty = random.choice(self.DIFFICULTIES)
+        topic_str = " -> ".join(topic_path)
+        example = self.FEW_SHOT_EXAMPLES.get(qa_type, self.FEW_SHOT_EXAMPLES["single-hop"])
+
+        context_text = "\n\n".join([f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts)])
+
+        prompt = f"""Generate a QA pair based on the following contexts.
+
+=== TOPIC GUIDANCE ===
+Suggested topic angle: {topic_str}
+Use this topic as inspiration for the question's angle, but the contexts are the source of truth.
+Source document: {source}
+
+=== CONTEXTS (SOURCE OF TRUTH) ===
+{context_text}
+
+=== EXAMPLE ({qa_type}, {difficulty}) ===
+Contexts:
+"""
+        prompt += "\n\n".join(example["contexts"])
+        prompt += f"""
+
+Question: {example["question"]}
+Ground Truth: {example["ground_truth"]}
+Type: {qa_type}
+Difficulty: {example["difficulty"]}
+
+=== YOUR TASK ===
+Generate a NEW {qa_type} question at {difficulty} difficulty level.
+
+CRITICAL REQUIREMENTS:
+1. The question MUST require the SPECIFIC information in the contexts to answer
+2. The contexts are the source of truth — ground answers only in what the contexts say
+3. Do NOT ask questions answerable from general/popular knowledge
+4. Ask about specific details: numbers, names, recommendations, lists from the text
+5. The ground_truth MUST cite or closely paraphrase information from the contexts
+
+Output ONLY the JSON object, no additional text:
+"""
+
         for attempt in range(self.config.max_retries):
             if attempt > 0:
-                time.sleep(min(2 ** attempt, 16))  # Cap at 16 seconds
+                time.sleep(min(2 ** attempt, 16))
 
             try:
-                prompt = self._build_prompt(contexts, qa_type, difficulty, topic_path)
-
                 response = self.client.chat.completions.create(
                     model=self.config.model_name,
                     messages=[
@@ -474,95 +379,113 @@ Output ONLY a JSON array with {num_pairs} objects, no additional text:
                 )
 
                 content = response.choices[0].message.content
-
-                # Parse JSON
-                try:
-                    # Try to extract JSON from markdown code block
-                    if "```json" in content:
-                        json_str = content.split("```json")[1].split("```")[0]
-                    elif "```" in content:
-                        json_str = content.split("```")[1].split("```")[0]
-                    else:
-                        json_str = content
-
-                    data = json.loads(json_str.strip())
-
-                    question = data.get("question", "").strip()
-                    ground_truth = data.get("ground_truth", "").strip()
-                    result_type = data.get("type", qa_type)
-                    result_difficulty = data.get("difficulty", difficulty)
-
-                    # Basic validation — both fields must exist
-                    if not question or not ground_truth:
-                        continue
-
-                    # Check that the answer is grounded in the contexts
-                    if not self._is_ground_truth_grounded(ground_truth, contexts, result_type):
-                        continue
-
-                    # Store for duplicate detection
-                    self.generated_questions.add(question.lower().strip().rstrip("?"))
-
-                    metadata = {
-                        "type": result_type,
-                        "difficulty": result_difficulty,
-                        "attempt": attempt + 1,
-                        "iteration": iteration,
-                    }
-
-                    if topic_path:
-                        metadata["topic_path"] = topic_path
-
-                    return QAPair(
-                        question=question,
-                        ground_truth=ground_truth,
-                        contexts=contexts,
-                        metadata=metadata,
-                    )
-
-                except json.JSONDecodeError:
-                    logger.warning(f"[QA rejected] JSON parse error: {content[:100]}...")
+                data = self._parse_json_response(content)
+                if not data:
                     continue
+
+                question = data.get("question", "").strip()
+                ground_truth = data.get("ground_truth", "").strip()
+
+                if not question or not ground_truth:
+                    continue
+                if self._is_generic_question(question):
+                    logger.debug(f"[Rejected] Generic question: {question[:60]}...")
+                    continue
+                if self._is_duplicate(question):
+                    logger.debug(f"[Rejected] Duplicate question: {question[:60]}...")
+                    continue
+                if not self._is_ground_truth_grounded(ground_truth, contexts):
+                    logger.debug(f"[Rejected] Ungrounded answer: {ground_truth[:60]}...")
+                    continue
+
+                self.generated_questions.add(question.lower().strip().rstrip("?"))
+
+                return QAPair(
+                    question=question,
+                    ground_truth=ground_truth,
+                    contexts=contexts,
+                    metadata={
+                        "type": data.get("type", qa_type),
+                        "difficulty": data.get("difficulty", difficulty),
+                        "topic_path": topic_path,
+                        "source": source,
+                    },
+                )
 
             except Exception as e:
                 logger.warning(f"[QA rejected] API error: {e}")
                 continue
 
-        # Failed after all retries
         return None
 
-    def generate_qa_batch(
+    def _generate_batch(
         self,
         contexts: List[str],
-        num_pairs: int = 3,
-        iteration: int = 0,
-        topic_path: Optional[List[str]] = None,
+        topic_path: List[str],
+        source: str,
+        num_pairs: int,
     ) -> List[QAPair]:
-        """
-        Generate multiple QA pairs in a single LLM call.
-
-        Args:
-            contexts: List of context strings
-            num_pairs: Number of QA pairs to generate
-            iteration: Current iteration for logging
-            topic_path: Topic path from topic tree (if available)
-
-        Returns:
-            List of accepted QAPair objects (may be fewer than num_pairs if filtered)
-        """
-        # Select diverse types and difficulties for the batch
+        """Generate multiple QA pairs in a single LLM call."""
         all_types = [t["type"] for t in self.QA_TYPES]
         qa_types = [all_types[i % len(all_types)] for i in range(num_pairs)]
         difficulties = [self.DIFFICULTIES[i % len(self.DIFFICULTIES)] for i in range(num_pairs)]
+        topic_str = " -> ".join(topic_path)
 
-        # Retry loop with exponential backoff
+        context_text = "\n\n".join([f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts)])
+
+        type_difficulty_str = "\n".join([
+            f"{i+1}. Type: {qa_types[i]}, Difficulty: {difficulties[i]}"
+            for i in range(num_pairs)
+        ])
+
+        example = self.FEW_SHOT_EXAMPLES[qa_types[0]]
+
+        prompt = f"""Generate {num_pairs} distinct QA pairs based on the following contexts.
+
+=== TOPIC GUIDANCE ===
+Suggested topic angle: {topic_str}
+Use this topic as inspiration, but the contexts are the source of truth.
+Source document: {source}
+
+=== CONTEXTS (SOURCE OF TRUTH) ===
+{context_text}
+
+=== TYPES AND DIFFICULTIES FOR EACH PAIR ===
+{type_difficulty_str}
+
+=== EXAMPLE ({qa_types[0]}, {difficulties[0]}) ===
+Contexts:
+"""
+        prompt += "\n\n".join(example["contexts"])
+        prompt += f"""
+
+Question: {example["question"]}
+Ground Truth: {example["ground_truth"]}
+Type: {qa_types[0]}
+Difficulty: {example["difficulty"]}
+
+=== YOUR TASK ===
+Generate {num_pairs} NEW QA pairs, one for each type/difficulty combination.
+
+CRITICAL REQUIREMENTS:
+1. Every question MUST require SPECIFIC information from the contexts
+2. Ground answers only in what the contexts say
+3. Do NOT ask questions answerable from general/popular knowledge
+4. Each ground_truth MUST cite or closely paraphrase the contexts
+5. Questions must be DISTINCT (no duplicates or near-duplicates)
+
+Output ONLY a JSON array with {num_pairs} objects:
+[
+  {{"question": "...", "ground_truth": "...", "type": "...", "difficulty": "..."}},
+  ...
+]
+"""
+
         for attempt in range(self.config.max_retries):
             if attempt > 0:
-                time.sleep(min(2 ** attempt, 16))  # Cap at 16 seconds
+                time.sleep(min(2 ** attempt, 16))
 
             try:
-                prompt = self._build_batch_prompt(contexts, num_pairs, qa_types, difficulties, topic_path)
-
                 response = self.client.chat.completions.create(
                     model=self.config.model_name,
                     messages=[
@@ -570,82 +493,64 @@ Output ONLY a JSON array with {num_pairs} objects, no additional text:
                         {"role": "user", "content": prompt},
                     ],
                     temperature=self.config.temperature,
-                    max_tokens=2000,  # Increased for multiple pairs
+                    max_tokens=2000,
                 )
 
                 content = response.choices[0].message.content
+                data_list = self._parse_json_response(content)
 
-                # Parse JSON array
-                try:
-                    # Try to extract JSON from markdown code block
-                    if "```json" in content:
-                        json_str = content.split("```json")[1].split("```")[0]
-                    elif "```" in content:
-                        json_str = content.split("```")[1].split("```")[0]
-                    else:
-                        json_str = content
+                if not isinstance(data_list, list):
+                    continue
 
-                    data_list = json.loads(json_str.strip())
-                    if not isinstance(data_list, list):
-                        logger.warning(f"[Batch] LLM returned non-list, got {type(data_list).__name__}")
+                accepted: List[QAPair] = []
+                for i, data in enumerate(data_list[:num_pairs]):
+                    question = data.get("question", "").strip()
+                    ground_truth = data.get("ground_truth", "").strip()
+
+                    if not question or not ground_truth:
+                        continue
+                    if self._is_generic_question(question):
+                        continue
+                    if self._is_duplicate(question):
+                        continue
+                    if not self._is_ground_truth_grounded(ground_truth, contexts):
                         continue
 
-                    accepted_pairs: List[QAPair] = []
+                    self.generated_questions.add(question.lower().strip().rstrip("?"))
+                    accepted.append(QAPair(
+                        question=question,
+                        ground_truth=ground_truth,
+                        contexts=contexts,
+                        metadata={
+                            "type": data.get("type", qa_types[i % len(qa_types)]),
+                            "difficulty": data.get("difficulty", difficulties[i % len(difficulties)]),
+                            "topic_path": topic_path,
+                            "source": source,
+                        },
+                    ))
 
-                    for i, data in enumerate(data_list):
-                        if i >= num_pairs:
-                            break
-
-                        question = data.get("question", "").strip()
-                        ground_truth = data.get("ground_truth", "").strip()
-                        result_type = data.get("type", qa_types[i])
-                        result_difficulty = data.get("difficulty", difficulties[i])
-
-                        # Basic validation — both fields must exist
-                        if not question or not ground_truth:
-                            continue
-
-                        # Check that the answer is grounded in the contexts
-                        if not self._is_ground_truth_grounded(ground_truth, contexts, result_type):
-                            continue
-
-                        # Store for duplicate detection
-                        self.generated_questions.add(question.lower().strip().rstrip("?"))
-
-                        metadata = {
-                            "type": result_type,
-                            "difficulty": result_difficulty,
-                            "attempt": attempt + 1,
-                            "iteration": iteration,
-                        }
-
-                        if topic_path:
-                            metadata["topic_path"] = topic_path
-
-                        accepted_pairs.append(QAPair(
-                            question=question,
-                            ground_truth=ground_truth,
-                            contexts=contexts,
-                            metadata=metadata,
-                        ))
-
-                    if accepted_pairs:
-                        logger.info(f"[Batch] Accepted {len(accepted_pairs)}/{len(data_list)} pairs")
-                    else:
-                        logger.warning(f"[Batch] All {len(data_list)} pairs rejected by quality filters")
-
-                    return accepted_pairs
-
-                except json.JSONDecodeError:
-                    logger.warning(f"[Batch] JSON parse error: {content[:100]}...")
-                    continue
+                if accepted:
+                    logger.info(f"[Batch] Accepted {len(accepted)}/{len(data_list)} pairs from '{source}'")
+                return accepted
 
             except Exception as e:
                 logger.warning(f"[Batch] API error: {e}")
                 continue
 
-        # Failed after all retries
         return []
+
+    @staticmethod
+    def _parse_json_response(content: str):
+        """Parse JSON from LLM response, handling markdown code blocks."""
+        raw = content.strip()
+        if "```json" in raw:
+            raw = raw.split("```json")[1].split("```")[0]
+        elif "```" in raw:
+            raw = raw.split("```")[1].split("```")[0]
+        try:
+            return json.loads(raw.strip())
+        except json.JSONDecodeError:
+            return None
 
     def to_dataset_entry(self, qa_pair: QAPair) -> DatasetEntry:
         """Convert QAPair to RAGAS evaluation format."""

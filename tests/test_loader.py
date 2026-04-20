@@ -4,7 +4,7 @@ import os
 import tempfile
 from pathlib import Path
 
-from loader import load_documents, _clean_pdf_text
+from loader import load_documents, _load_text_file
 
 
 class TestLoadDocuments:
@@ -36,13 +36,6 @@ class TestLoadDocuments:
         except FileNotFoundError:
             pass
 
-    def test_custom_remove_patterns(self, tmp_path):
-        txt_file = tmp_path / "test.txt"
-        txt_file.write_text("Some content here about technology and programming.", encoding="utf-8")
-        # Pass empty patterns to test parameter wiring
-        docs = load_documents(str(tmp_path), pdf_remove_patterns=[])
-        assert len(docs) == 1
-
     def test_recursive_loading(self, tmp_path):
         subfolder = tmp_path / "subdir"
         subfolder.mkdir()
@@ -51,27 +44,32 @@ class TestLoadDocuments:
         docs = load_documents(str(tmp_path))
         assert len(docs) == 2
 
+    def test_pdf_cached_output_used(self, tmp_path):
+        """Test that cached parsed Markdown is used when available."""
+        # Put PDF in a subfolder so the cache .md file doesn't get loaded too
+        docs_dir = tmp_path / "docs"
+        docs_dir.mkdir()
+        cache_dir = tmp_path / "cache"
+        cache_dir.mkdir()
 
-class TestCleanPdfText:
-    def test_removes_configured_patterns(self):
-        text = "Good content about health and nutrition.\nmanual de orientações\nMore good content about diet."
-        result = _clean_pdf_text(text, remove_patterns=["manual de orientações"])
-        assert "manual de orientações" not in result.lower()
+        pdf_file = docs_dir / "test.pdf"
+        pdf_file.write_bytes(b"fake pdf content")
+        cached_md = cache_dir / "test.md"
+        cached_md.write_text("# Cached Title\n\nCached content from previous parse.", encoding="utf-8")
 
-    def test_empty_patterns_pass_through(self):
-        text = "Some content " * 10
-        result = _clean_pdf_text(text, remove_patterns=[])
-        assert len(result) > 0
+        docs = load_documents(str(docs_dir), parsed_cache_dir=str(cache_dir))
+        assert len(docs) == 1
+        assert "Cached content" in docs[0].content
+        assert docs[0].metadata.get("cached") is True
 
-    def test_default_patterns_used_when_none(self):
-        text = (
-            "Python is a versatile programming language used for web development, "
-            "data analysis, artificial intelligence, and scientific computing. "
-            "It was created by Guido van Rossum and first released in 1991. "
-            "Python's design philosophy emphasizes code readability with its notable "
-            "use of significant indentation. Its language constructs and object-oriented "
-            "approach aim to help programmers write clear, logical code for small and "
-            "large-scale projects."
-        )
-        result = _clean_pdf_text(text, remove_patterns=None)
-        assert len(result) > 0
+    def test_documents_sorted_by_name(self, tmp_path):
+        """Test that documents are loaded in sorted order."""
+        (tmp_path / "z_doc.txt").write_text("Z content", encoding="utf-8")
+        (tmp_path / "a_doc.txt").write_text("A content", encoding="utf-8")
+        (tmp_path / "m_doc.txt").write_text("M content", encoding="utf-8")
+
+        docs = load_documents(str(tmp_path))
+        assert len(docs) == 3
+        # Should be sorted alphabetically
+        assert docs[0].source.endswith("a_doc.txt")
+        assert docs[2].source.endswith("z_doc.txt")

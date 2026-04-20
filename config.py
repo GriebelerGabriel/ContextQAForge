@@ -62,39 +62,31 @@ class PipelineConfig:
     chunk_size: int = 500
     chunk_overlap: int = 100
 
-    # Vector store
-    top_k: int = 5
+    # PaddleOCR
+    paddleocr_lang: str = "en"  # OCR language: "en", "pt", "latin"
+    use_table_recognition: bool = True
 
     # Generation
     num_samples: int = 100
     model_name: str = "gpt-4o"
-    embedding_model: str = "text-embedding-3-small"
     temperature: float = 0.7
     max_retries: int = 3
     batch_size: int = 3  # QA pairs per LLM call (1-5)
-    grounding_threshold: float = 0.25  # Min fraction of GT words found in contexts (was 0.3)
+    grounding_threshold: float = 0.25
 
-    # Topic Tree
-    tree_degree: int = 3  # Children per node
-    tree_depth: int = 3   # Levels deep
-    topic_model: str = "gpt-4o-mini"  # Model for topic tree generation (cheaper)
-
-    # PDF Processing
-    use_llm_for_pdf: bool = False  # Use LLM for table/structure extraction (slower, more accurate)
-    pdf_extraction_model: str = "gpt-4o-mini"  # Model for PDF extraction if enabled
+    # Topic Tree LLM refinement
+    topic_model: str = "gpt-4o-mini"  # Cheaper model for tree refinement
+    max_section_chars_for_split: int = 1500  # Sections longer than this get LLM-split
 
     # Domain/Subject Focus
-    document_domain: str = "general"  # Domain for QA focus (e.g., nutrition, technology, medicine)
+    document_domain: str = "general"
 
     # Language
     language: str = "pt-BR"  # Output language for generated QA pairs
 
-    # Document-specific patterns for filtering (defaults are for Brazilian healthcare docs)
+    # Document-specific patterns for filtering
     pdf_remove_patterns: List[str] = field(default_factory=lambda: list(DEFAULT_PDF_REMOVE_PATTERNS))
     chunk_quality_patterns: List[str] = field(default_factory=lambda: list(DEFAULT_CHUNK_QUALITY_PATTERNS))
-
-    # Chunk deduplication
-    dedup_overlap_threshold: float = 0.8  # Word overlap threshold for chunk dedup (was 0.6)
 
     # API
     openai_api_key: Optional[str] = None
@@ -102,6 +94,8 @@ class PipelineConfig:
     # Output
     output_path: str = "dataset.json"
     log_path: str = "pipeline.log"
+    tree_path: str = "tree/topic_tree.json"
+    parsed_path: str = "tree/parsed"
 
     def __post_init__(self):
         """Load API key from environment if not provided."""
@@ -118,22 +112,20 @@ class PipelineConfig:
         return cls(
             chunk_size=int(os.getenv("CHUNK_SIZE", "1000")),
             chunk_overlap=int(os.getenv("CHUNK_OVERLAP", "200")),
-            top_k=int(os.getenv("TOP_K", "5")),
+            paddleocr_lang=os.getenv("PADDLEOCR_LANG", "en"),
+            use_table_recognition=os.getenv("USE_TABLE_RECOGNITION", "true").lower() == "true",
             num_samples=int(os.getenv("NUM_SAMPLES", "100")),
             model_name=os.getenv("MODEL_NAME", "gpt-4o"),
-            embedding_model=os.getenv("EMBEDDING_MODEL", "text-embedding-3-small"),
             temperature=float(os.getenv("TEMPERATURE", "0.7")),
             max_retries=int(os.getenv("MAX_RETRIES", "3")),
             batch_size=int(os.getenv("BATCH_SIZE", "3")),
             grounding_threshold=float(os.getenv("GROUNDING_THRESHOLD", "0.25")),
-            tree_degree=int(os.getenv("TREE_DEGREE", "3")),
-            tree_depth=int(os.getenv("TREE_DEPTH", "3")),
             topic_model=os.getenv("TOPIC_MODEL", "gpt-4o-mini"),
-            use_llm_for_pdf=os.getenv("USE_LLM_FOR_PDF", "false").lower() == "true",
-            pdf_extraction_model=os.getenv("PDF_EXTRACTION_MODEL", "gpt-4o-mini"),
+            max_section_chars_for_split=int(os.getenv("MAX_SECTION_CHARS_FOR_SPLIT", "1500")),
             document_domain=os.getenv("DOCUMENT_DOMAIN", "general"),
             language=os.getenv("LANGUAGE", "pt-BR"),
             output_path=os.getenv("OUTPUT_PATH", "dataset.json"),
             log_path=os.getenv("LOG_PATH", "pipeline.log"),
-            dedup_overlap_threshold=float(os.getenv("DEDUP_OVERLAP_THRESHOLD", "0.8")),
+            tree_path=os.getenv("TREE_PATH", "tree/topic_tree.json"),
+            parsed_path=os.getenv("PARSED_PATH", "tree/parsed"),
         )

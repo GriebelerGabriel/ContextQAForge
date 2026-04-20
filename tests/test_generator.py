@@ -26,7 +26,6 @@ class TestQAGenerator:
 
     def test_is_generic_question_long_generic(self, mock_config):
         gen = QAGenerator(mock_config)
-        # "what is" with enough words after should pass
         assert gen._is_generic_question(
             "What is the best approach for managing chronic pain in elderly patients?"
         ) is False
@@ -41,28 +40,17 @@ class TestQAGenerator:
         gen.generated_questions.add("what is python")
         assert gen._is_duplicate("How does Java garbage collection work?") is False
 
-    def test_is_duplicate_bounded_window(self, mock_config):
-        gen = QAGenerator(mock_config)
-        # Add more than DEDUP_WINDOW questions
-        for i in range(60):
-            gen.generated_questions.add(f"question number {i} about topic")
-        # Very old questions should not cause duplicates
-        assert gen._is_duplicate("question number 0 about topic") is True
-
     def test_is_duplicate_near_duplicate_caught(self, mock_config):
         gen = QAGenerator(mock_config)
         gen.generated_questions.add("posso usar maionese em minhas saladas se estou tentando prevenir doencas cardiovasculares")
-        # Near-duplicate with very similar wording
         assert gen._is_duplicate("Posso incluir maionese na minha dieta se estou tentando prevenir doencas cardiovasculares?") is True
 
     def test_is_generic_portuguese_generic(self, mock_config):
         gen = QAGenerator(mock_config)
-        # Short generic question
         assert gen._is_generic_question("Como prevenir doencas?") is True
 
     def test_is_generic_portuguese_specific(self, mock_config):
         gen = QAGenerator(mock_config)
-        # Long specific question should pass
         assert gen._is_generic_question(
             "Qual quantidade diaria de azeite extravirgem e recomendada pelo manual para reduzir risco cardiovascular?"
         ) is False
@@ -72,55 +60,6 @@ class TestQAGenerator:
         prompt = gen._get_system_prompt()
         assert "DOCUMENT-SPECIFIC" in prompt
         assert "popular" in prompt.lower() or "general knowledge" in prompt.lower()
-
-    def test_generate_qa_success(self, mock_config, mock_openai_response):
-        gen = QAGenerator(mock_config)
-        with patch.object(gen.client.chat.completions, "create", return_value=mock_openai_response):
-            result = gen.generate_qa(
-                contexts=["Python is a programming language."],
-                qa_type="single-hop",
-                difficulty="easy",
-                iteration=0,
-            )
-        # May or may not succeed depending on quality checks
-        # The mock response has a very short question that might be filtered
-        assert result is None or isinstance(result, QAPair)
-
-    def test_generate_qa_with_good_response(self, mock_config):
-        gen = QAGenerator(mock_config)
-        mock_response = MagicMock()
-        mock_response.choices = [MagicMock()]
-        mock_response.choices[0].message.content = json.dumps({
-            "question": "O que devo comer para manter uma dieta equilibrada e saudavel no dia a dia?",
-            "ground_truth": "Para manter uma dieta equilibrada, inclua frutas, vegetais, proteinas e graos integrais nas suas refeicoes diarias.",
-            "type": "single-hop",
-            "difficulty": "easy",
-        })
-
-        with patch.object(gen.client.chat.completions, "create", return_value=mock_response):
-            result = gen.generate_qa(
-                contexts=["Uma dieta equilibrada inclui frutas, vegetais, proteinas e graos integrais nas refeicoes diarias."],
-                qa_type="single-hop",
-                difficulty="easy",
-                iteration=0,
-            )
-        assert result is not None
-        assert result.question is not None
-        assert result.ground_truth is not None
-
-    def test_to_dataset_entry(self, mock_config):
-        gen = QAGenerator(mock_config)
-        qa = QAPair(
-            question="Test question?",
-            ground_truth="Test answer.",
-            contexts=["Context 1"],
-            metadata={"type": "single-hop", "difficulty": "easy"},
-        )
-        entry = gen.to_dataset_entry(qa)
-        assert entry.question == "Test question?"
-        assert entry.ground_truth == "Test answer."
-        assert entry.answer == "Test answer."
-        assert entry.contexts == ["Context 1"]
 
     def test_system_prompt_pt_br_default(self, mock_config):
         gen = QAGenerator(mock_config)
@@ -141,51 +80,86 @@ class TestQAGenerator:
         assert "technology" in prompt
         assert "PATIENT" not in prompt or "PRACTITIONER" in prompt
 
-    def test_generate_qa_api_failure_returns_none(self, mock_config):
+    def test_to_dataset_entry(self, mock_config):
         gen = QAGenerator(mock_config)
-        with patch.object(gen.client.chat.completions, "create", side_effect=Exception("API error")):
-            result = gen.generate_qa(
-                contexts=["Some context"],
-                qa_type="single-hop",
-                difficulty="easy",
-            )
-        assert result is None
+        qa = QAPair(
+            question="Test question?",
+            ground_truth="Test answer.",
+            contexts=["Context 1"],
+            metadata={"type": "single-hop", "difficulty": "easy"},
+        )
+        entry = gen.to_dataset_entry(qa)
+        assert entry.question == "Test question?"
+        assert entry.ground_truth == "Test answer."
+        assert entry.answer == "Test answer."
+        assert entry.contexts == ["Context 1"]
 
     def test_is_ground_truth_grounded_pass(self, mock_config):
         gen = QAGenerator(mock_config)
         contexts = ["A dieta Dash inclui feijoes, carnes magras, laticinios com baixo teor de gordura."]
         gt = "A dieta Dash e composta por feijoes e carnes magras."
-        assert gen._is_ground_truth_grounded(gt, contexts, "single-hop") is True
+        assert gen._is_ground_truth_grounded(gt, contexts) is True
 
     def test_is_ground_truth_grounded_fail(self, mock_config):
         gen = QAGenerator(mock_config)
         contexts = ["A maionese pode ser utilizada para fazer salada com batatas."]
-        gt = "Para adaptar a receita, use iogurte grego, cenoura e ervilha com batatas cozidas."
-        assert gen._is_ground_truth_grounded(gt, contexts, "single-hop") is False
+        gt = "O azeite extravirgem contem polifenois que reduzem inflamacacao arterial em 30%."
+        assert gen._is_ground_truth_grounded(gt, contexts) is False
 
-    def test_is_ground_truth_grounded_unanswerable_skips(self, mock_config):
-        gen = QAGenerator(mock_config)
-        # All types must pass grounding check now
-        assert gen._is_ground_truth_grounded("anything here", ["anything there here"], "single-hop") is True
+    def test_parse_json_response_plain(self, mock_config):
+        result = QAGenerator._parse_json_response('{"key": "value"}')
+        assert result == {"key": "value"}
 
-    def test_generate_qa_rejects_ungrounded_ground_truth(self, mock_config):
+    def test_parse_json_response_code_block(self, mock_config):
+        result = QAGenerator._parse_json_response('```json\n{"key": "value"}\n```')
+        assert result == {"key": "value"}
+
+    def test_parse_json_response_invalid(self, mock_config):
+        result = QAGenerator._parse_json_response("not json at all")
+        assert result is None
+
+    def test_generate_qa_from_section_with_mock(self, mock_config):
+        """Test section-based generation with mocked LLM."""
         gen = QAGenerator(mock_config)
         mock_response = MagicMock()
         mock_response.choices = [MagicMock()]
-        # Ground truth has words NOT in context
         mock_response.choices[0].message.content = json.dumps({
-            "question": "Como adaptar a receita de maionese para a dieta cardioprotetora usando iogurte natural?",
-            "ground_truth": "Use iogurte grego como base, adicione cenoura, ervilha e batatas cozidas para tornar mais saudavel.",
+            "question": "Qual e a quantidade de sódio recomendada por dia para adultos segundo a OMS?",
+            "ground_truth": "A OMS recomenda que o consumo de sódio nao ultrapasse 2g por dia para adultos.",
             "type": "single-hop",
-            "difficulty": "medium",
+            "difficulty": "easy",
         })
 
         with patch.object(gen.client.chat.completions, "create", return_value=mock_response):
-            result = gen.generate_qa(
-                contexts=["Pode ser utilizada para fazer a salada de maionese com batatas."],
-                qa_type="single-hop",
-                difficulty="medium",
-                iteration=0,
+            pairs = gen.generate_qa_from_section(
+                chunks=["A OMS recomenda que o consumo de sódio nao ultrapasse 2g por dia para adultos."],
+                topic_path=["Document Topics", "Sodium", "Recommended Intake"],
+                source="who_guideline.pdf",
+                num_pairs=1,
             )
-        # Should be rejected because ground truth is not grounded in context
-        assert result is None
+
+        assert len(pairs) == 1
+        assert pairs[0].metadata["source"] == "who_guideline.pdf"
+        assert pairs[0].metadata["topic_path"] == ["Document Topics", "Sodium", "Recommended Intake"]
+
+    def test_generate_qa_from_section_empty_chunks(self, mock_config):
+        """Test that empty chunks return empty list."""
+        gen = QAGenerator(mock_config)
+        pairs = gen.generate_qa_from_section(
+            chunks=[],
+            topic_path=["Root"],
+            source="test.md",
+            num_pairs=1,
+        )
+        assert pairs == []
+
+    def test_generate_qa_api_failure_returns_empty(self, mock_config):
+        gen = QAGenerator(mock_config)
+        with patch.object(gen.client.chat.completions, "create", side_effect=Exception("API error")):
+            pairs = gen.generate_qa_from_section(
+                chunks=["Some context text here."],
+                topic_path=["Root"],
+                source="test.md",
+                num_pairs=1,
+            )
+        assert pairs == []

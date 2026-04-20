@@ -1,0 +1,2249 @@
+{
+  "name": "Document Topics",
+  "source": "root",
+  "depth": 0,
+  "content": null,
+  "chunks": [],
+  "children": [
+    {
+      "name": "Guideline: Sodium intake  for adults and  children",
+      "source": "9789241504836_eng.pdf",
+      "depth": 0,
+      "content": "Guideline:",
+      "chunks": [],
+      "children": [
+        {
+          "name": "Sodium intake  for adults sand  children",
+          "source": "9789241504836_eng.pdf",
+          "depth": 1,
+          "content": "WHO Library Cataloguing-in-Publication Data \n\nGuideline: Sodium intake for adults and children.\n\n1.Sodium,Dietary.2.Chronic disease–prevention and control.3.Guideline. I.World Health Organization.\n\nISBN 978 92 4 150483 6\n\n(NLM classification: WB 424)",
+          "chunks": [],
+          "children": [
+            {
+              "name": "© World Health Organization, 2012 (Reprinted, 2014)",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Copyright and Permissions",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "All rights reserved. Publications of the World Health Organization are available on the WHO web site (www.who.int) or can be purchased from WHO Press, World Health Organization, 20 Avenue Appia, 1211 Geneva 27, Switzerland (tel.: +41227913264; fax: +41227914857; e-mail: bookorders@who.int). Requests for permission to reproduce or translate WHO publications - whether for sale or for noncommercial distribution - should be addressed to WHO Press through the WHO web site (http://www.who.int/about/licensing/copyright_form/en/index.html).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Disclaimer on Material Presentation",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The designations employed and the presentation of the material in this publication do not imply the expression of any opinion whatsoever on the part of the World Health Organization concerning the frontiers or boundaries. Dotted lines on maps represent approximate border lines for which there may not yet be full agreement.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Product Endorsement Disclaimer",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The mention of specific companies or of certain manufacturers' products does not imply that they are endorsed or recommended by the World Health Organization in preference to others of a similar nature that are not mentioned. Errors and omissions excepted, the names of proprietary products are distinguished by initial capital letters.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Information Verification and Responsibility",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "All reasonable precautions have been taken by the World Health Organization to verify the information contained in this publication. However, the published material is being distributed without warranty of any kind, either expressed or implied. The responsibility for the interpretation and use of the material lies with the user.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Suggested Citation",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "WHO. Guideline: Sodium intake for adults and children. Geneva, World Health Organization (WHO), 2012.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Acknowledgements",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Guideline Coordination and Oversight",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "This guidlinewaoorinated byDrNancyAburto underthe uperiionofDrCizuru Nishida.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Acknowledgment of Technical Input",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The World Health Organization (WHO) gratefully acknowledges the technical input and expert advice provided by the members of the WHO Nutrition Guidance Expert Advisory Group Subgroup on Diet and Health, and by the external experts and resource persons for the development of this guideline.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Support from WHO Committees",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Thanks are due to the members of the WHO Steering Committee for Nutrition Guidelines Development and the staff of the WHO Guidelines Review Committee Secretariat for their support and guidance throughout the process.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Administrative and Logistic Support",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Special acknowledgment is made to M Emma Kennedy from the Nutrition Policy and Advice Department for providing administrative and logistic support.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Financial Support Acknowledgment",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "WHO expresses special appreciation to the Ministry of Health, Labour and Welfare of the Government of Japan, the Korea Food and Drug Administration, the Korea Health Industry Development Institute, and the International Kidney Evaluation Association Japan for providing financial support for this work.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Abbreviations and acronyms",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Educational Institutions",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "AUB - American University of Beirut",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Health Organizations",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "CDC - Centers for Disease Control and Prevention\nFAO - Food and Agriculture Organization of the United Nations\nFSANZ - Food Standards Australia New Zealand\nWHO - World Health Organization\nIAEA - International Atomic Energy Agency\nKFDA - Korea Food and Drug Administration\nKHIDI - Korea Health Industry Development Institute\nNUGAG - Nutrition Guidance Expert Advisory Group\nNZFSA - New Zealand Food Safety Academy",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Medical and Health Terms",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "D - confidence interval\nHDL - high-density lipoprotein\nLDL - low-density lipoprotein\nNCD - noncommunicable disease\nMD - mean difference\nPICO - population, intervention, control and outcomes\nRCT - randomized-controlled trial\nRR - risk ratio",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Research Methodologies",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "GRADE - Grading of Recommendations Assessment, Development and Evaluation",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Symbols and Mathematical Notations",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "> - greater than\n< - less than\n≥ - equal to or greater than\n≤ - equal to or less than",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Executive summary",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Noncommunicable diseases (NcDs) are the main contributor to mortality and morbidity globally (1, 2), and interventions to reduce the burden of NCDs are highly cost-efective (3). Elevated sodium intake has been associated with a number of NCDs (including hypertension, cardiovascular disease and stroke), and decreasing sodium intake may reduce blood pressure and the risk of associated NCDs (4, 5).Recent data on sodium intake show that populations around the world are consuming much more sodium than is physiologically necessary (6). In many cases, they are consuming much more than the current World Health Organization (WHO) recommendation on sodium consumption for adults, which is 2 g sodium/day (equivalent to 5 g salt/day) (7).\n\nSince the publication of the previous WHo guideline on sodium intake (7), an appreciable amount of scientific evidence concerning sodium intake, hypertension and risk of cardiovascular disease has been published. Member States and international partners therefore requested WHO to review the current guideline on sodium intake for adults, and to also generate a guideline on sodium intake for children.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Objective",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Guideline Objective",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The objective of this guideline is to provide recommendations on the consumption of sodium to reduce NCDs in most adults and children.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Application of Recommendations",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The recommendations in this guideline can be used by those developing programmes and policies to assess current sodium intake levels relative to a benchmark.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Public Health Interventions",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "If necessary, the recommendations can also be used to develop measures to decrease sodium intake through public health interventions such as food and product labelling, consumer education, and the establishment of food-based dietary guidelines.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Evidence Development Process",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "WHO developed the present evidence-informed guideline using the procedures outlined in the WHO Handbook of guideline development.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Impact of Sodium Reduction",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Reducing sodium intake significantly reduced systolic and diastolic blood pressure in adults and children.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Introduction",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Objective of the Guideline",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The objective of this guideline is to provide recommendations on the consumption of sodium for most adults and children. It is important to establish nutrient guidelines so that nutrition interventions can be developed in a logical, systematic and scientific manner taking into account the best available evidence.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Target Population",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "This guideline provides a global, evidence-informed recommendation on sodium intake for: adults (≥16 years of age) for the reduction of blood pressure and risk of cardiovascular disease, stroke and coronary heart disease; children (2-15 years of age) for the control of blood pressure.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Exclusions from the Guideline",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The guideline does not provide recommendations for individuals with illnesses or taking drug therapy that may lead to hyponatraemia or acute build-up of body water, or require physician-supervised diets (e.g. patients with heart failure and those with type I diabetes).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Intended Audience",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The guideline will help Member States and their partners to make informed decisions on the appropriate nutrition actions to reduce noncommunicable diseases (NCDs). It is intended for a wide audience, including policy-makers and their expert advisers, and technical and programme staff in organizations involved in the design, implementation and scaling-up of nutrition actions for public health.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Key Recommendations and Evidence",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "This document presents the key recommendations and a summary of the supporting evidence. Further details of the evidence base are provided in Annex 1 and other documents listed in the references.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Guideline development process",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "This guideline was developed in accordance with the WHO evidence-informed guideline development procedures outlined in the WHO Handbook for guideline development (8).Development of this guideline was undertaken by the WHO Department of Nutrition for Health and Development', in partnership with the Department of Research Policy and Cooperation and members of the WHO Secretariat (Annex 3). The work was guided by the WHO Steering Committee for Nutrition Guideline Development (Annex 4), which also provided overall supervision of the guideline development process. The WHO Secretariat and the Steering Committee included representatives from all departments of WHO with an interest in the provision of scientific advice on nutrition. Two additional groups were formed: an advisory guideline group and an external expert and stakeholder panel, as outlined below.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Advisory guideline group",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "The WHO Nutrition Guidance Expert Advisory Group (NUGAG) Subgroup on Diet and Health was convened to support the development of this guideline (Annex 5).This group included experts who had previously participated in various WHO expert advisory panels, as well as others identified through open calls for specialists. In forming this group, WHO took into consideration the need for a balanced gender mix,expertise from multiple disciplinary areas and representation from all WHO regions.Efforts were made to include subject-matter experts; statistical, systematic review,program evaluation and Grading of Recommendations Assessment, Development and Evaluation (GRADE) methodologists; and representatives of potential stakeholders (e.g. programme managers and other health professionals involved in the health-care process). There were no representatives of commercial organizations, because such individuals are prohibited from being members of any WHO guideline group. External resource persons, including subject matter experts and systematic review and GRADE methodologists, were invited to the NUGAG meetings as observers to provide technical input.Theseindividuals did not partiipate in te deision-making proces.GG's role was to advise WHO on the choice of outcomes important for decision-making and the interpretation of the evidence.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Panel",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Formation of the External Expert and Stakeholder Panel",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The panel comprises individuals who responded to direct solicitation for contributions based on their known expertise and interest in the subject matter, or to the WHO open call for public comment executed through the electronic mailing lists of the WHO Department of Nutrition for Health and Development, and that of the Codex Alimentarius Commission, and through the posting of the call for public comment on the WHO and United Nations (UN) Standing Committee of Nutrition websites.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Development of PICO Questions",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "WHO developed an initial set of questions to be addressed in the guideline. The questions were based on the needs of Member States and international partners for policy and programme guidance. They were also influenced by the request of the Codex Committee of Nutrition and Foods for Special Dietary Uses.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Review and Adaptation of Questions",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The PlcO questions were first discussed and reviewed by the WHO Secretariat and the WHO Steering Committee for Nutrition Guideline Development and were then made available for public comment from 1 to 28 February 2011. Feedback was received from 16 individuals or organizational stakeholders, and the questions were adapted accordingly.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "NUGAG Subgroup Meeting and Prioritization",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The draft set of PICO questions was presented to the NUGAG Subgroup on Diet and Health during its meeting on 14–18 March 2011. During that meeting, the guideline topic was introduced and the scope of the guideline to be generated finalized. The PICO questions were discussed and outcomes and populations were ranked in importance by NUGAG members.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Follow-up Meeting and Draft Recommendation",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "A follow-up meeting of the NUGAG Subgroup on Diet and Health was held from 29 November to 2 December 2011. WHO presented the systematic reviews of evidence, and a draft recommendation that had been prepared before the meeting. This draft recommendation included: a summary of the evidence from the systematic reviews; draft GRADE evidence profiles assessing the quality of the body of evidence; potential research gaps, concerns and opportunities for feasible implementation of the recommendations in diverse cultural contexts.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Summary of evidence",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Overview of Systematic Reviews",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "This guideline is based on a review of the epidemiologic literature, including three new systematic reviews conducted by WHO (49-51). One review included a reanalysis of data of a fourth systematic review (36), to explore data needed for the evidence base for this guideline (49).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Health Outcomes Considered",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Specific health outcomes considered were: in adults – blood pressure, all-cause mortality, cardiovascular disease, stroke, coronary heart disease, renal function, blood lipids, catecholamine levels and other potential adverse effects; in children - blood pressure, blood lipids, catecholamine levels and other potential adverse effects.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Research Questions",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The specific research questions guiding these systematic reviews were: What is the effect of decreased sodium intake compared with higher sodium intake on health outcomes in adults and children?",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Criteria for Conclusive Evidence",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Evidence was considered conclusive of either a benefit or a harm from decreased sodium intake if the point estimate suggested a benefit or harm and the 95%Cl did not overlap a threshold of relevance.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Inconclusive Evidence",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Conversely, evidence was considered inconclusive if the point estimate suggested a benefit or a harm but the 95%Cl crossed a threshold of relevance.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Blood pressure in adullts",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Sodium Intake and Blood Pressure Reduction",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta-analysis of 36 studies with 49 comparisons found that decreased sodium intake resulted in a decrease in resting systolic blood pressure of 3.39 mmHg (95%confidence interval[CI]:2.46, 4.31)(quality of evidence high) and a decrease in resting diastolic blood pressure of 1.54 mmHg (95%Cl: 0.98, 2.11) (quality of evidence high).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Ambulatory Blood Pressure Effects",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta-analysis of six studies with six comparisons with results on ambulatory blood pressure reported that decreased sodium intake resulted in a decrease in ambulatory systolic blood pressure of 5.51 mmHg (95%Cl: 3.16, 7.87) (quality of evidence high), and a decrease in ambulatory diastolic blood pressure of 2.94 mmHg (95%Cl: 1.51, 4.36)(quality of evidence high).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Comparison of Sodium Intake Levels",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "A meta-analysis comparing the lowest (<2 g/day) to the middle (>2 g/day) consumption groups found that reducing sodium intake to <2 g/day compared to reducing intake but still consuming >2 g/day resulted in a decrease in resting systolic blood pressure of 3.47 mmHg (95%Cl: 0.76, 6.18) (quality of evidence high), and a decrease in resting diastolic blood pressure of 1.81 mmHg (95%Cl: 0.54, 3.08) (quality of evidence high).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Inconclusive Findings on Very Low Sodium Intake",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Only one study directly compared an intake <1.2 g/day to a reduced intake to a level >1.2 g/day. The findings suggested a benefit with a decrease of 8.00 mmHg (95%Cl: −1.73, 17.73) (quality of evidence moderate) but were inconclusive.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "All-cause moit,araclara,rokndnaratdian dults",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Systematic Review of Sodium Intake and Mortality",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "WHO conducted a systematic review of the literature for epidemiological evidence on the relationship of sodium intake to subsequent all-cause mortality, cardiovascular disease, stroke or coronary heart disease in adults. This review included 15 prospective cohort studies with 167,656 participants.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Meta-Analysis Findings on All-Cause Mortality",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta-analysis of seven studies with 10 comparisons meeting the inclusion criteria that reported all-cause mortality was inconclusive (RR 1.062; 95% Cl: 0.94, 1.20)(quality of evidence very low).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Stroke Risk Associated with Sodium Intake",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta-analysis of 10 cohort studies with 14 comparisons reporting stroke was supportive of an increased risk of fatal stroke events (RR 1.63; 95%Cl:1.27,2.10) (quality of evidence low).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Cardiovascular Disease and Sodium Intake",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta-analyses of sodium intake and cardiovascular disease (nine cohort studies with 13 comparisons) were inconclusive (cardiovascular disease RR 1.12; 95%Cl: 0.93,1.34 and coronary heart disease RR 1.04; 95%Cl: 0.86,1.24) (quality of evidence very low).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Blood Pressure as a Risk Marker",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "There is all-tbldlioniptiaiblodsendasing risk fa,l3).pressure isheeoenidedreliablebiomarkeetimtiikofcardiovascular di that bloodpressureculdbuitableroxindicoikofcadvascula disease,sodiumbloodsueinls(4)weud asrt ofhevicetnsidr.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Potential adverse effects in adults",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Adverse Effects on Blood Lipid Concentrations",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Some researchers have reported that reduced sodium could potentially have adverse effects on blood lipid concentrations (i.e. increase total cholesterol, low-density lipoprotein [LDL] cholesterol and triglyceride, and decrease high-density lipoprotein [HDL] cholesterol).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Meta-Analysis of Cholesterol and Triglyceride Levels",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta-analysis of 11 trials with 15 comparisons reporting total cholesterol concentration reported a nonsignificant increase in total cholesterol of 0.02 mmol/L (95%Cl: —0.03,0.07) (quality of evidence high).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Catecholamine Levels and Sodium Intake",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta-analysis of seven studies with seven comparisons reporting catecholamine levels showed that reduced sodium intake resulted in a nonsignificant increase in plasma noradrenaline of 8.23 pg/mL (95% Cl: -27.84, 44.29) (quality of evidence high).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Impact on Renal Function",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Five studies ptie ct ofodium itae nindcors ofnal fuction (uinr of6. One study with 17 participants having a reduced sodium intake and 17 a usual sodium intake reported no change.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Potential Benefits of Reduced Sodium on Renal Function",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Also consistent with a beneficial effect of reduced sodium on renal function, two studies reported a reduced urinary albumin:creatinine ratio with reduced sodium intake.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Blood pressure in children",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Systematic Review by WHO",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "WHO conducted a systematic review of the literature on sodium intake and blood pressure in children. Two previous reviews of the literature were identified; these reviews were more than 5 years old and included a wide range of ages and types of studies. Therefore, WHO conducted an original systematic review and meta-analysis of controlled trials including only trials with children 2-15 years of age.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Controlled Trials and Cohort Study",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "WHO identified and included nine controlled trials that tested the effect of reduced sodium on blood pressure in children, and one cohort study that explored the relationship between sodium intake and change in blood pressure over time. The studies were conducted in Australia, Europe and the USA. The controlled trials included children 5–15 years of age. The children in the cohort study were 5-17 years at baseline and were followed for 7 years.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Meta-Analysis Results",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta-analysis of nine controlled trials with 14 comparisons testing systolic blood pressure found that decreased sodium resulted in a decrease in resting systolic blood pressure of 0.84 mmHg (95%Cl: 0.25, 1.43) (quality of evidence moderate). The meta-analysis of the controlled trials with comparisons measuring diastolic blood pressure found that decreased sodium resulted in a decrease in resting diastolic blood pressure of 0.87 mmHg (95%Cl: 0.14, 1.60) (quality of evidence moderate).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Comparison of Sodium Intake",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The cohort study observed changes in blood pressure over time in the group consuming the highest amount of sodium compared to the lowest group.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Use of Adult Data",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Although there were a number of high-quality controlled trials testing the effect of reduced sodium intake on blood pressure in children, the data from the systematic review conducted in adults were also used as part of the evidence base for the recommendation for children.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Potential adverse effects in children",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Quality of Evidence on Sodium Reduction",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The evidence was downgraded from high to moderate quality because of indirectness.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Blood Pressure Reduction in Normotensive Individuals",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta-analysis of the six studies with seven comparisons in individuals with normal blood pressure found that reduced sodium intake reduced systolic blood pressure by 1.38 mmHg (95%Cl: 0.02, 2.74) (quality of evidence moderate).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Blood Pressure Reduction in Hypertensive Individuals",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta analysis of 24 studies with 31 comparisons in individuals with hypertension found that reduced sodium intake reduced systolic blood pressure by 4.06 mmHg (95%C: 2.96,5.15) (quality of evidence high).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Mixed Populations and Sodium Intake Effects",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The meta analysis of eight studies with 13 comparisons in mixed populations of individuals both with or without hypertension found that reduced sodium intake reduced systolic blood pressure by 3.41 mmHg (95%Cl:1.69, 5.13) (quality of evidence high).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Overall Benefits of Reduced Sodium Intake",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "The body of evidence suggests that reducing sodium is beneficial for most individuals, regardless of current sodium consumption level.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Recommendations and remarks",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Sodium Intake Recommendations for Adults",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "WHO recommends a reduction in sodium intake to reduce blood pressure and risk of cardiovascular disease, stroke and coronary heart disease in adults (strong recommendation 1). WHO recommends a reduction to <2 g/day sodium (5 g/day salt) in adults (strong recommendation).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Sodium Intake Recommendations for Children",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "WHO recommends a reduction in sodium intake to control blood pressure in children (strong recommendation). The recommended maximum level of intake of 2 g/day sodium in adults should be adjusted downward based on the energy requirements of children relative to those of adults.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Subpopulations and Special Considerations",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "These recommendations apply to all individuals, with or without hypertension (including pregnant or lactating women), except for individuals with illnesses or taking drug therapy that may lead to hyponatraemia or acute build-up of body water, or require physician-supervised diets. In these subpopulations, there may be a particular relationship between sodium intake and the health outcomes of interest.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Evidence Basis for Recommendations",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "These recommendations were based on the totality of evidence regarding the relationship between sodium intake and blood pressure, all-cause mortality, cardiovascular disease, stroke and coronary heart disease, as well as potential adverse effects on blood lipids, catecholamine levels and renal function.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Complementary Guidelines and Monitoring",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "These recommendations complement the WHO guideline on potassium consumption and should not be interpreted to replace or supersede that guideline. Public health interventions should aim to reduce sodium intake and simultaneously increase potassium intake through foods.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Translation and implementation",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "This nutrient guideline on sodium can aid the logical, systematic, and scientific development of nutrition interventions taking into account the best available scientifi c evidence. This guideline should be used in conjunction with potassium and other nutrient guidelines to guide public health nutrition programmes and policies.\n\nThe recommendations in this guideline can be used by programme and policy planners to assess current sodium intake relative to a benchmark and develop measures to decrease sodium intake, where necessary, through public health interventions including, but not limited to, food and product labelling and consumer education.Additionally, this guideline can be translated at the country-level into culturally and contextually specific FBDGs that take into account locally available food and dietary customs.\n\n\n\nProviding overall dietary guidance is outside the scope of this guideline because such dietary guidance should be based on overall dietary goals, which consider all required nutrients. It is recognized that it is feasible to achieve this recommendation while respecting national dietary customs because a wide variety of fresh foods are naturally low in sodium (Annex 2). Additionally incremental sodium reduction in processed foods is feasible without consumer complaint.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Research gaps and future initiatives",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Further high-quality RCTs testing the effect of reducing sodium to <1.2 g/day on blood pressure and adverse effects (e.g. changes in blood lipids and catecholamine levels in adults) are warranted to increase the evidence base.\n\nFurther high-quality RCTs testing the effect of sodium reduction on blood pressure and adverse effects (e.g.changes in blood lipids and catecholamine levels in children) are warranted to increase the evidence base.\n\nFurther high-quality RCTs with multiple intervention arms directly testing the effect of multiple levels of sodium on health outcomes are warranted to strengthen the evidence base for the target sodium intake level.\n\nFurther high-quality RCTs with all-cause mortality, cardiovascular disease,stroke andcoronary heart disease as outcomesare warrantedto srenghen the evidence base on the effect of sodium intake on these patient-relevant outcomes.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dissemination",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "The current guideline will be disseminated through:\n\nelectronic media such as slide presentations;\n\nand the UN Standing Committee on Nutrition;\n\n\n\n•the web site of the WHO Department of Nutrition for Health and Development \n\nA summaryof this guideline will also be available in all six UN languages through the WHO Department of Nutrition for Health and Development's electronic Library of Evidence for Nutrition Actions (eLENA). The library displays WHO guidelines related to nutrition, and complementary documents such as systematic reviews and other evidence informing the guidelines, biological and behavioural rationales for the effectiveness of a guideline, and other relevant resources produced by Member States and global partners.\n\n\n\nThe recommendations in this guideline will be reviewed by the end of 2017.If new information is available by that date, a guideline review group will be convened to evaluate the new evidence and revise the recommendation. However, if a large amount ofnew evidnce becomes avaiable before hat date,uidliereviwrou may convened earlier.The Departmnt of Nutrition for Health and Development at the WHO Headquarters in Geneva, together with partners in other departments within the WHO Secretarillboeorriiepofeuillowing the formal WHO Handbook for guidline development (8) procedures.When the guideline isderl addressed in the guideline.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Annex 1 GRADE summary of fi ndings tables",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Effect of Decreased Sodium Intake on Cardiovascular Disease",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Cardiovascular disease1 (directly assessed; RR greater than 1 indicates increased risk with increased sodium intake): RR:1.12 (0.93 to 1.34); 46 483 (9 studies); Quality of the evidence (GRADE): ⊕Θee very low; Comments: Data from cohort studies begin with a GRADE of low. Downgraded due to imprecision because 95%CI crossed threshold of relevance of benefit or harm.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Effect of Sodium Intake on Stroke Risk",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Stroke (directly assessed: RR greater than 1 indicates increase risk with increased sodium intake): RR: 1.24 (1.08 to 1.43); 72 878 (10 studies); Quality of the evidence (GRADE): ⊕eee very low; Comments: Data from cohort studies begin with a GRADE of low. Downgraded due to inconsistency.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Impact of Sodium Intake on All Cause Mortality",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "All cause mortality (directly assessed: RR greater than 1 indicates increased risk with increased sodium intake): RR: 1.06 (0.94 to 1.20); 21 515 (7 studies); Quality of the evidence (GRADE): ⊕Θee very low; Comments: Data from cohort studies begin with a GRADE of low. Downgraded due to inconsistency.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Sodium Intake and Resting Systolic Blood Pressure",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Resting systolic blood pressure 2 (follow-up 1-36 months; units mmHg; better indicated by lower values): MD 3.39 lower 3 (4.31 to 2.46 lower); 6736 (36 studies); Quality of the evidence (GRADE): ⊕⊕⊕⊕ high; Comments: Evidence suggests a dose response with greater benefit to blood pressure as sodium intake decreases.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Annex 2Examples of sodium content in various foods and food groups",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Sodium Content in Food Groups",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Approximate amount of sodium content in various food groups: Table salt, baking soda, baking powder (38,000 mg/100 g), Bouillon cubes, powdered broths, soups, gravies (20,000 mg/100 g), Soy sauce (7,000 mg/100 g), Snack foods (e.g. pretzels, cheese puffs, popcorn) (1,500 mg/100 g), Bacon (1,500 mg/100 g), Sauces and spreads (1,200 mg/100 g), Cheese, hard (800 mg/100 g), Processed vegetables (600 mg/100 g), Butter/margarine (500 mg/100 g), Cheese, soft (400 mg/100 g), Processed fish (400 mg/100 g), Cereals and cereal products (250 mg/100 g), Fish, raw or frozen (100 mg/100 g), Eggs (80 mg/100 g), Milk and cream (50 mg/100 g), Vegetables, fresh or frozen (10 mg/100 g), Fruits, fresh or frozen (5 mg/100 g).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Comparison of Processed and Unprocessed Foods",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Comparison of the sodium content of an example of foods in unprocessed (i.e. 'natural') and processed states: Beef (Topside, roast, lean and fat) (48,950 mg/100 g), Bran (Corned beef, canned Bran, what) (28 mg/100 g), Cheese (Bran flakes Hard cheese, average) (1,000 mg/100 g), Chick-peas (Processed) (1,320 mg/100 g), Dried, boiled in unsalted water (5 mg/100 g), Canned, re-heated, drained (370 mg/100 g), Crab (Canned) (550 mg/100 g), Cod (in batter, fried in blended oil) (100 mg/100 g), Fish fingers, fried in blended oil (350 mg/100 g), New potatoes (Raw, boiled in unsalted water) (9 mg/100 g), Canned, re-heated, drained (250 mg/100 g), Peanuts (Plain) (2 mg/100 g), Dry roasted (400 mg/100 g), Roasted and salted (790 mg/100 g).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Sodium Content Notes and Sources",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Note: The information in the table is based on approximate calculation of an average mg of sodium per 100 g food from diverse, iconic foods taken from food composition databases from around the globe. The sodium content varies substantially within the food group and the table provides relative comparison of average levels of sodium only. The information provided can be used for approximate comparisons of food groups, and should not be used to estimate daily intake. Sources: (23, 59-62)",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Annex 3WHO Secretariat",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "WHO Headquarters",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Francesco Branca",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Director \n\nDepartment of Nutrition for Health and \n\nDevelopment",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Chizuru Nishida",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Coordinator \n\nNutrition Policy and Scientific Advice Unit Department of Nutrition for Health and Development",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Nancy Aburto",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Scientist \n\nNutrition Policy and Scientific Advice Unit Department of Nutrition for Health and Development",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr John Beard",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Director, Ageing and Life Course Family and Community Health",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Shanthi Mendis",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Coordinator \n\nChronic Diseases Prevention and Management \n\nDepartment of Chronic Diseases and Health Promotion",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Poul Erik Petersen",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Dental Offi cer \n\nHealth Promotion \n\nDepartment of Chronic Diseases and \n\nHealth Promotion",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Ms Mariana Widmer",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Technical Offi  cer \n\nImproving Maternal and Perinatal Health Reproductive Health and Research",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Godfrey Xuereb",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Technical Offi  cer \n\nSurveillance and Population-based Prevention \n\nDepartment of Chronic Diseases and Health Promotion \n\nDr Cynthia Souza \n\nGuidelines Review Committee Secretariat Dr Regina Kulier \n\nGuidelines Review Committee Secretariat Dr Margaret Harris \n\nGuidelines Review Committee Secretariat",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "WHO regional offi  ces",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Abel Dushimimana",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Medical Off  cer \n\nWHO Regional Offi ce for Africa Brazzaville, the Congo",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Chessa Lutter",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Regional Adviser \n\nUnit on Child and Adolescent Health WHO Regional Offi ce for the Americas/Pan American Health Organization Washington, USA",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Kunal Bagchi",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Regional Adviser \n\nNutrition and Food Safety \n\nWHO Regional Offi ce for South-East Asia \n\nNew Delhi, India",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Joao Breda",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Scientist \n\nWHO Regional Ofi ce for Europe Copenhagen, Denmark",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Ayoub Al-Jawaldeh",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Regional Adviser \n\nNutrition \n\nWHO Regional Offi ce for the Eastern \n\nMediterranean \n\nCairo, Egypt",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Tommaso Cavalli-Sforza",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Regional Adviser \n\nNutrition \n\nWHO Regional Off ce for the Western Pacific \n\nManila, the Philippines",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Annex 4Members of the WHO Steering Committee for Nutrition Guideline  Development 2010 - 2011",
+          "source": "9789241504836_eng.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "WHO Headquarters",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Dr Francesco Branca Director, Nutrition for Health and Development Department \n\nDr Tikki Pang (Pangestu)\n\nDirector, Research Policy and Cooperation Dr Elizabeth Mason \n\nDirector, Child and Adolescent Health and \n\nDevelopment \n\nAlternate:\n\nDr Nigel Rollins \n\nScientist, Newborn and Child Health and \n\nDevelopment",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Ala Alwan",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Acting \n\nPromotion \n\nAlternate:\n\nDr Godfrey Xuereb \n\nTechnical Offi  cer \n\nChronic Disease and Health Promotion \n\n\n\nDr Ruediger Krech \n\nDirector, Ethics, Equity, Trade and Human \n\nRights \n\nAlternate:\n\nMs Nicole Valentine \n\nTechcl d \n\nHuman Rights \n\n\n\nDr Maged Younes \n\nDirector, Food Safety, Zoonoses and \n\nFoodborne Diseases \n\n\n\nDr Robert D. Newman Director, Global Malaria Programme Alternate:Dr Sergio Spinaci \n\nAssociate Director, Global Malaria Programme Dr Aafje Rietveld \n\nMedical Officer, Global Malaria Programme Dr Willem Van Lerberghe \n\nDirector, Health Policy, Development and \n\nServices \n\n\n\nDr Gottfried Otto Hirnschall Director, HIV/AIDS Alternate:Mr Craig Michael McClure Senior Technical Off cer, HTM/HIV \n\nDr Jean-Marie Okwo-Bele \n\nDirector, Immunization, Vaccines and \n\nBiologicals \n\n\n\nDr Michael Mbizvo \n\nDirector, Reproductive Health and \n\nResearch \n\n\n\nDr Mario Raviglione Director, Stop Tuberculosis Alternate:Dr Knut Lonnroth Medical Offi cer, Stop Tuberculosis \n\nDr Daniel Eduardo Lopez Acuna Director, Strategy, Policy and Resource Management \n\n\n\nDr Nevio Zagaria \n\nActing Director, Emergency Response &\n\nRecovery Operations \n\n\n\nInternational Agency for Research on Cancer \n\nDr Isabelle Romieu Director, Nutrition Department",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Annex 5Members of the NUGAG Subgroup on Diet and Health and external resource  persons 2010 - 2011",
+          "source": "9789241504836_eng.pdf",
+          "depth": 1,
+          "content": "Members of the NUGAG Subgroup on Diet and Health (Note: the areas of expertise of each guideline group member are given in italics)",
+          "chunks": [],
+          "children": [
+            {
+              "name": "Professor Pascal Bovet",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "University Institute of Social and Preventive \n\nMedicine,\n\nLausanne University Hospital \n\nSwitzerland \n\nand Ministry of Health \n\nSeychelles \n\nProgramme manager, noncommunicable \n\ndiseases",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Professor Michael Clarke",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "School of Nursing and Midwifery Trinity College, Ireland and United Kingdom Cochrane Centre United Kingdom \n\nMethods, systematic review",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Professor John H Cummings",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Centre for Oncology and Molecular Medicine \n\nDivision of Medical Sciences \n\nUniversity of Dundee \n\nUnited Kingdom \n\nCarbohydrates, dietary fibre",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Professor Ibrahim Elmadfa",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Institution of Nutritional Sciences University of Vienna \n\nAustria \n\nHuman nutrition, nutrient requirements, fats and fatty acids, dietary diversity",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "PoiessolNune",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Fclt of American University of Beirut Lebanon \n\nDietetics,nutrition,food-based dietary guidelines, diet and health",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Associate Professor Rachel Huxley",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Division of Epidemiology & Community \n\nHealth \n\nUniversity of Minnesota \n\nUSA \n\nEpidemiology, physiology, biostatistics,\n\nmeta-analysis, obesity",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Professor Shiriki Kumanyika",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Center for Clinical Epidemiology &\n\nBiostatistics \n\nUniversity of Pennsylvania School of Medicine \n\nUSA \n\nHuman nutrition, epidemiology, obesity salt/sodium",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Professor Mary L'Abbe",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Department of Nutritional Sciences Faculty of Medicine University of Toronto Canada \n\nNutrition science, trans-faty acids, risk assessment and risk management,diet and health",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Professor Duo Li",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Department of Food Science and Nutrition Zhejiang University \n\nChina \n\nNutritional epidemiology, fats and fatty acids",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Professor Jim Mann",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Department of Medical and Surgical \n\nSciences \n\nUniversity of Otago \n\nNew Zealand \n\nCarbohydrates, sugars, diabetes, fats \n\nand fatty acids",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Professor Carlos Monteiro",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Department of Nutrition, School of Public Health \n\nUniversity of Sao Paulo Brazil \n\nHuman nutrition, epidemiology,double-burden of malnutrition",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Professor Dariush Mozaffarian",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Harvard School of Public Health Harvard University \n\nUSA \n\nCardiology, epidemiology, diet and health \n\nProfessor Srinath Reddy Public Health Foundation of India India \n\nCardiovascular diseases, obesity,noncommunicable diseases \n\nProfessor Murray Skeaff \n\nUniversity of Otago \n\nNew Zealand \n\nFats and fatty acids, biomarkers, diet and \n\nhealth, human nutrition",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "External resource persons",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Professor Francesco Cappuccio University of Warwick Warwick Medical School United Kingdom \n\nProfessor Paul Elliott \n\nMRC-HPA Centre for Environment and Health \n\nand Department of Epidemiology \n\nand Biostatistics \n\nSchool of Public Health \n\nImperial College London \n\nUnited Kingdom \n\n\n\nDr Caroline Lee Hooper \n\nSchool of Medicine, Health Policy and \n\nPractice \n\nUniversity of East Anglia \n\nUnited Kingdom \n\n\n\nDr Sarah Kelly Institute for Ageing and Health School of Dental Sciences University of Newcastle United Kingdom \n\nProfessor H.H. (Esté) Vorster \n\nFaculty of Health Sciences \n\nNorth-West University \n\nSouth Africa \n\nNutrition physiology, public health nutrition,\n\nfood-based dietary guidelines",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dr Cho-il Kim",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Department ofFood and Nutrition Industry Korea Health Industry Development Institute The Republic of Korea \n\n\n\nDr Joerg Meerpohl \n\nGerman Cochrane Centre \n\nInstitute of Medical Biometry and Medical \n\nInformatics \n\nUniversity Medical Center Freiburg \n\nGermany",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Professor Paula Moynihan",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "ProlessorPaula Moyias Institute for Ageing and Health School of Dental Sciences University of Newcastle United Kingdom",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Annex 6External Expert and Stakeholder Panel",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Members commenting on priority questions (February 2011)",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Comments Received from Various Experts",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Comments received from Eduard Baladia (on behalf of Maria Manera, Julio Basulto and Eduard Baladia), Gerda Feunekes, Suzanne Harris, Mark Huffman, Siobhan Jennings, Erika Ketterer, Anatoliy Khudaiberganov, Branka Legetic (on behalf of the Pan American Health Organization Expert Group on Salt Reduction), Graham MacGregor, Bruce Neal, Aileen Robertson, Barbara Schneeman, Hans Verhagen, Jacqueline Webster.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Affiliations of Commenting Members",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Spanish Association of Dietitians & Nutritionists, Unilever, International Life Sciences Institute, Northwestern University Feinberg School of Medicine, Health Service Executive, Heart and Stroke Foundation, Ministry of Health, Pan American Health Organization Expert Group on Salt Reduction, Consensus Action on Salt and Health, The George Institute for Global Health, U.S. Food and Drug Administration, National Institute for Public Health and the Environment (RIVM).",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Annex 7Priority quetions in the format of population,interventioncontrol and outcomes (PICO)",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Adults",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "What is the effect of reduced sodium intake compared with higher intake on health outcomes?What is the target level of intake for maximum health benefit?\n\n\n\nParticipants Adults (≥16 years of age) with or without hypertension,or a population of adults (some with and some without hypertension), with or without type 2diabetes, previous cardiovascular disease, previous cancer, etc.\n\nIntervention Intervention: decreased sodium intake via advice, specific foods,(or exposure)supplements or whole diet provided, and unconfounded by other dietary,weight, lifestyle or pharmaceutical interventions.\n\nControl Diet with sodium level higher than in the intervention (may be usual intake or specific sodium intake) via advice or specific foods or supplements or whole diet provided.\n\n\n\nReduced sodium intake by ≥1/3 of usual or higher intake level versus reduced sodium intake by $<1/3$ of usual or higher.\n\nConsuming <2 g sodium/day versus consuming ≥2 g sodium/day.\n\nConsuming <1.2 g sodium/day versus consuming ≥1.2 g sodium/day versus consuming 1.2–2.0 g sodium/day.\n\n\n\nOutcomes All-cause mortality, cardiovascular disease, stroke, coronary heart disease,blood pressure, renal function, adverse effects (blood lipids, catecholamine levels and any other adverse events reported by study authors).\n\nSettings All countries",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Children",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Whatis the efct ofreducedsodiumintakecompared wih higherintake on healthouome?What is the target level of intake for maximum health benefit?\n\n\n\nParticipants Childrenordolntsarsicluiv,ot culylorwithout type 2 diabetes, previous cardiovascular disease, previous cancer, etc.\n\nIntervention Intervention: decreased sodium intake via advice, specific foods,(or exposure)supplements or whole diet provided, and unconfounded by other dietary,weight, lifestyle or pharmaceutical interventions.\n\nExposure: single baseline or repeated sodium intake measurement \n\nControl Diet with sodium level higher than in the intervention (may be usual intake or specific sodium intake) via advice or specific foods or supplements or whole diet provided.\n\n\n\nSpecific Reduced sodium intakeanylevl) versus higher sodiumintake (usual comparisons sodium intake)添司添\n\nReduced sodium intake by ${\\geq}1/3$ usual or higherintake lev vrsus reduced sodium intake by ${<}1/3$ of usual or higher.\n\nConsuming <2g sodium/day versus consuming ≥2 g sodium/day.\n\nOutcomes Blood pressure (systolic and/or diastlic), adverse efcts blood lipids,catecholamine levels and any other adverse events reported by study authors)\n\n\n\nSettings All countries",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Annex 8Summary of considerations for determining the strength of the recommendations",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Quality of evidence:",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Values and preferences:",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Benefits of Reducing Sodium for Blood Pressure",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "High-quality evidence that decreasing sodium is beneficial for blood pressure in adults.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Effects of Reduced Sodium on Blood Lipids",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "High-quality evidence that decreasing sodium has no harmful effect on blood lipids, with minor side effects (e.g. headache and dizziness) in adults.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Sodium Reduction and Renal Function",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Moderate-quality evidence that reduced sodium is consistent with a benefit to renal function in adults.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Sodium Intake Recommendations",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "High and moderate-quality evidence that consuming <2 g sodium/day compared with consuming ≥2 g sodium/day is beneficial for reducing blood pressure and risk of cardiovascular disease, stroke and coronary heart disease in adults.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Need for Lower Sodium Food Options",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Recognizing that reformulation of processed foods would be necessary to provide consumers with choices of lower sodium products that continue to be palatable to the consumer and marketable for producers.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Trade-off  between benefi ts  and harm:",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Benefits of Decreasing Sodium Intake",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "High-quality evidence in adults and moderate-quality evidence in children of benefit of decreasing sodium intake on blood pressure.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Impact on Cardiovascular Health",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Blood pressure is a good proxy indicator for risk of cardiovascular disease, stroke and coronary heart disease outcomes. Though inconclusive, there was evidence from the meta-analyses of cohort studies measuring cardiovascular disease or coronary heart disease that reduced sodium has potential benefits. The cohort data supported a reduction in risk of stroke with decreased sodium intake.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Effects on Blood Lipids and Catecholamine Levels",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "High-quality evidence in adults and moderate-quality evidence in children indicates no negative effect on blood lipids or catecholamine levels with decreased sodium intake for 4 weeks or more.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Implementation Challenges",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "In many countries, this recommendation will require: in processed foods and to make reduced sodium products widely available and accessible, to provide consumer choice; activities to raise consumer awareness; –improvements in food labelling.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Strategies for Public Education",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Additional strategies for the implementation of these recommendations will include public education, health promotion, and behavioural change. These strategies are even more important in contexts where most sodium intake comes from addition in the home.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Annex 9Management of confl ict of interest",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "NUGAG members",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Conflict of Interest Declarations",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Professor John Cummings, Professor Shiriki Kumanyika and Professor Este Vorster declared that they received support from the local organizers of the third meeting of the Subgroup on Diet and Health; that is, the Korean Food and Drug Administration (KFDA)/Korea Health Industry Development Institute (KHIDI). It was considered that the declared interests did not constitute any conflict of interest for their roles as members of the NUGAG Subgroup on Diet and Health, nor did they represent any conflict of interest for the work being undertaken by the NUGAG Subgroup on Diet and Health.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Professor Ibrahim Elmadfa's Funding Sources",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Professor Ibrahim Elmadfa declared that he has received research grants from the Ministry of Health, Austria; the European Commission; the European Food Standard Agency; and Nutrisciencia, Switzerland. The grants were received by his university, and funds were mainly used for research projects.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Nutrisciencia Foundation Details",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Further information obtained from Professor Elmadfa regarding Nutrisciencia indicated that it is a Liechtenstein for-profit foundation, registered with the Public Registry of the Principality of Liechtenstein under number FL-0002.251.294-8. The purpose of the foundation is to support research, education and science to universities in Germany. It also contributes to charitable and humanitarian organizations.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Professor Nahla Hwalla's Research Support",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Professor Nahla Hwalla declared that she has received research support including grants, collaborations, sponsorship and other funding from WHO, the International Atomic Energy Agency and Nestle Middle East.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Professor Mary L'Abbe's Research Grants",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Professor Mary L'Abbe declared that she received research grants from the Canadian Institutes of Health Research, to evaluate the impact of Canada's sodium reduction policy; the Public Health Agency of Canada, to prepare a report on public food procurement policies related to sodium; and the Beef Information Centre (a non-profit research foundation funded, but administered at arm's length, by the Canadian beef industry), to examine the iron bioavailability of the diets of Canadians.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "Professor Murray Skeaff declared various memberships as follows:",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": "Serving as a member of the Public Health Scientific Advisory Group and the chair of the Food and Nutrition Working Group of the New Zealand National Heart Foundation.These roupdeertFouiovmal aiou scientific basis of its public health eforts to reduce the burden of heart disease in New Zealand. He is not an employee of the Heart Foundation and receives no remuneration for work related to the Advisory Group.\n\n\n\nAppointed in 2008 as a Scientific Fellow of Food Standards Australia New Zealand (FSANZ). \"The FSANZ Fellows Program aims to establish a network of distinguished scientists and experts from key disciplines in areas relevant to food regulation. The network is intended to promote close collaborative relations between FSANZ staff, the Fellowsdldol i\"Nomo i given to Fellows.\n\n\n\nServing as a member ofthe New Zealand Food Safety Academy (NZFSA).The NZFSA is a governelteofcdmm time,Akoxeu expertise or where it requires confirmation of the advice provided by its staff. NZFSA also establishes expert groups to seek more specific assistance in relation to particular issues, drawin exprts fromthe membrs ofthe academ.A$0hnoaium is paid to Professor Skeaff 's university each year.\n\n\n\nThededretcsdcnsituanciofnstilea for the work being undertaken by that subgroup.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "External experts and resource persons",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Professor Paul Elliott's Contributions",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Professor Paul Elliott declared that he is a member of WASH. He also declared that his university is currently receiving research funds for the INTERMAP study from the US National Institutes of Health, and that he received research support for a sodium intake study from the US Centers for Disease Control and Prevention (CDC) in 2010. He declared that he provided an expert opinion related to: population sodium intake to the US National Heart, Lung, and Blood Institute National Health and Nutrition Examination Survey Sodium Working Group, Bethesda, USA in January 2011; sodium intake measurement methods and efficacy for the Epidemiology & Surveillance Branch of CDC, USA during 2010–2011.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Dr. Lee Hooper's Research Funding",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Dr Lee Hooper declared that she has received research funding from Barry Callebaut (to her university) to carry out a systematic review on the effects of chocolate and cocoa on markers of oxidative stress; the review was completed in August 2010. She has also received research funding from the Nutrition Institute to carry out a systematic review on the effects of soy and isoflavones on hormonal status in women; the review was completed in July 2008.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Dr. Sarah's Participation in Meetings",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Dr Sarah declared the support for her participation at the third meeting of the AG Subgroup on Diet and Health from the local organizers of the third meeting of the subgroup on Diet and Health; that is, the KFDA/KHID.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Dr. Cho-il Kim's Expert Opinion",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Dr Cho-il Kim declared that, in 2009 she provided an expert opinion to the KFDA when they were developing a guideline to identify 'energy-dense and nutrient-poor' foods according to the Special Act on Food Safety Management for Children. Since 2009, the sale of such food has been prohibited within school premises and in designated stores in the vicinity of schools (referred to as 'GnFood oe').",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Professor Paula Moynihan's Research Grant",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Professor Paula Moynihan declared that she received a research grant (to her university) that included reviewing the intake of sugar in care homes as a small component of large dietary consensus of the NUGAG members only.",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "References",
+              "source": "9789241504836_eng.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "World Health Organization Reports",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Health Organization (WHO), 2009 (http://www.who.int/healthinfo/global_burden_disease/GlobalHealthRisks_rportfull.pdf.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Dietary Sodium and Health Studies",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Bibbins-Domingo K, Chertow GM, Coxson PG et al. Projected effect of dietary salt reductions on future cardiovascular disease. New England Journal of Medicine, 01, 2(7):59 (http://www.ncbi.nlm.nih.gov/pubmed/20089957)",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Guidelines and Recommendations",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "recommendations for policymakers and health professionals. Geneva, World Health Organization (WHO), 2003 (http://www.who.int/cardiovascular_diseases/resources/pub0402/en/).",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Research on Sodium Intake",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "Thomas MC, Moran J, Forsblom C et al. The association between dietary sodium intake, ESRD, and all-cause mortality in patients with type 1 diabetes. Diabetes Care 1, (): (http://www.ncbi.nlm.nih.gov/pubmed/21307382)",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Fluid and Electrolyte Recommendations",
+                  "source": "9789241504836_eng.pdf",
+                  "depth": 3,
+                  "content": "American College of Sports Medicine Sawka MN, Burke LM et al. American College of Sports Medicine position stand. Exercise and fluid replacement. Medicine and Science in Sports Exercise, 90 (http://www.ncbi.nlm.nih.gov/pubmed/17277604).",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2026 Dietary Guidance to Improve  Cardiovascular Health: A Scientific Statement  From the American Heart Association",
+      "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+      "depth": 0,
+      "content": "AliceH.DcFr;Ata,DAeaA.D,,A;LawrencJ.DAA;.,;GrDA;Fk.D,D,AA;Daniel W.Jones,MD,FAHA;ristinaS.Petersen,PhD,APD,FAHA;on behalfoftheAmerican Heart Asociation \n\nABSTRACT: Poor diet quality is strongly associated with elevated cardiovascular disease morbidity and mortality risk. This American Heart Association scientific statement for food-based cardiovascular health optimization and cardiovascular disease risk reduction guidance summarizes available evidence and provides contextual guidance for the key features of heart-healthdietarypatern.Itnumeratscollateralbenefitsofadoptingaheart-healthydietarypatrnintermsofnutrient intake adequacy and compatibility with other Hisease risk reduction guidance.The featuresof a heart-healthy dietary Amerc pattern include (1) adjusting energy intake ar to achieve and maintain a healthy body weight;n(2) eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains;(4)choosing healthy sources of protein;(5) choosing sources of unsaturated fats in place of sources of saturated fat;(6) choosing minimally processed foods instead of ultraprocessed foods;(7)minimizing intake of added sugars in beverages and foods; (8)reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or no salt; and(9) if alcohol is not consumed, do not start; if alcohol is consumed, limit intake.\n\n\nKey Words:AHAScientificStatementscardiovasculardiseasesdietfoodnutritionpolicyriskreductionbehavior \n\nhis scientific statement supersedes the \"2021Dietary Guidance to Improve Cardiovascular Health: A Scientific Statement from the American Heart Association\"' Poor diet quality remains a significant contributor to increased risk of cardiovascular disease (CVD) morbidity and mortality. The purpose of this scientific statement is to provide a concise update that summarizes food-based cardiovascular health optimization and CVD risk reduction guidance related to aspects of a heart-healthy dietary pattern. The target population is the general population across the span of CVD risk (low to high), including those with established disease. This statement (1) reinforces the importance of focusing on heart-healthy dietary patterns rather than on single foods or nutrients; (2) highlights the necessity of adopting heart-healthy eating habits early in life and maintaining them across the life course; (3) organizes the guidance into features to facilitate adoption of a dietary pattern that supports cardiovascular health;and (4) recognizes the additional benefits that come with adoption of a heart-healthy dietary pattern beyond CVD. (The Supplemental Material includes the literature review protocol, evidence tables, and included and excluded articles.)",
+      "chunks": [],
+      "children": [
+        {
+          "name": "DIETARYPRINCIPLES",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Focus on Dietary Patterns",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Since 2021, American Heart Association dietary guidance has focused on overall dietary patterns.1 Dietary patterns encompass all foods and beverages consumed throughout the day, whether prepared and consumed at home or outside the home. Adherence to heart-healthy dietary patterns is associated with optimal cardiovascular health.12 Food-based dietary pattern guidance is designed to achieve nutrient adequacy; to support cardiovascular health and general well-being; and to provide \n\nflexibility to accommodate personal preferences, ethnic and religious practices, and life stages.In general, hearhealthy dietary patterns contain primarily vegetables and fruits, whole grains, healthy sources of protein, liquid nontropical plant oils (eg,soybean,canola,olive oils),and minimally processed foods. Dietary patterns higher in plant-based foods and lower in animal products have been associated with lower coronary heart disease risk and more favorable coronary heart disease risk factors and metabolome profiles.3 Heart-healthy dietary patterns are also low in beverages and foods with high amounts of added sugars, saturated fat, and sodium.",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Consume Heart-Healthy Dietary Patterns Across the Life Course",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Early Origins of Cardiovascular Disease",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "The origins of CVD begin early in life. Establishing a heart-healthy dietary pattern is fundamental to maintaining cardiovascular health throughout the life course.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Impact of Maternal Dietary Patterns",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "The relevance of diet quality on cardiovascular health starts as early as the prenatal period. Prepregnancy maternal dietary patterns and other lifestyle behaviors are associated with risk of gestational diabetes and hypertensive disorders of pregnancy.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Childhood Dietary Patterns and Long-term Health",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Dietary patterns early in life are linked not only to childhood cardiovascular parameters such as obesity, metabolic syndrome, hypertension, dyslipidemia, and type 2 diabetes but also to lifelong dietary patterns and cardiovascular risk.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Role of Dietary Habits in Family Dynamics",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Dietary habits and dietary patterns are shared, experienced, and transmitted among household members. They are learned early in life, although there are key inflection points where dietary trajectories can change along the life course.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Adapting Dietary Needs Across Life Stages",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "It is recognized that dietary needs at specific stages across the life course may change. Such needs should be discussed with a person's clinician.",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Choose Foods and Beverages Consistent With These Features Regardless of Where They Are Procured, Prepared, or Consumed",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "The dietary guidance in this document applies to all foods and beverages. Food is procured, prepared, and consumed in multiple venues such as homes, commercial establishments, institutions (eg, schools, workplaces,hospitals), and recreational venues. It is important to be mindful of heart-healthy dietary features when choosing foods and beverages regardless of time, location, or setting. This will facilitate achieving a heart-healthy dietary pattern that encourages the availability of heart-healthy choices and supports enactment of policies that favorably affect food and beverage options.",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "FEATURESOFDIETARYPATTERNSTHAT PROMOTECARDIOVASCULARHEALTH",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "The Table and Figure summarize the features of a hearthealthy dietary patter.",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Feature 1: Adjust Energy Intake and  Expenditure to Achieve and Maintain a Healthy  Body Weight",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Importance of Healthy Body Weight",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Preserving a healthy body weight across the life course is central to optimizing cardiovascular health. Currently, obesity affects 21% of children and adolescents, and 40% of adults in the United States. Excess body fat contributes to the development of type 2 diabetes, hypertension, and cardiovascular-kidney metabolic syndrome, which negatively influences cardiovascular health.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Energy Balance and Its Effects",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Excess energy intake coupled with inadequate physical activity results in positive energy balance and subsequent overweight and obesity. Individual energy needs depend on a number of factors such as age, sex, height, weight, physical activity level, and pregnancy or lactation status.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Physical Activity Recommendations",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Preschool-aged children should be physically active throughout the day. Older children and adolescents should engage in at least 60 minutes of moderate to vigorous physical activity daily. Adults should engage in at least 150 min/wk of moderate to vigorous physical activity.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Dietary Patterns for Weight Management",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "A range of dietary patterns, including healthy versions of commonly named diets when implemented as intended such as DASH (Dietary Approaches to Stop Hypertension), Mediterranean style, pescetarian, and ovo/lacto vegetarian, can support cardiovascular health and are aligned with achieving and maintaining a healthy body weight.",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Feature 2: Eat Plenty of Vegetables and Fruits and Choose a Wide Variety",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Whole or minimally processed vegetables and fruits are core components of heart-healthy dietary patterns. These patterns are consistently associated with cardiovascular health, including blood lipids, blood pressure, and type 2 diabetes control.22-26 Vegetables and fruits provide essential nutrients and in their whole form, rather than juice, provide much-needed dietary fiber. Practical considerations related to spoilage, convenience, availability,and cost can be mitigated by incorporating most forms of vegetables and fruits, including fresh, frozen, and canned.If frozen or canned varieties are purchased, they should preferably not contain added sugars or sodium.",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Feature 3: Choose Foods Made Mostly With Whole Grains Rather Than Refined Grains",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Whole grains are defined by the presence of all 3 components of the grain kernel-the starchy endosperm, inner germ, and outer bran-and provide a complex matrix of dietary fiber, vitamins, minerals, and other bioactive compounds.27 Commonly consumed whole grains are whole wheat, oats, brown rice, quinoa, barley, and rye. A substantial body of observational evidence from large cohort studies demonstrates that regular consumption of whole-grain foods compared with infrequent intake is associated with lower risks of CVD, coronary heart disease, stroke, type 2 diabetes, and metabolic syndrome and more favorable cardiovascular risk factors, including blood pressure, blood lipids, and glycemic control.28Randomized controlled feeding trials have demonstrated that replacing refined grains with whole grains leads to improvements in cardiovascular risk factors.2 In addition,diets high in fiber and whole grains have been linked to \n\nfavorable modulation of the gut microbiota, laxation, and a reduction in inflammatory cytokines.30,31",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Feature 4: Choose Healthy Sources of Protein",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Protein is an essential nutrient for growth, development,and overall health, but the relationship between protein quantity and cardiovascular health is uncertain.32 Thus,recommendations for protein center on promoting hearthealthy protein sources which are determined predominantly by fatty acid profile and fiber content. Given the broad range of protein-rich foods, particularly in terms of these associated components, this feature is divided into subgroups.",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Shift From Meat to Plant Sources (Legumes and Nuts)",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Legumes (beans, peas, and lentils) and nuts are good sources of protein and are rich in unsaturated fat and fiber. Dietary patterns higher in legumes and lower in red and processed meat have been associated with lower CVD and coronary heart disease risk.33-35 Likewise, dietary paterns higher in nuts have been associated with lower CVD and all-cause mortality risk.3637 Such dietary patterns, along with additional healthy lifestyle behaviors,are associated with lower CVD risk. The availability of plant-based meat alternatives can help diversify protein choices but requires some caution because many are ultraprocessed and come with added sugars, sodium, stabilizers, and preservatives.38",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Regularly Consume Fishand Seafood",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Prospective cohort studies have concluded that dietary patterns containing nonfried fish and seafood are as sociated with lower overall CVD events andmyocardial infarction risk.These associations may be due to the omega-3 fatty acid content of the fish and seafood, replacement of other sources of animal protein that tend to be high in saturated fat and low in unsaturated fat, or both.3 Fish oil supplementation alone has not been demonstrated to lower CVD risk in otherwise healthy adults and in some people may be associated with an increased risk of atrial fibrillation.42-44",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Select Low-Fat or Fat-Free Dairy Products Instead of Full-Fat DairyProducts",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Debate on Low-Fat vs Full-Fat Dairy",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "The potential benefits of low-fat and fat-free dairy products compared with full-fat dairy products are not without controversy and continue to be debated.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Cardiovascular Disease Risk Studies",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "A recent systematic review indicates that some dietary patterns that include low-fat dairy are associated with a lower CVD risk. However, another systematic review specific to food sources of saturated fat concluded that limited evidence suggests that substituting higher-fat dairy with lower-fat dairy results in similar CVD risk.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Impact on Dietary Patterns",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "This review found that conclusions could not be drawn about the relationship between higher-fat dairy and lower-fat dairy on blood lipids, blood pressure, and CVD mortality because of inadequate evidence.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Benefits of Fermented Dairy",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Independently of fat content, the possibility has been raised that there are cardiovascular benefits of consuming fermented dairy such as yogurt and kefir that contain live bacteria because of modifications they induce in the gut microbiota.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Guidance on Dairy Consumption",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Given the available evidence, it would be prudent at this time to continue prior guidance to replace major sources of saturated fat, including dairy fat, with sources of unsaturated fat and to choose nonfat or low-fat dairy products.",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "If Red Meat Is Desired, Choose Lean Cuts, Avoid Processed Forms, and Limit Portion Size",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Impact of Red and Processed Meat on CVD Risk",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "The effect of red and processed meat on CVD risk factors depends on the replacement food. Replacing red meat, including lean, unprocessed meat, with healthier sources of protein, especially plant sources, improves CVD risk factors.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Benefits of Replacing Red and Processed Meat",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Substitution analyses based on large cohort studies concluded that the replacement of red and processed meat with alternative foods (legumes, nuts, poultry, dairy, and eggs) was associated with a lower coronary heart disease risk.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Understanding Processed Meats",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "The term processed meats generally refers to meat, poultry, or seafood products produced by smoking, curing, or salting or the addition of chemical preservatives. Common examples include bacon, sausage, hot dogs, and deli meat.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Healthier Dietary Patterns",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "In summary, dietary patterns higher in plant sources of protein and lower in animal sources of protein are associated with better cardiovascular health.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Recommendations for Meat Consumption",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "If consuming animal protein, minimize processed meats, and prioritize lean cuts of unprocessed meat, including poultry; and reduce total intake, limit portion size and frequency of consumption.",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Feature 5: Choose Sources of Unsaturated Fat in Place of Sources of Saturated Fat",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Clinical trial evidence consistently shows that replacing sources of saturated fat with sources polyunsaturated \n\nfat and, to a lesser extent, sources of monounsaturated fat reduces low-density lipoprotein cholesterol concentrations, a causal risk factor for CVD.53,54 In alignment,modeling analyses indicate that replacing sources of saturated fat with polyunsaturated fat is associated with reduced coronary heart disease risk.55,56\n\nAnimal fats (eg, beef tallow and butter) and tropical oils (eg,coconut oil,cocoa butter,and palm oil) are relatively high in saturated fat, whereas nontropical plant oils (eg, soybean, canola, and olive oils) are relatively high in unsaturated fat. Strong evidence shows that replacing butter with plant oils and spreads containing predominantly unsaturated fat decreases low-density lipoprotein cholesterol concentrations.22 Limited evidence shows that substituting butter with plant oils and spreads with predominantly unsaturated fat is associated with a lower CVD morbidity and mortality risk.2257 Similarly, rlacement of beef fat/tallow or lard with nontropical plant oils lowers low-density lipoprotein cholesterol concentrations.58-61Replacement of tropical plant oils with nontropical plant oils also lowers low-density lipoprotein cholesterol concentrations.22.62\n\nIn summary, as part of heart-healthy dietary patterns,nontropical plant sources of fat should be used as part of food preparation in place of animal fats and tropical oils.45",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Feature 6: Choose Minimally Processed Foods Instead of Ultraprocessed Foods",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Benefits of Food Processing",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Food processing has resulted in both beneficial and adverse effects. Benefits include improved food safety extended shelf life:reduced costs;nutrient fortification to correct inadequacies; and preservation of nutritional,functional, and sensory qualities.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Drawbacks of Ultraprocessed Foods",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Drawbacks include high levels of sodium, added sugars, and ingredients not normally present in food, as well as modifications that remove healthful components such as fiber and some nutrients.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Classification of Ultraprocessed Foods",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "For consistency, in this document, this category of foods is referred to as ultraprocessed foods. Vaiability that has emerged in terminology can be attributed to the lack of a generally accepted classification system. The most commonly used one is Nova, which classifies ultraprocessed foods based on the extent and purpose of industrial processing and if they contain cosmetic additives or ingredients not commonly used in home cooking without factoring in nutrient content.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Health Risks Associated with Ultraprocessed Foods",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "The major concern with this trend is the strong evidence base linking dietary patterns high in ultraprocessed foods to multiple adverse health outcomes, including overweight and obesity, CVDs, type 2 diabetes, and all-cause mortality.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Promoting Minimally Processed Foods",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Nevertheless,evidence consistently indicates that efforts should be made to promote the benefits of choosing minimally processed foods and to facilitate a shift away from ultraprocessed in the marketplace.",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Feature 7: Minimize Intake of Added Sugars in Beverages and Foods",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Added sugars are defined as all forms of sugar that are added to foods and beverages during processing or preparation. These include brown sugar, cane sugar, confectioner's sugar, coconut sugar, invert sugar, raw sugar,white granulated sugar, corn syrup, high-fructose corn syrup, rice syrup, malt syrup, maple syrup, pancake syrup,fruit juice concentrates, nectar, concentrated vegetable juices, honey, molasses, dextrose, fructose, glucose,maltose, lactose, and agave nectar. There is strong evidence to support recommendations to minimize added sugar intake across the life course.22,55\n\nDietary patterns high in added sugars are consistently associated with adverse cardiovascular health and higher CVD risk. Systematic reviews have linked sugar-sweetened_beverages to higher risk of obesity,type 2 diabetes, coronary heart disease, and cardiovascular mortality.It has been estimated that adults consuming ≥25% of energy from added sugars have a nearly 3-fold higher risk of CVD mortality compared with thoseconsum omadded sugars after adjustment for adiposity and other potential confounders.75",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Feature 8: Choose Foods Low in Sodium and Prepare Foods With Minimal or No Salt",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Impact of Sodium on Blood Pressure",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "In general, dietary sodium intake and potassium intake have opposite effects on blood pressure, the leading modifiable risk factor for preventable mortality. An increased intake of sodium chloride (salt) raises blood pressure, whereas an increased intake of potassium lowers blood pressure.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Benefits of Reducing Sodium Intake",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Reducing sodium intake lowers blood pressure in both nonhypertensive and hypertensive individuals. In prospective cohort studies, lower sodium intakes are associated with blunted age-related rise in systolic blood pressure and lower CVD risk, especially in studies with rigorous assessment of sodium intake.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Potassium's Role in Blood Pressure Management",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Evidence for an independent blood pressure-lowering effect of potassium is consistent but not as persuasive as corresponding evidence for sodium. In meta-analyses of intervention trials, increased potassium intake, from either diet or supplements, lowered blood pressure.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Combined Approach for Hypertension Control",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Available evidence supports a combined approach of reducing sodium intake and increasing potassium intake for hypertension prevention and control. This can include reducing sodium intake in the context of a potassium-rich diet such as one high in vegetables and fruits.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Considerations for Salt Substitutes",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Many questions remain for the latter approach, particularly the relevance of salt substitutes in populations in whom the major source of sodium is commercially prepared foods and the theoretical risk of hyperkalemia in people with impaired urinary potassium excretion.",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Feature 9: If Alcohol Is Not Consumed, Do Not Start; if Alcohol Is Consumed, Limit Intake",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Challenges in Understanding Alcohol and CVD",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Understanding the relationship between alcohol intake and CVD is challenging.8 Prospective cohort studies have identified a possible protective association of low/moderate alcohol intake and coronary heart disease risk, but these findings are subject to residual confounding by socioeconomic and lifestyle factors also related to CVD risk.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Recent Findings on Alcohol Consumption and CVD Risk",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "More recent approaches into estimating the impact of alcohol on CVD risk such as mendelian randomization have called these observations into question and identified no significant association between genetically predicted alcohol consumption and risk of coronary artery disease.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Guidelines on Alcohol Intake and Blood Pressure",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Based on the new findings, the 2025 American Heart Association/American College of Cardiology blood pressure management guideline recommended avoiding alcohol intake for the prevention or treatment of elevated blood pressure and hypertension.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Health Risks Associated with Alcohol Consumption",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Avoiding alcohol intake has also been advocated by the US Department of Health and Human Services and the World Health Organization to reduce the risk of certain cancers, including oral, esophageal, breast, liver, and colorectal cancer.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Discouragement of Binge and Heavy Drinking",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Binge drinking and heavy drinking should be strongly discouraged because the health risks for most forms of CVD, including hypertension, among other adverse effects, are well established.",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "ADDITIONAL BENEFITSOF HEARTHEALTHYDIETARYPATTERNS Heart-Healthy Dietary Patterns Will Result in Desirable Nutrient Profiles",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Fulfills Essential Nutrient Requirements for Most Individuals",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Heart-healthy dietary patterns are rich in nutrient-dense foods and beverages that contain vitamins, essential minerals, and other health-promoting components.2 Following a heart-healthy dietary pattern will meet nutrient requirements for most people. The benefit of getting nutrients from food rather than supplements is the concurrent presence of phytochemicals that may provide health benefits and avoidance of overconsumption risk for individual nutrients. Following a heart-healthy dietary pattern obviates the need for dietary supplements in most individuals except pregnant women, some older adults, and those following restricted diets.",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Rich in Fiber",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Dietary fiber is the indigestible carbohydrate component of plants. Dietary fiber supports gastrointestinal function,provides fuel for the gut microbiota, and plays a role in the regulation of blood glucose.91-93 Dietary patterns rich in fiber have been associated with reduced risk of CVD,type 2 diabetes, and colorectal cancer.Goodsources include vegetables, fruits, whole grains, nuts, legumes,andseeds.",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Limits Foods High in Cholesterol",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Dietary cholesterol is no longer a primary target for CVD risk reduction for most people. Nevertheless, hearthealthy dietary patterns are low in foods high in cholesterol such as fatty cuts of meat and foods typically eaten with eggs such as processed meats (sausage or bacon). Moderate egg consumption can be included as part of a heart-healthy dietary pattern.",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Facilitates Saturated Fat Intake <10% of Eergy",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Dietary patterns that adhere to the 9 features outlined in this document are unlikely to exceed 10% of energy from saturated fat.20,22",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Consistent With Other Chronic Disease Diet Recommendations",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "Heart-healthy diets are generally consistent with risk reduction dietary patterns recommended for other conditions such as type 2 diabetes, some cancers, kidney disease, and cognitive health.100–108",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "SUMMARY",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "This scientific statement for food-based cardiovascular health optimization and CVD risk reduction guidance summarizes the available evidence and provides contextual guidance for the key components of heart-healthy dietary patterns. It enumerates the collateral benefits of adopting a heart-healthy dietary pattern in terms of nutrient intake adequacy and compatibility with other chronic disease risk reduction guidance. It reinforces the importance of focusing on heart-healthy dietary patterns rather than on single foods or nutrients; adopting healthy eating habits early in life and maintaining them across the life course; and adhering to the guidance regardless of where foods and beverages are procured, prepared,and consumed. The features of a heart-healthy dietary pattern include (1) adjusting energy intake and expenditure to achieve and maintain a healthy body weight; (2)eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains; (4) choosing healthy sources of protein; (5) choosing sources of unsaturated fats in place of sources of saturated fat; (6) choosing minimally processed foods instead of ultraprocessed foods; (7) minimizing intake of added sugars in beverages and foods; (8) reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "Disclosures",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": "no salt; and (9) if alcohol is not consumed, do not start;if alcohol is consumed, limit intake.",
+          "chunks": [],
+          "children": []
+        },
+        {
+          "name": "ARTICLE INFORMATION",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Conflict of Interest Policy",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "The American Heart Association makes every effort to avoid any actual or potential conflicts of interest that may arise as a result of an outside relationship or a personal, professional, or business interest of a member of the writing panel. Specifically, all members of the writing group are required to complete and submit a Disclosure Questionnaire showing all such relationships that might be perceived as real or potential conflicts of interest.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Approval Dates",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "This statement was approved by the American Heart Association Science Advisory and Coordinating Committee on March 8, 2026, and the American Heart Association Executive Committee on March 13, 2026.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Citation Information",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "The American Heart Association requests that this document be cited as follows: Lichtenstein AH, Khera A, Anderson CAM, Appel LJ, DeSilva DM, Gardner C, Hu FB, Jones DW, Petersen KS; on behalf of the American Heart Association. 2026 Dietary guidance to improve cardiovascular health: a scientific statement from the American Heart Association. Circulation. 2026;153:e-e….doi:10.1161/CIR.0000000000001435",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Peer Review Process",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "The expert peer review of AHA-commissioned documents (eg, scientific statements, clinical practice guidelines, systematic reviews) is conducted by the AHA Office of Science Operations.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Permissions and Copyright",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Permissions; Multiple copies, modification, alteration, enhancement and distribution of this document are not permitted without the express permission of the American Heart Association.",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "REFERENCES",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Dietary Guidance for Cardiovascular Health",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Lichtenstein AH, Appel LJ, Vadiveloo M, Hu FB,Kris-Etherton PM,Rebholz CM, Sacks FM, Thorndike AN, Van Hor L Wylie-Rosett J;on behalf of the American Heart Association Council on Lifestyle and Cardiometabolic Health; Council on Arteriosclerosis,Thrombosis and Vascular Biology; Council on Cardiovascular Radiology and Intervention; Council on Clinical Cardiology; and Stroke Council.2021 Dietary guidance to improve cardiovascular health: a scientific statement from the American Heart Association. Circulation.2021:144:e472-e487.doi:10.1161/CIR.0000000000001031",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "National Goals for Cardiovascular Health Promotion",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Lloyd-Jones DM, Hong Y, Labarthe D, Mozaffarian D, Appel LJ, Van Hor L.Greenlund K, Daniels S, Nichol G, Tomaselli GF,et al; on behalf of the American Heart Association Strategic Planning Task Force and Statistics Committee. Defining and setting national goals for cardiovascular health promotion and disease reduction: the American Heart Association's strategic Impact Goal through 2020 and beyond. Circulation.2010;121:586613.dOi:10.1161/CIRCULATIONAHA.109.192703",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Impact of Dietary Patterns on Pregnancy",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Jarman M,Mathe N, Ramazani F,Pakseresht M,Robson PJ, Johnson ST, Bell RC; APrON and ENRICH Study Teams. Dietary patterns prior to pregnancy and associations with pregnancy complications. Nutrients. 2018;10:914.doi:10.3390/nu10070914",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Childhood Dietary Patterns and Adult Health",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Kaikkonen JE,Mikkila V, Raitakari OT.Role of childhood food patternson adult cardiovascular disease risk. Curr Atheroscler Rep. 2014;16:443.doi:10.1007/s11883-014-0443-z",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Influence of Parental Dietary Behaviors",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 2,
+              "content": "Mahmood L, Flores-Barrantes P, Moreno LA, Manios Y, Gonzalez-Gil EM. The influence of parental dietary behaviors and practices on children's eating habits.Nutrients.2021;13:1138.doi:10.3390/nu13041138",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Alimentação oe Saúde  Cardiovascular",
+      "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+      "depth": 0,
+      "content": "Manual de Orientações para Pacientes e Cuidadores \n\nHOSPITAL DE \n\nCLINICAS \n\nPORTO ALEGRE RS",
+      "chunks": [],
+      "children": [
+        {
+          "name": "Alimentação e  Saúde Cardiovascular",
+          "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+          "depth": 1,
+          "content": "Manual de Orientaçöes para Pacientes e Cuidadores \n\nServiço de Nutrição e Dietétia \n\nEste manual contou com a colaboração das nutricionistas: Amanda Farias Osório, Camila Nery da Silva, Gabriela Corrêa Souza, Gabriele Carra Forte, Jordana Silva dos Santos, Maria Lúcia Oliveira Rosses,Oellen Stuani Franzosi e Zilda Elizabeth de Albuquerque Santos",
+          "chunks": [],
+          "children": [
+            {
+              "name": "Sumário",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Por que realizar mudanças agora?\n\nPadröes alimentares cardioprotetores Como montar um prato saudavel?9Grau de processamento dos alimentos 10Restrição de bebidas alcoólicas 11Dicas para planejar a sua alimentação 12Receitas de molhos, pastas e temperos substitutos de sal 14",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Apresentação",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "As doenças cardiovasculares estão associadas a pior qualidade de vida e altos niveis de mortalidade. Um padrão alimentar que protege a saúde do coração vai além de consumir alimentos \"bons” ou \"ruins\". É necessário equilíbrio e variedade na alimentação.\n\nOs padroes alimentares cardioprotetores se caracterizam pela inclusão de frutas e vegetais,graos integrais, fontes saudaveis de proteínas,alimentos minimamente processados, pequenas quantidades de açúcar, sal e gorduras.\n\nPortanto, manter hábitos alimentares adequados é muito importante tanto na prevenção quanto no controle da doença cardiovascular já presente.\n\nDiante disso, para ajudar na adoção de hábitos alimentares cardioprotetores, este manual foi elaborado pela equipe de nutricionistas da Cardiologia do Hospital de Clínicas de Porto Alegre, a partir do Guia Alimentar para a População Brasileira e da literatura cientifica mais atual sobre o assunto.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Por que realizar mudanças agora?",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "De acordo com a Organizaçāo Mundial da Saúde (OMS),cerca de tres quartos das mortes por doenças cardiovasculares podem ser prevenidas por mudanças de estilo de vida e controle de fatores de risco, como hipertensão, diabetes, obesidade, dislipidemia etc.\n\nO que mais favorece o desenvolvimento de doenças cardiovasculares é obesidade, sedentarismo, tabagismo, consumo excessivo de alcool,diabetes não controlada e dieta não saudável.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Padroes alimentares cardioprotetores",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Exemplos de padrōes alimentares que protegem a saúde do coração são: a dieta Dash e a dieta mediterranea.\n\n\n\nA dieta Dashé um padräo alimentar que foi desenvolvido para pessoas com hipertensäo arterial e que demonstra beneficios cardiovasculares,como melhor controle da pressão arterial, dos niveis de glicose no sangue, da fome e da saciedade. Ela também ajuda a reduzir o colesterol ruim (LDL) e aumentar o colesterol bom (HDL). Essa dietaé composta por alimentos ricos em fi bras, vitaminas e minerais, como feijoes, carnes magras, laticínios com baixo teor de gordura, grãos integrais, frutas e legumes, e possui baixa quantidade de sal, doces e gordura saturada.\n\nA Dieta Mediterranea, por sua vez,é um padräo alimentar voltado para quem precisa de uma alimentação saudável e estimula o consumo de legumes, frutas, verduras, peixe, grãos integrais e azeite de oliva.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Quanto mais colorido melhor!",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Busque sempre deixar o seu prato o mais colorido possível.\n\n\n\nTente colocar frutas nos seus lanches e saladas, legumes e verduras nas refeiçoes principais (almoço e jantar). Dessa forma vocè já estará\n\n<div style=\"text-align: center;\"><img src=\"imgs/img_in_image_box_466_162_814_363.jpg\" alt=\"Image\" width=\"41%\" /></div>\n\n\nconsumindo uma quantidade importante de fibras, vitaminas e minerais e contribuindo para a saúde do seu coração. Quanto mais cores diferentes voce consumir, mais nutrientes estará recebendo.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Limite o consumo de gorduras!",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Evite gorduras como banha de porco, oleo de coco, pele de galinha e gordura aparente de carnes. Evite consumir carne vermelha mais de 3vezes por semana.\n\n\n\n<div style=\"text-align: center;\"><img src=\"imgs/img_in_image_box_47_719_385_988.jpg\" alt=\"Image\" width=\"40%\" /></div>\n\n\nO consumo de 1 colher de sopa de azeite de oliva extravirgem por dia tambémé benéfi co e diminui o risco cardiovascular. Reduzir a quantidade consumida de margarina, manteiga, maionese,leite integral ou queijos amarelos também protege contra eventos do coração.",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Como montar um prato saudável?",
+          "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "FRUTAS",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Prefira: frutas in natura, sucos naturais sem adiçāo de açúcar e frutas secas Evite: frutas em calda ecristalizadas e sucos adoçados \n\n\n\nLEGUMES E VERDURAS Prefira: legumes e verduras in natura (batatas nao entram aqui)\n\nEvite: legumes em conserva/salmoura (ervilha, azeitona,palmito)",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "CARBOIDRATOS",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Prefi ra: graos integrais (arroz, pães e massas integrais), batata doce, mandioca e mandioquinha Evite: cereais refi nados (arroz branco e farinhas brancas)\n\n<div style=\"text-align: center;\"><img src=\"imgs/img_in_image_box_282_259_582_658.jpg\" alt=\"Image\" width=\"35%\" /></div>\n\n\nLEGUMINOSAS Prefira: feijōes,lentilha e grão-de-bico Evite: feijoada com linguiça e carnes processadas",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "PROTEINAS",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Prefira: frango sem pele, peixes assados/cozidos, ovos e carne bovina magra \n\nEvite: carnes gordurosas e fritas,embutidos (presunto, bacon, peito de peru) e carne seca Metade do prato deve ser composto por legumes e vegetais, um quarto por cereais e o outro um quarto por proteinas e leguminosas.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Grau de processamento dos alimentos",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "A base da alimentaçäo deve ser composta por alimentos in natura ou minimamente processados.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "O que são alimentos in natura ou minimamente processados?",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "São alimentos que näo sofreram qualquer alteração após deixar a natureza ou que sofreram alteraçöes mínimas.\n\n\n\nExemplos: frutas, verduras, legumes, leite, iogurte natural, feijōes, cereais, raizes, tubérculos, ovos,carnes resfriadas ou congeladas, farinhas, castanhas,sucos integrais naturais, chas, cafe.\n\n\n\n<div style=\"text-align: center;\"><img src=\"imgs/img_in_image_box_633_316_768_624.jpg\" alt=\"Image\" width=\"16%\" /></div>",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "E alimentos ultraprocessados, o que são?",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "São produtos feitos pela indústria que possuem MuiToS ingredientes,\n\nsendo a maioria deles aditivos químicos, e uma pequena proporçäo de \n\nalimentos in natura. Esses alimentos geralmente \n\nsäo ricos em aditivos químicos, gorduras trans e \n\nsaturadas, sodio e corantes. Esses ingredientes \n\npossuem diversos maleficios sobre a saúde \n\nquando consumidos em excesso. Por isso, é\n\nimportante limitar o consumo.\n\n\n\nExemplos: biscoitos doces e salgados,sucos em po, refrigerantes, temperos prontos,embutidos,salgadinhos,sorvetes.\n\n\n\n<div style=\"text-align: center;\"><img src=\"imgs/img_in_image_box_514_1006_766_1135.jpg\" alt=\"Image\" width=\"30%\" /></div>\n\n\nÉ muito importante ficar atento  lista de ingredientes dos rotulos dos alimentos.\n\n\n\n<div style=\"text-align: center;\"><img src=\"imgs/img_in_image_box_118_198_680_644.jpg\" alt=\"Image\" width=\"66%\" /></div>\n\n\nEvite consumir alimentos que possuem uma lista muito grande de ingredientes ou que possuam nomes estranhos como os descritos acima.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Restricão de bebidas alcoólicas",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": [
+                {
+                  "name": "Consumo Seguro de Álcool",
+                  "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+                  "depth": 3,
+                  "content": "É importante destacar que näo existe uma quantidade segura de consumo de bebidas alcoólicas e esse hábito pode causar danos ao organismo. O consumo de no máximo 30g de alcool por dia para homens e 2Og por dia para mulheres, quando saudáveis, parece oferecer menor risco.",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Equivalência de Bebidas Alcoólicas",
+                  "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+                  "depth": 3,
+                  "content": "<div style=\"text-align: center;\"><html><body><table border=\"1\"><tr><td>Bebida</td><td>Volume</td><td>Quantidade de álcool</td></tr><tr><td>Vinho tinto</td><td>90ml (1 cálice)</td><td>11g</td></tr><tr><td>Cerveja</td><td>350ml (1 lata)</td><td>17g</td></tr><tr><td>Destilado</td><td>50ml (1 dose)</td><td>20g</td></tr></table></body></html></div>",
+                  "chunks": [],
+                  "children": []
+                },
+                {
+                  "name": "Dicas de Alimentação",
+                  "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+                  "depth": 3,
+                  "content": "<div style=\"text-align: center;\"><html><body><table border=\"1\"><tr><td></td><td>PREFERIR</td><td>CONSUMIR COM MODERAÇÄO</td><td>EVITAR</td></tr><tr><td>Cereais</td><td>Alimentos integrais (paes, arroz, massas), aveia</td><td>Pão branco, arroz, massas</td><td>Biscoitos, cereais açucarados, pes doces, bolos, tortas, salgados folhados ou fritos</td></tr><tr><td>Vegetais</td><td>Vegetais crus e cozidos</td><td>=</td><td>Vegetais preparados na manteiga ou com creme</td></tr><tr><td>Frutas</td><td>Frescas ou congeladas sem adiçāo de açúcares</td><td>Coco, frutas secas, geleia sem adição de açúcares</td><td>Geleia com açúcar, frutas em calda</td></tr><tr><td>Leguminosas</td><td>Feijão, lentilha, grao-de-bico, proteina de soja</td><td>=</td><td>=</td></tr><tr><td>Doces, adoçantes e bebidas</td><td>Adoçantes não calóricos</td><td>Mel, chocolates, suco natural sem açúcar</td><td>Açúcar, doces, bolos, sorvetes, refrigerantes, sucos de caixinha ou em pó</td></tr></table></body></html></div>",
+                  "chunks": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Receitas de molhos, pastas e temperos  substitutos de sal",
+          "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+          "depth": 1,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Molho 1",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Ingredientes:\n\n• 1 unidade pequena de cebola \n\n• 2 dentes de alho \n\n• 1 punhado de semente de mostarda \n\n• 1 pitada de noz-moscada \n\n• 1 pitada de páprica \n\n• 2 unidades de cravo \n\n• 1 colher de sopa de oleo vegetal \n\n• 1 pitada de pimenta-do-reino \n\n• 750ml de vinagre \n\n• 1 molho de tempero verde \n\n• 1 litro de agua para completar \n\nModo de fazer: colocar os ingredientes no liquidifi cador com um pouco de vinagre e bater até formar uma pasta. Acrescentar o resto do vinagre e liquidifi car. Deixar descansar por dois dias e coar. Guardar na geladeira por até uma semana.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Molho 2",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Ingredientes:\n\n•6 a 8 dentes de alho \n\n• 1½2} xicara de óleo vegetal \n\n•Ervas aromaticas– alecrim, manjerona, pimenta, louro, orégano,cebola \n\n\n\nModo de fazer: cortar os dentes de alho bem miúdos ou triturar.Misturar as ervas aromaticas de sua preferencia. Colocar meia xicara de oleoe deixar ainfusonagladeira pordois dias paracurti.Utilizar em carnes, refogados, arroz e feijäo.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Sal de ervas",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Ingredientes:",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "• 1 colher de sopa de sal (15g)\n\n• 3 colheres de louro \n\n• 1 colher de sopa de orégano desidratado \n\n• 1 colher de sopa de manjericäo desidratado \n\n• 1 colher de sopa de alecrim desidratado",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Modo de fazer: misturar tudo",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Pasta de gräo-de-bico",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": null,
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Ingredientes:",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "•1 lata de gro-de-bico (1 ½ xicara de chá de gros cozidos)\n\n• 1 dente de alho \n\n•1 colher de sopa de agua \n\n• 5 colheres de sopa de azeite \n\n• 6 ramos de salsinha \n\n• Sal e pimenta-do-reino",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Modo de fazer:",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Deixe o grão-de-bico de molho por 12 horas, trocando a água duas vezes nesse periodo. Tire a casca do grao-de-bico após. Amasse o dente de alho e pique a salsinha grosseiramente. No processador de alimentos ou liquidificador, coloque metade do grão-de-bico, o alho, a agua e 3 colheres de sopa de azeite. Bata bem até formar uma pasta lisa – esse passoé importante para bater o grão-de-bico e triturar o alho.Transfira para uma tigela e reserve. Coloque a outra metade do grãode-bico no processador. Junte o restante do azeite e bata novamente.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Pate de frango saudavel",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Ingredientes:\n\n• 1 litro de agua \n\n• 300g de peito de frango (sem osso)\n\n•1 cenoura (picada)\n\n/4 cebola \n\n•1 dente de alho \n\n• 1 colher de chá de sal \n\n·300g de ricota \n\n•Salsinha \n\n• Suco de 1 limão",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Modo de fazer:",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Em uma panela coloque o frango, a cebola, a cenoura, o alho eo sal. Cubra com 1 litro de agua e deixe cozinhar por cerca de 20 minutos. Retire o frango do caldo e deixe esfriar. Desfie o frango de modo gue fi que em pedaços bem pequenos. Pode ser utilizado processador ou liguidifi cador. Coloque o frango em uma tigela, misture a ricota, a salsinha e o suco de 1 limão.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Maionese caseira sem óleo",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "Ingredientes:\n\n• 3 ovos cozidos \n\n• 100ml de iogurte natural \n\n• Suco de 1/2 limão \n\n• 2 dentes de alho \n\n• 1/2 xicara de salsa picada \n\n•Sal a gosto",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Modo de fazer:",
+              "source": "pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf",
+              "depth": 2,
+              "content": "bater todos os ingredientes com mixer ou no liquidifi cador até a mistura fi car homogênea. Deixar na geladeira por 2 horas e servir.\n\nPode ser utilizada para fazer a salada de maionese com batatas, para servir como um molho para saladas e para comer com um aperitivo (päo, torradinhas, carnes etc.).\n\n\n\nAprovado pelo Conselho Editorial em setembro/24municaçaodoHCPA-setembro/24-PES160-311721\n\n<div style=\"text-align: center;\"><img src=\"imgs/img_in_image_box_126_875_241_955.jpg\" alt=\"Image\" width=\"13%\" /></div>\n\n\n<div style=\"text-align: center;\"><img src=\"imgs/img_in_image_box_304_877_546_951.jpg\" alt=\"Image\" width=\"29%\" /></div>\n\n\nSERVIÇO DE NUTRIÇAO E DIETÉTICA \n\nRua Ramiro Barcelos, 2350Largo Eduardo Z. Faraco Porto Alegre/RS 90035-903Fones 51 3359 8000www.hcpa.edu.br",
+              "chunks": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

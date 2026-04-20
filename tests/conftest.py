@@ -4,7 +4,7 @@ import os
 import pytest
 from unittest.mock import MagicMock
 
-from models import Chunk, Document
+from models import Chunk, Document, SectionNode
 from config import PipelineConfig
 
 
@@ -13,13 +13,13 @@ def sample_documents():
     """Create sample documents for testing."""
     return [
         Document(
-            content="Python is a high-level programming language. It was created by Guido van Rossum and first released in 1991. Python is known for its readability and simplicity.",
-            source="test1.txt",
-            doc_type="txt",
-            metadata={"filename": "test1.txt"},
+            content="# Introduction\n\nPython is a programming language.\n\n## Features\n\nPython has dynamic typing.\n\n## History\n\nPython was created in 1991.",
+            source="test1.md",
+            doc_type="md",
+            metadata={"filename": "test1.md"},
         ),
         Document(
-            content="Machine learning is a subset of artificial intelligence. It enables systems to learn from data without being explicitly programmed. Deep learning is a further subset of machine learning.",
+            content="# Machine Learning\n\nML is a subset of AI.\n\n## Deep Learning\n\nDeep learning uses neural networks.\n\n## Applications\n\nML is used in many fields.",
             source="test2.md",
             doc_type="md",
             metadata={"filename": "test2.md"},
@@ -28,13 +28,14 @@ def sample_documents():
 
 
 @pytest.fixture
-def sample_chunks():
-    """Create sample chunks for testing."""
-    return [
-        Chunk(content="Python is a high-level programming language.", source="test.txt", chunk_id=0, start_pos=0, end_pos=45),
-        Chunk(content="Machine learning is a subset of artificial intelligence.", source="test.txt", chunk_id=1, start_pos=46, end_pos=100),
-        Chunk(content="Deep learning uses neural networks with many layers.", source="test.txt", chunk_id=2, start_pos=101, end_pos=155),
-    ]
+def sample_section_node():
+    """Create a sample section node for testing."""
+    return SectionNode(
+        name="Test Section",
+        source="test.md",
+        depth=1,
+        content="This is a test section with some content. " * 20,
+    )
 
 
 @pytest.fixture

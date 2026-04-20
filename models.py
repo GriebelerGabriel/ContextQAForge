@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 class Document(BaseModel):
     """A document with content and metadata."""
 
-    content: str = Field(..., description="Document text content")
+    content: str = Field(..., description="Document text content (structured Markdown for PDFs)")
     source: str = Field(..., description="File path or source identifier")
     doc_type: Literal["txt", "pdf", "md", "unknown"] = Field(
         default="unknown", description="Document type"
@@ -23,6 +23,33 @@ class Chunk(BaseModel):
     chunk_id: int = Field(..., description="Unique chunk identifier")
     start_pos: int = Field(default=0, description="Start position in original document")
     end_pos: int = Field(default=0, description="End position in original document")
+
+
+class SectionNode(BaseModel):
+    """A node in the document-grounded topic tree."""
+
+    name: str = Field(..., description="Section heading text")
+    source: str = Field(..., description="Source document filename")
+    depth: int = Field(default=0, description="Depth in tree (0 = root)")
+    content: Optional[str] = Field(
+        default=None, description="Raw section text (leaf nodes)"
+    )
+    chunks: List[str] = Field(
+        default_factory=list, description="Smaller chunks after chunking step"
+    )
+    children: List["SectionNode"] = Field(
+        default_factory=list, description="Child sections"
+    )
+
+    @property
+    def is_leaf(self) -> bool:
+        """Whether this node has no children."""
+        return len(self.children) == 0
+
+    @property
+    def path(self) -> List[str]:
+        """Get the topic path by traversing up (requires parent context)."""
+        return [self.name]
 
 
 class QAPair(BaseModel):
