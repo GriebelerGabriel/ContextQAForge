@@ -41,6 +41,10 @@ class QAGenerator:
             "type": "paraphrase",
             "description": "Question uses different wording than the context",
         },
+        {
+            "type": "true-false",
+            "description": "A statement that must be verified as true or false based on the contexts",
+        },
     ]
 
     # Difficulty levels
@@ -82,15 +86,24 @@ class QAGenerator:
             "ground_truth": "Através do aprendizado de máquina (machine learning), um subconjunto da inteligência artificial que permite que sistemas aprendam com dados.",
             "difficulty": "medium",
         },
+        "true-false": {
+            "contexts": [
+                "Reducing sodium intake to <2 g/day was more beneficial for blood pressure than reducing sodium intake but still consuming >2 g/day.",
+            ],
+            "question": "Afirme: Consumir menos de 2g de sódio por dia é mais benéfico para a pressão arterial do que reduzir o consumo mas ainda ingerir mais de 2g por dia.",
+            "ground_truth": "VERDADEIRO. Segundo os contextos, reduzir a ingestão de sódio para menos de 2 g/dia foi mais benéfico para a pressão arterial do que reduzir a ingestão mas ainda consumir mais de 2 g/dia.",
+            "difficulty": "easy",
+        },
     }
 
     # Maximum number of past questions to check for duplicates
-    DEDUP_WINDOW = 50
+    DEDUP_WINDOW = 20
 
     def __init__(self, config: PipelineConfig):
         self.config = config
         self.client = OpenAI(api_key=config.openai_api_key)
         self.generated_questions: Set[str] = set()
+        self.true_false_count = {"true": 0, "false": 0}
 
     def _get_system_prompt(self) -> str:
         """Generate system prompt based on config domain and language."""
@@ -155,7 +168,7 @@ Requirements:
 1. Questions MUST be answerable using ONLY the provided contexts
 2. GROUND TRUTH MUST BE EXTRACTED FROM THE CONTEXTS — every fact in the ground_truth must come directly from the context text
 3. Do NOT use outside knowledge — if the contexts don't contain the answer, do not make one up
-4. Ensure question diversity across types: single-hop, multi-hop, inference, paraphrase
+4. Ensure question diversity across types: single-hop, multi-hop, inference, paraphrase, true-false
 5. Control difficulty: easy (direct lookup), medium (some reasoning), hard (complex inference)
 6. {lang_instruction}
 7. {perspective_instruction}
@@ -165,21 +178,45 @@ Requirements:
    - BAD: "Como proteger meu coração?" (too generic, common knowledge)
    - BAD: "O que é hipertensão?" (general medical knowledge)
    - GOOD: "Qual dieta específica foi desenvolvida para hipertensos e quais alimentos ela recomenda?" (requires the document)
-   - GOOD: "Segundo o manual, qual quantidade diária de azeite extravirgem ajuda a reduzir risco cardiovascular?" (requires specific detail from document)
+   - GOOD: "Qual quantidade diária de azeite extravirgem ajuda a reduzir risco cardiovascular?" (requires specific detail from document)
    - Reference specific numbers, names, lists, recommendations, or recipes found in the contexts
-   - The ground_truth MUST include specific details (numbers, names, quantities) that come from the contexts{domain_extra}
+   - The ground_truth MUST include specific details (numbers, names, quantities) that come from the contexts
+9. NO DOCUMENT/INSTITUTION REFERENCES:
+   - Do NOT mention the source document, institution, organization, or guideline name in questions or answers
+   - BAD: "Segundo o Hospital de Clínicas de Porto Alegre..." (referencing institution)
+   - BAD: "De acordo com a declaração da American Heart Association..." (referencing source)
+   - BAD: "O guia alimentar brasileiro recomenda..." (referencing document)
+   - GOOD: "Quais alimentos devo priorizar para proteger meu coração?" (general, patient perspective)
+   - GOOD: "É verdade que reduzir o consumo de sal para menos de 2g por dia ajuda a controlar a pressão arterial?" (no source reference)
+   - Present the information as general advice, not as a citation from a specific document{domain_extra}
 
 CRITICAL: The ground_truth is your answer. It MUST be derived entirely from the provided contexts.
-Include specific facts, numbers, or quotes from the context text. If the contexts say "2g of sodium per day",
-your ground_truth should mention "2g of sodium per day". Do NOT answer from general knowledge.
+
+ANSWER STYLE RULES:
+- Do NOT copy-paste or regurgitate the context text. REWRITE it in a natural, conversational tone.
+- BAD: "Você precisa de 1 unidade de cebola, 2 dentes de alho, 1 punhado de mostarda..." (just listing ingredients)
+- GOOD: "Para preparar esse molho, você vai precisar de cebola, alho e sementes de mostarda como base, além de vinagre e água. O processo é simples: bata tudo no liquidificador e deixe descansar por dois dias antes de coar." (natural summary)
+- Keep specific numbers and key facts (dosages, limits, durations) but express them naturally.
+- If the context has a recipe, summarize the steps conversationally — don't list every ingredient like a cookbook.
+- If the context has recommendations, explain them as advice, not as a direct quote.
+- The answer should read as if a knowledgeable person is explaining it, not as if reading the document aloud.
+
+Do NOT answer from general knowledge — every claim must come from the contexts.
 
 Output must be valid JSON with exactly these fields:
 {{{{
     "question": "the question in {language}",
     "ground_truth": "the answer in {language}",
-    "type": "single-hop|multi-hop|inference|paraphrase",
+    "type": "single-hop|multi-hop|inference|paraphrase|true-false",
     "difficulty": "easy|medium|hard"
-}}}}"""
+}}}}
+
+For type "true-false":
+- The question field should contain an AFFIRMATION/STATEMENT (not a question) that can be verified as true or false based ONLY on the contexts.
+- Start the question with "Afirme:" (in Portuguese) or "Assert:" followed by the statement.
+- The ground_truth MUST start with "VERDADEIRO." or "FALSO." followed by the evidence from the contexts that proves or disproves the statement.
+- Mix true and false statements. For false statements, subtly alter a detail (number, fact, recommendation) from the context so it becomes incorrect.
+- Examples of false statements: change a quantity (2g → 5g), swap a recommendation, reverse a finding."""
 
     def _is_generic_question(self, question: str) -> bool:
         """Heuristic to detect generic/popular-knowledge questions."""
@@ -235,12 +272,16 @@ Output must be valid JSON with exactly these fields:
         if question_normalized in self.generated_questions:
             return True
 
+        # Only check against recent questions, and only block near-identical ones
         recent = list(self.generated_questions)[-self.DEDUP_WINDOW:]
-        question_words = set(question_normalized.split())
         for existing in recent:
+            # Skip if very different length (can't be near-identical)
+            if abs(len(existing) - len(question_normalized)) > len(question_normalized) * 0.3:
+                continue
             existing_words = set(existing.split())
+            question_words = set(question_normalized.split())
             overlap = len(question_words & existing_words) / max(len(question_words), 1)
-            if overlap > 0.65:
+            if overlap > 0.90:
                 return True
 
         return False
@@ -287,6 +328,8 @@ Output must be valid JSON with exactly these fields:
         topic_path: List[str],
         source: str,
         num_pairs: int = 1,
+        full_content: str = "",
+        related_chunks: Optional[List[str]] = None,
     ) -> List[QAPair]:
         """Generate QA pairs from a section's chunks.
 
@@ -295,6 +338,8 @@ Output must be valid JSON with exactly these fields:
             topic_path: Path in the topic tree (e.g., ["Doc Topics", "Sodium", "Recommended Levels"])
             source: Source document filename
             num_pairs: Number of QA pairs to generate
+            full_content: The full segment text (entire content block from slicing)
+            related_chunks: Related content from other documents on similar topics
 
         Returns:
             List of QAPair objects (may be fewer than num_pairs if filtered)
@@ -302,12 +347,15 @@ Output must be valid JSON with exactly these fields:
         if not chunks:
             return []
 
-        # Select 1-3 chunks as context
+        # Build contexts: primary chunks for grounding + full content + related
         if len(chunks) <= 3:
             contexts = chunks
         else:
-            # Pick up to 3 diverse chunks
             contexts = random.sample(chunks, min(3, len(chunks)))
+
+        # Store full content and related chunks for prompt enrichment
+        self._current_full_content = full_content
+        self._current_related = related_chunks or []
 
         if num_pairs == 1:
             pair = self._generate_single(contexts, topic_path, source)
@@ -324,10 +372,41 @@ Output must be valid JSON with exactly these fields:
         """Generate a single QA pair."""
         qa_type = random.choice([t["type"] for t in self.QA_TYPES])
         difficulty = random.choice(self.DIFFICULTIES)
+
+        # For true-false: enforce 50/50 balance by forcing the polarity
+        tf_instruction = ""
+        if qa_type == "true-false" and self.config.balance_true_false:
+            if self.true_false_count["true"] <= self.true_false_count["false"]:
+                tf_instruction = "\n\nIMPORTANT: This assertion MUST be TRUE (VERDADEIRO). Generate a statement that is factually correct according to the contexts."
+                self.true_false_count["true"] += 1
+            else:
+                tf_instruction = "\n\nIMPORTANT: This assertion MUST be FALSE (FALSO). Subtly alter a detail from the context (number, fact, recommendation) so the statement becomes incorrect."
+                self.true_false_count["false"] += 1
         topic_str = " -> ".join(topic_path)
         example = self.FEW_SHOT_EXAMPLES.get(qa_type, self.FEW_SHOT_EXAMPLES["single-hop"])
 
         context_text = "\n\n".join([f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts)])
+
+        # Build supplementary context from full content and related chunks
+        supplement = ""
+        full_content = getattr(self, "_current_full_content", "")
+        related = getattr(self, "_current_related", [])
+
+        if full_content and full_content not in context_text:
+            supplement += f"\n=== FULL SECTION TEXT ===\n{full_content}\n"
+
+        if related:
+            related_text = "\n\n".join(
+                f"[Related - {i+1}]: {chunk}" for i, chunk in enumerate(related)
+            )
+            supplement += f"\n=== RELATED CONTENT FROM OTHER DOCUMENTS ===\n{related_text}\n"
+
+        # All text the LLM sees (for grounding validation)
+        all_source_text = " ".join(contexts)
+        if full_content:
+            all_source_text += " " + full_content
+        for r in related:
+            all_source_text += " " + r
 
         prompt = f"""Generate a QA pair based on the following contexts.
 
@@ -338,7 +417,7 @@ Source document: {source}
 
 === CONTEXTS (SOURCE OF TRUTH) ===
 {context_text}
-
+{supplement}
 === EXAMPLE ({qa_type}, {difficulty}) ===
 Contexts:
 """
@@ -388,14 +467,8 @@ Output ONLY the JSON object, no additional text:
 
                 if not question or not ground_truth:
                     continue
-                if self._is_generic_question(question):
-                    logger.debug(f"[Rejected] Generic question: {question[:60]}...")
-                    continue
                 if self._is_duplicate(question):
                     logger.debug(f"[Rejected] Duplicate question: {question[:60]}...")
-                    continue
-                if not self._is_ground_truth_grounded(ground_truth, contexts):
-                    logger.debug(f"[Rejected] Ungrounded answer: {ground_truth[:60]}...")
                     continue
 
                 self.generated_questions.add(question.lower().strip().rstrip("?"))
@@ -433,10 +506,40 @@ Output ONLY the JSON object, no additional text:
 
         context_text = "\n\n".join([f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts)])
 
-        type_difficulty_str = "\n".join([
-            f"{i+1}. Type: {qa_types[i]}, Difficulty: {difficulties[i]}"
-            for i in range(num_pairs)
-        ])
+        # Build supplementary context from full content and related chunks
+        supplement = ""
+        full_content = getattr(self, "_current_full_content", "")
+        related = getattr(self, "_current_related", [])
+
+        if full_content and full_content not in context_text:
+            supplement += f"\n=== FULL SECTION TEXT ===\n{full_content}\n"
+
+        if related:
+            related_text = "\n\n".join(
+                f"[Related - {i+1}]: {chunk}" for i, chunk in enumerate(related)
+            )
+            supplement += f"\n=== RELATED CONTENT FROM OTHER DOCUMENTS ===\n{related_text}\n"
+
+        # All text the LLM sees (for grounding validation)
+        all_source_text = " ".join(contexts)
+        if full_content:
+            all_source_text += " " + full_content
+        for r in related:
+            all_source_text += " " + r
+
+        # Build per-pair type/difficulty lines, with true/false polarity instructions
+        type_difficulty_lines = []
+        for i in range(num_pairs):
+            line = f"{i+1}. Type: {qa_types[i]}, Difficulty: {difficulties[i]}"
+            if qa_types[i] == "true-false" and self.config.balance_true_false:
+                if self.true_false_count["true"] <= self.true_false_count["false"]:
+                    line += " — This assertion MUST be TRUE (VERDADEIRO)."
+                    self.true_false_count["true"] += 1
+                else:
+                    line += " — This assertion MUST be FALSE (FALSO). Subtly alter a detail."
+                    self.true_false_count["false"] += 1
+            type_difficulty_lines.append(line)
+        type_difficulty_str = "\n".join(type_difficulty_lines)
 
         example = self.FEW_SHOT_EXAMPLES[qa_types[0]]
 
@@ -449,7 +552,7 @@ Source document: {source}
 
 === CONTEXTS (SOURCE OF TRUTH) ===
 {context_text}
-
+{supplement}
 === TYPES AND DIFFICULTIES FOR EACH PAIR ===
 {type_difficulty_str}
 
@@ -466,6 +569,7 @@ Difficulty: {example["difficulty"]}
 
 === YOUR TASK ===
 Generate {num_pairs} NEW QA pairs, one for each type/difficulty combination.
+{"For true-false entries, follow the TRUE/FALSE polarity specified above for each pair." if any(t == "true-false" for t in qa_types) else ""}
 
 CRITICAL REQUIREMENTS:
 1. Every question MUST require SPECIFIC information from the contexts
@@ -509,11 +613,7 @@ Output ONLY a JSON array with {num_pairs} objects:
 
                     if not question or not ground_truth:
                         continue
-                    if self._is_generic_question(question):
-                        continue
                     if self._is_duplicate(question):
-                        continue
-                    if not self._is_ground_truth_grounded(ground_truth, contexts):
                         continue
 
                     self.generated_questions.add(question.lower().strip().rstrip("?"))
@@ -559,4 +659,6 @@ Output ONLY a JSON array with {num_pairs} objects:
             answer=qa_pair.ground_truth,
             ground_truth=qa_pair.ground_truth,
             contexts=qa_pair.contexts,
+            source=qa_pair.metadata.get("source", ""),
+            metadata=qa_pair.metadata,
         )

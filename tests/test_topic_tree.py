@@ -1,7 +1,6 @@
 """Tests for the document-grounded topic tree module."""
 
 import json
-from unittest.mock import MagicMock, patch
 
 from topic_tree import DocumentTopicTree
 from models import Document, SectionNode
@@ -13,31 +12,27 @@ class TestDocumentTopicTree:
         """Test heading hierarchy extraction from Markdown."""
         tree = DocumentTopicTree(mock_config)
         doc = Document(
-            content="# Title\n\nIntro text.\n\n## Section A\n\nContent A.\n\n## Section B\n\nContent B.",
+            content="# Title\n\nIntro text about the document.\n\n## Section A\n\nThis is the content for section A with enough text to pass filters.\n\n## Section B\n\nThis is the content for section B with enough text to pass filters.",
             source="test.md",
             doc_type="md",
         )
 
-        # Build without LLM refinement (patch it out)
-        with patch.object(tree, '_refine_with_llm'):
-            tree.build_from_documents([doc])
+        tree.build_from_documents([doc])
 
         assert tree.root is not None
         leaves = tree.get_all_leaf_nodes()
-        # Root has 2 children (Section A, Section B) + root may have content
         assert len(leaves) >= 2
 
     def test_parse_nested_headings(self, mock_config):
         """Test deeply nested heading structure."""
         tree = DocumentTopicTree(mock_config)
         doc = Document(
-            content="# H1\n\nLevel 1.\n\n## H2\n\nLevel 2.\n\n### H3\n\nLevel 3.",
+            content="# H1\n\nLevel one content with enough text to pass the minimum filter threshold.\n\n## H2\n\nLevel two content with enough text to pass the minimum filter threshold.\n\n### H3\n\nLevel three content with enough text to pass the minimum filter threshold.",
             source="test.md",
             doc_type="md",
         )
 
-        with patch.object(tree, '_refine_with_llm'):
-            tree.build_from_documents([doc])
+        tree.build_from_documents([doc])
 
         leaves = tree.get_all_leaf_nodes()
         assert len(leaves) >= 1
@@ -51,8 +46,7 @@ class TestDocumentTopicTree:
             doc_type="txt",
         )
 
-        with patch.object(tree, '_refine_with_llm'):
-            tree.build_from_documents([doc])
+        tree.build_from_documents([doc])
 
         leaves = tree.get_all_leaf_nodes()
         assert len(leaves) == 1
@@ -66,8 +60,7 @@ class TestDocumentTopicTree:
             Document(content="# Doc2\n\nContent 2.", source="doc2.md", doc_type="md"),
         ]
 
-        with patch.object(tree, '_refine_with_llm'):
-            tree.build_from_documents(docs)
+        tree.build_from_documents(docs)
 
         leaves = tree.get_all_leaf_nodes()
         assert len(leaves) >= 2
@@ -84,8 +77,7 @@ class TestDocumentTopicTree:
             doc_type="md",
         )
 
-        with patch.object(tree, '_refine_with_llm'):
-            tree.build_from_documents([doc])
+        tree.build_from_documents([doc])
 
         tree.chunk_leaves(chunk_size=100, chunk_overlap=20)
 

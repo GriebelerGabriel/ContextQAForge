@@ -1,346 +1,323 @@
+Educação em Saúde VOL. 160
 
+PUBLICAÇÃO AUTORIZADA
 
-<div style="text-align: center;"><img src="imgs/img_in_image_box_0_0_834_664.jpg" alt="Image" width="100%" /></div>
+# Alimentação e Saúde Cardiovascular
 
+Manual de Orientações para Pacientes e Cuidadores
 
-# Alimentação oe Saúde  Cardiovascular 
+## Alimentação e Saúde Cardiovascular
 
-Manual de Orientações para Pacientes e Cuidadores 
+Manual de Orientações para
 
-HOSPITAL DE 
+Pacientes e Cuidadores
 
-CLINICAS 
+Serviço de Nutrição e Dietética
 
-PORTO ALEGRE RS 
+Este manual contou com a colaboração das nutricionistas: Amanda Farias Osório, Camila Nery da Silva, Gabriela Corrêa Souza, Gabriele Carra Forte, Jordana Silva dos Santos, Maria Lúcia Oliveira Rosses, Oellen Stuani Franzosi e Zilda Elizabeth de Albuquerque Santos
 
+### Sumário
 
+Por que realizar mudanças agora? 7
 
-# Alimentação e  Saúde Cardiovascular 
+Padrões alimentares cardioprotetores 7
 
-Manual de Orientaçöes para Pacientes e Cuidadores 
+Como montar um prato saudável? 9
 
-Serviço de Nutrição e Dietétia 
+Grau de processamento dos alimentos 10
 
-Este manual contou com a colaboração das nutricionistas: Amanda Farias Osório, Camila Nery da Silva, Gabriela Corrêa Souza, Gabriele Carra Forte, Jordana Silva dos Santos, Maria Lúcia Oliveira Rosses,Oellen Stuani Franzosi e Zilda Elizabeth de Albuquerque Santos 
+Restrição de bebidas alcoólicas 11
 
-## Sumário 
+Dicas para planejar a sua alimentação 12
 
-Por que realizar mudanças agora?
+Receitas de molhos, pastas e temperos substitutos de sal 14
 
-Padröes alimentares cardioprotetores Como montar um prato saudavel?9Grau de processamento dos alimentos 10Restrição de bebidas alcoólicas 11Dicas para planejar a sua alimentação 12Receitas de molhos, pastas e temperos substitutos de sal 14
+### Apresentação
 
+As doenças cardiovasculares estão associadas a pior qualidade de vida e altos níveis de mortalidade. Um padrão alimentar que protege a saúde do coração vai além de consumir alimentos “bons” ou “ruins”. É necessário equilíbrio e variedade na alimentação.
 
-
-## Apresentação 
-
-As doenças cardiovasculares estão associadas a pior qualidade de vida e altos niveis de mortalidade. Um padrão alimentar que protege a saúde do coração vai além de consumir alimentos "bons” ou "ruins". É necessário equilíbrio e variedade na alimentação.
-
-Os padroes alimentares cardioprotetores se caracterizam pela inclusão de frutas e vegetais,graos integrais, fontes saudaveis de proteínas,alimentos minimamente processados, pequenas quantidades de açúcar, sal e gorduras.
+Os padrões alimentares cardioprotetores se caracterizam pela inclusão de frutas e vegetais, grãos integrais, fontes saudáveis de proteínas, alimentos minimamente processados, pequenas quantidades de açúcar, sal e gorduras.
 
 Portanto, manter hábitos alimentares adequados é muito importante tanto na prevenção quanto no controle da doença cardiovascular já presente.
 
-Diante disso, para ajudar na adoção de hábitos alimentares cardioprotetores, este manual foi elaborado pela equipe de nutricionistas da Cardiologia do Hospital de Clínicas de Porto Alegre, a partir do Guia Alimentar para a População Brasileira e da literatura cientifica mais atual sobre o assunto.
+Diante disso, para ajudar na adoção de hábitos alimentares cardioprotetores, este manual foi elaborado pela equipe de nutricionistas da Cardiologia do Hospital de Clínicas de Porto Alegre, a partir do Guia Alimentar para a População Brasileira e da literatura científica mais atual sobre o assunto.
 
+Por que realizar mudanças agora?
 
+De acordo com a Organização Mundial da Saúde (OMS), cerca de três quartos das mortes por doenças cardiovasculares podem ser prevenidas por mudanças de estilo de vida e controle de fatores de risco, como hipertensão, diabetes, obesidade, dislipidemia etc.
 
+O que mais favorece o desenvolvimento de doenças cardiovasculares é obesidade, sedentarismo, tabagismo, consumo excessivo de álcool, diabetes não controlada e dieta não saudável.
 
+Padrões alimentares cardioprotetores
 
-## Por que realizar mudanças agora?
+Exemplos de padrões alimentares que protegem a saúde do coração são: a dieta Dash e a dieta mediterrânea.
 
-De acordo com a Organizaçāo Mundial da Saúde (OMS),cerca de tres quartos das mortes por doenças cardiovasculares podem ser prevenidas por mudanças de estilo de vida e controle de fatores de risco, como hipertensão, diabetes, obesidade, dislipidemia etc.
+A dieta Dash é um padrão alimentar que foi desenvolvido para pessoas com hipertensão arterial e que demonstra benefícios cardiovasculares, como melhor controle da pressão arterial, dos níveis de glicose no sangue, da fome e da saciedade. Ela também ajuda a reduzir o colesterol ruim (LDL) e aumentar o colesterol bom (HDL). Essa dieta é composta por alimentos ricos em fibras, vitaminas e minerais, como feijões, carnes magras, laticínios com baixo teor de gordura, grãos integrais, frutas e legumes, e possui baixa quantidade de sal, doces e gordura saturada.
 
-O que mais favorece o desenvolvimento de doenças cardiovasculares é obesidade, sedentarismo, tabagismo, consumo excessivo de alcool,diabetes não controlada e dieta não saudável.
+A Dieta Mediterrânea, por sua vez, é um padrão alimentar voltado para quem precisa de uma alimentação saudável e estimula o consumo de legumes, frutas, verduras, peixe, grãos integrais e azeite de oliva.
 
-
-
-## Padroes alimentares cardioprotetores 
-
-Exemplos de padrōes alimentares que protegem a saúde do coração são: a dieta Dash e a dieta mediterranea.
-
-
-
-A dieta Dashé um padräo alimentar que foi desenvolvido para pessoas com hipertensäo arterial e que demonstra beneficios cardiovasculares,como melhor controle da pressão arterial, dos niveis de glicose no sangue, da fome e da saciedade. Ela também ajuda a reduzir o colesterol ruim (LDL) e aumentar o colesterol bom (HDL). Essa dietaé composta por alimentos ricos em fi bras, vitaminas e minerais, como feijoes, carnes magras, laticínios com baixo teor de gordura, grãos integrais, frutas e legumes, e possui baixa quantidade de sal, doces e gordura saturada.
-
-A Dieta Mediterranea, por sua vez,é um padräo alimentar voltado para quem precisa de uma alimentação saudável e estimula o consumo de legumes, frutas, verduras, peixe, grãos integrais e azeite de oliva.
-
-## Quanto mais colorido melhor!
+Quanto mais colorido melhor!
 
 Busque sempre deixar o seu prato o mais colorido possível.
 
+Tente colocar frutas nos seus lanches e saladas, legumes e verduras nas refeições principais (almoço e jantar). Dessa forma você já estará consumindo uma quantidade importante de fibras, vitaminas e minerais e contribuindo para a saúde do seu coração. Quanto mais cores diferentes você consumir, mais nutrientes estará recebendo.
 
+Limite o consumo de gorduras!
 
-Tente colocar frutas nos seus lanches e saladas, legumes e verduras nas refeiçoes principais (almoço e jantar). Dessa forma vocè já estará
+Evite gorduras como banha de porco, óleo de coco, pele de galinha e gordura aparente de carnes. Evite consumir carne vermelha mais de 3 vezes por semana.
 
-<div style="text-align: center;"><img src="imgs/img_in_image_box_466_162_814_363.jpg" alt="Image" width="41%" /></div>
+O consumo de 1 colher de sopa de azeite de oliva extravirgem por dia também é benéfico e diminui o risco cardiovascular. Reduzir a quantidade consumida de margarina, manteiga, maionese, leite integral ou queijos amarelos também protege contra eventos do coração.
 
+Como montar um prato saudável?
 
-consumindo uma quantidade importante de fibras, vitaminas e minerais e contribuindo para a saúde do seu coração. Quanto mais cores diferentes voce consumir, mais nutrientes estará recebendo.
+CARBOIDRATOS
 
-## Limite o consumo de gorduras!
+FRUTAS
 
-Evite gorduras como banha de porco, oleo de coco, pele de galinha e gordura aparente de carnes. Evite consumir carne vermelha mais de 3vezes por semana.
+Prefira: grãos integrais
 
+Prefira: frutas in natura , sucos naturais sem adição de açúcar e frutas secas
 
+(arroz, pães e massas
 
-<div style="text-align: center;"><img src="imgs/img_in_image_box_47_719_385_988.jpg" alt="Image" width="40%" /></div>
+integrais), batata doce, mandioca e
 
+mandioquinha
 
-O consumo de 1 colher de sopa de azeite de oliva extravirgem por dia tambémé benéfi co e diminui o risco cardiovascular. Reduzir a quantidade consumida de margarina, manteiga, maionese,leite integral ou queijos amarelos também protege contra eventos do coração.
+Evite: frutas em calda e cristalizadas e sucos adoçados
 
+Evite: cereais refinados (arroz branco e farinhas
 
+brancas)
 
-# Como montar um prato saudável?
+LEGUMINOSAS
 
-## FRUTAS 
+LEGUMES E
 
-Prefira: frutas in natura, sucos naturais sem adiçāo de açúcar e frutas secas Evite: frutas em calda ecristalizadas e sucos adoçados 
+Prefira: feijões, lentilha e grão-de-bico
 
+VERDURAS
 
+Prefira: legumes e verduras in natura (batatas não entram aqui)
 
-LEGUMES E VERDURAS Prefira: legumes e verduras in natura (batatas nao entram aqui)
+Evite: feijoada com
 
-Evite: legumes em conserva/salmoura (ervilha, azeitona,palmito)
+linguiça e carnes
 
+processadas
 
+Evite: legumes em conserva/salmoura (ervilha, azeitona, palmito)
 
-## CARBOIDRATOS 
+PROTEÍNAS
 
-Prefi ra: graos integrais (arroz, pães e massas integrais), batata doce, mandioca e mandioquinha Evite: cereais refi nados (arroz branco e farinhas brancas)
+Prefira: frango sem pele, peixes assados/cozidos, ovos e carne bovina
 
-<div style="text-align: center;"><img src="imgs/img_in_image_box_282_259_582_658.jpg" alt="Image" width="35%" /></div>
+magra
 
+Evite: carnes gordurosas e fritas, embutidos (presunto, bacon, peito de
 
-LEGUMINOSAS Prefira: feijōes,lentilha e grão-de-bico Evite: feijoada com linguiça e carnes processadas 
+peru) e carne seca
 
-## PROTEINAS 
+Metade do prato deve ser composto por legumes e vegetais, um quarto por cereais e o outro um quarto por proteínas e leguminosas.
 
-Prefira: frango sem pele, peixes assados/cozidos, ovos e carne bovina magra 
+Grau de processamento dos alimentos
 
-Evite: carnes gordurosas e fritas,embutidos (presunto, bacon, peito de peru) e carne seca Metade do prato deve ser composto por legumes e vegetais, um quarto por cereais e o outro um quarto por proteinas e leguminosas.
+A base da alimentação deve ser composta por alimentos in natura ou minimamente processados.
 
-## Grau de processamento dos alimentos 
+O que são alimentos in natura ou minimamente processados?
 
-A base da alimentaçäo deve ser composta por alimentos in natura ou minimamente processados.
+São alimentos que não sofreram qualquer alteração após deixar a natureza ou que sofreram alterações mínimas.
 
+Exemplos: frutas, verduras, legumes, leite, iogurte natural, feijões, cereais, raízes, tubérculos, ovos, carnes resfriadas ou congeladas, farinhas, castanhas, sucos integrais naturais, chás, café.
 
+E alimentos ultraprocessados, o que são?
 
-## O que são alimentos in natura ou minimamente processados?
+São produtos feitos pela indústria que possuem MUITOS ingredientes, sendo a maioria deles aditivos químicos, e uma pequena proporção de alimentos in natura. Esses alimentos geralmente são ricos em aditivos químicos, gorduras trans e saturadas, sódio e corantes. Esses ingredientes possuem diversos malefícios sobre a saúde quando consumidos em excesso. Por isso, é importante limitar o consumo.
 
-São alimentos que näo sofreram qualquer alteração após deixar a natureza ou que sofreram alteraçöes mínimas.
+Exemplos: biscoitos doces e salgados, sucos em pó, refrigerantes, temperos prontos, embutidos, salgadinhos, sorvetes.
 
+É muito importante ficar atento à lista de ingredientes dos rótulos dos alimentos.
 
+INGREDIENTES:
 
-Exemplos: frutas, verduras, legumes, leite, iogurte natural, feijōes, cereais, raizes, tubérculos, ovos,carnes resfriadas ou congeladas, farinhas, castanhas,sucos integrais naturais, chas, cafe.
+SAL:
 
+•	Glutamato monossódico •	Ciclamato de sódio •	Inosinato dissódico AÇÚCAR:
 
+•	Açúcar invertido •	Xarope de milho/glicose •	Maltodextrina •	Dextrose GORDURA:
 
-<div style="text-align: center;"><img src="imgs/img_in_image_box_633_316_768_624.jpg" alt="Image" width="16%" /></div>
-
-
-## E alimentos ultraprocessados, o que são?
-
-São produtos feitos pela indústria que possuem MuiToS ingredientes,
-
-sendo a maioria deles aditivos químicos, e uma pequena proporçäo de 
-
-alimentos in natura. Esses alimentos geralmente 
-
-säo ricos em aditivos químicos, gorduras trans e 
-
-saturadas, sodio e corantes. Esses ingredientes 
-
-possuem diversos maleficios sobre a saúde 
-
-quando consumidos em excesso. Por isso, é
-
-importante limitar o consumo.
-
-
-
-Exemplos: biscoitos doces e salgados,sucos em po, refrigerantes, temperos prontos,embutidos,salgadinhos,sorvetes.
-
-
-
-<div style="text-align: center;"><img src="imgs/img_in_image_box_514_1006_766_1135.jpg" alt="Image" width="30%" /></div>
-
-
-É muito importante ficar atento  lista de ingredientes dos rotulos dos alimentos.
-
-
-
-<div style="text-align: center;"><img src="imgs/img_in_image_box_118_198_680_644.jpg" alt="Image" width="66%" /></div>
-
+•	Gordura trans •	Gordura saturada
 
 Evite consumir alimentos que possuem uma lista muito grande de ingredientes ou que possuam nomes estranhos como os descritos acima.
 
+Restrição de bebidas alcoólicas
 
+É importante destacar que não existe uma quantidade segura de consumo de bebidas alcoólicas e esse hábito pode causar danos ao organismo. O consumo de no máximo 30g de álcool por dia para homens e 20g por dia para mulheres, quando saudáveis, parece oferecer menor risco.
 
-## Restricão de bebidas alcoólicas 
+O que são 30g ou 20g de álcool?
 
-É importante destacar que näo existe uma quantidade segura de consumo de bebidas alcoólicas e esse hábito pode causar danos ao organismo. O consumo de no máximo 30g de alcool por dia para homens e 2Og por dia para mulheres, quando saudáveis,parece oferecer menor risco.
+<table border="1">
+<tr><th>Bebida</th><th>Volume</th><th>Quantidade de álcool</th></tr>
+<tr><td>Vinho tinto</td><td>90ml (1 cálice)</td><td>11g</td></tr>
+<tr><td>Cerveja</td><td>350ml (1 lata)</td><td>17g</td></tr>
+<tr><td>Destilado</td><td>50ml (1 dose)</td><td>20g</td></tr>
+</table>
 
+Dicas para planejar a sua alimentação
 
+<table border="1">
+<tr><th></th><th>PREFERIR</th><th>CONSUMIR COM
+MODERAÇÃO</th><th>EVITAR</th></tr>
+<tr><td>Cereais</td><td>Alimentos
+integrais (pães,
+arroz, massas),
+aveia</td><td>Pão branco, arroz,
+massas</td><td>Biscoitos, cereais
+açucarados, pães
+doces, bolos,
+tortas, salgados
+folhados ou fritos</td></tr>
+<tr><td>Vegetais</td><td>Vegetais crus e
+cozidos</td><td>-</td><td>Vegetais
+preparados na
+manteiga ou com
+creme</td></tr>
+<tr><td>Frutas</td><td>Frescas ou
+congeladas
+sem adição de
+açúcares</td><td>Coco, frutas secas,
+geleia sem adição
+de açúcares</td><td>Geleia com açúcar,
+frutas em calda</td></tr>
+<tr><td>Leguminosas</td><td>Feijão, lentilha,
+grão-de-bico,
+proteína de soja</td><td>-</td><td>-</td></tr>
+<tr><td>Doces,
+adoçantes e
+bebidas</td><td>Adoçantes não
+calóricos</td><td>Mel, chocolates,
+suco natural sem
+açúcar</td><td>Açúcar, doces,
+bolos, sorvetes,
+refrigerantes,
+sucos de caixinha
+ou em pó</td></tr>
+</table>
 
-<div style="text-align: center;">O que são 30g ou 20g de álcool?</div>
+<table border="1">
+<tr><th></th><th>PREFERIR</th><th>CONSUMIR COM
+MODERAÇÃO</th><th>EVITAR</th></tr>
+<tr><td>Carnes,
+peixes e ovos</td><td>Peixes, frango
+sem a pele</td><td>Cortes de carne
+bovina magra,
+carne de porco
+magra, frutos do
+mar, ovos</td><td>Salsichas, salames,
+toucinho,
+torresmo,
+costelas, vísceras,
+bacon, presunto,
+salsichão,
+calabresa,
+nuggets, carnes
+gordurosas</td></tr>
+<tr><td>Alimentos
+lácteos</td><td>Leite e iogurte
+semidesnatados
+e desnatados,
+creme de ricota,
+requeijão light,
+queijos brancos</td><td>Queijos amarelos,
+leite, iogurte
+integrais</td><td>Nata, creme
+de leite, leite
+condensado</td></tr>
+<tr><td>Para cozinhar</td><td>Azeite de oliva</td><td>Óleos vegetais,
+margarinas light e
+sem sal, temperos
+desidratados,
+frescos</td><td>Manteiga,
+margarinas com
+sal, banha de
+porco, gordura
+trans, óleo de
+coco, temperos
+prontos
+industrializados</td></tr>
+<tr><td>Nozes e
+sementes</td><td>Castanha-de-
+caju, nozes,
+castanha-
+do-pará,
+amendoim. Sem
+sal!</td><td>-</td><td>-</td></tr>
+<tr><td>Preparo dos
+alimentos</td><td>Grelhados,
+cozidos, no
+vapor</td><td>Assados, refogados</td><td>Fritos</td></tr>
+</table>
 
+Receitas de molhos, pastas e temperos substitutos de sal
 
-
-<div style="text-align: center;"><html><body><table border="1"><tr><td>Bebida</td><td>Volume</td><td>Quantidade de álcool</td></tr><tr><td>Vinho tinto</td><td>90ml (1 cálice)</td><td>11g</td></tr><tr><td>Cerveja</td><td>350ml (1 lata)</td><td>17g</td></tr><tr><td>Destilado</td><td>50ml (1 dose)</td><td>20g</td></tr></table></body></html></div>
-
-
-<div style="text-align: center;">Dicas para planejar a sua alimentação </div>
-
-
-
-<div style="text-align: center;"><html><body><table border="1"><tr><td></td><td>PREFERIR</td><td>CONSUMIRCOM MODERAÇÄO</td><td>EVITAR</td></tr><tr><td>Cereais</td><td>Alimentos integrais (paes, arroz, massas), aveia</td><td>Pão branco, arroz, massas</td><td>Biscoitos, cereais açucarados, pes doces, bolos, tortas, salgados folhados ou fritos</td></tr><tr><td>Vegetais</td><td>Vegetais crus e cozidos</td><td>=</td><td>Vegetais preparados na manteiga ou com creme</td></tr><tr><td>Frutas</td><td>Frescas ou congeladas sem adiçāo de açúcares</td><td>Coco, frutas secas, geleia sem adição de açúcares</td><td>Geleia com açúcar, frutas em calda</td></tr><tr><td>Leguminosas</td><td>Feijão, lentilha, grao-de-bico, proteina de soja</td><td>=</td><td>=</td></tr><tr><td>Doces, adoçantes e bebidas</td><td>Adoçantes não calóricos</td><td>Mel, chocolates, suco natural sem açúcar</td><td>Açúcar, doces, bolos, sorvetes, refrigerantes, sucos de caixinha ou em pó</td></tr></table></body></html></div>
-
-
-
-<div style="text-align: center;"><html><body><table border="1"><tr><td></td><td>PREFERIR</td><td>CONSUMIR COM MODERAÇÄO</td><td>EVITAR</td></tr><tr><td>Carnes, peixes e ovos</td><td>Peixes, frango sem a pele</td><td>Cortes de carne bovina magra, carne de porco magra, frutos do mar, ovos</td><td>Salsichas, salames, toucinho, torresmo, costelas, visceras, bacon, presunto, salsichão, calabresa, nuggets, carnes gordurosas</td></tr><tr><td>Alimentos lácteos</td><td>Leite e iogurte semidesnatados e desnatados, creme de ricota, requeijāo light, queijos brancos</td><td>Queijos amarelos, leite, iogurte integrais</td><td>Nata, creme de leite, leite condensado</td></tr><tr><td>Para cozinhar</td><td>Azeite de oliva</td><td>Óleos vegetais, margarinas light e sem sal, temperos desidratados, frescos</td><td>Manteiga, margarinas com sal, banha de porco, gordura trans, oleo de coco, temperos prontos industrializados</td></tr><tr><td>Nozes e sementes</td><td>Castanha-de- caju, nozes, castanha- do-pará, amendoim. Sem sal!</td><td>-</td><td></td></tr><tr><td>Preparo dos alimentos</td><td>Grelhados, cozidos, no vapor</td><td>Assados, refogados</td><td>Fritos</td></tr></table></body></html></div>
-
-
-# Receitas de molhos, pastas e temperos  substitutos de sal  
-
-## Molho 1
+Molho 1
 
 Ingredientes:
 
-• 1 unidade pequena de cebola 
+•	1 unidade pequena de cebola •	2 dentes de alho •	1 punhado de semente de mostarda •	1 pitada de noz-moscada •	1 pitada de páprica •	2 unidades de cravo •	1 colher de sopa de óleo vegetal •	1 pitada de pimenta-do-reino •	750ml de vinagre •	1 molho de tempero verde •	1 litro de água para completar
 
-• 2 dentes de alho 
+Modo de fazer: colocar os ingredientes no liquidificador com um pouco de vinagre e bater até formar uma pasta. Acrescentar o resto do vinagre e liquidificar. Deixar descansar por dois dias e coar. Guardar na geladeira por até uma semana.
 
-• 1 punhado de semente de mostarda 
-
-• 1 pitada de noz-moscada 
-
-• 1 pitada de páprica 
-
-• 2 unidades de cravo 
-
-• 1 colher de sopa de oleo vegetal 
-
-• 1 pitada de pimenta-do-reino 
-
-• 750ml de vinagre 
-
-• 1 molho de tempero verde 
-
-• 1 litro de agua para completar 
-
-Modo de fazer: colocar os ingredientes no liquidifi cador com um pouco de vinagre e bater até formar uma pasta. Acrescentar o resto do vinagre e liquidifi car. Deixar descansar por dois dias e coar. Guardar na geladeira por até uma semana.
-
-
-
-## Molho 2
+Molho 2
 
 Ingredientes:
 
-•6 a 8 dentes de alho 
+•	6 a 8 dentes de alho •	½ xícara de óleo vegetal •	Ervas aromáticas – alecrim, manjerona, pimenta, louro, orégano, cebola
 
-• 1½2} xicara de óleo vegetal 
+Modo de fazer: cortar os dentes de alho bem miúdos ou triturar. Misturar as ervas aromáticas de sua preferência. Colocar meia xícara de óleo e deixar a infusão na geladeira por dois dias para curtir. Utilizar em carnes, refogados, arroz e feijão.
 
-•Ervas aromaticas– alecrim, manjerona, pimenta, louro, orégano,cebola 
-
-
-
-Modo de fazer: cortar os dentes de alho bem miúdos ou triturar.Misturar as ervas aromaticas de sua preferencia. Colocar meia xicara de oleoe deixar ainfusonagladeira pordois dias paracurti.Utilizar em carnes, refogados, arroz e feijäo.
-
-
-
-## Sal de ervas 
-
-## Ingredientes:
-
-• 1 colher de sopa de sal (15g)
-
-• 3 colheres de louro 
-
-• 1 colher de sopa de orégano desidratado 
-
-• 1 colher de sopa de manjericäo desidratado 
-
-• 1 colher de sopa de alecrim desidratado 
-
-## Modo de fazer: misturar tudo 
-
-## Pasta de gräo-de-bico 
-
-## Ingredientes:
-
-•1 lata de gro-de-bico (1 ½ xicara de chá de gros cozidos)
-
-• 1 dente de alho 
-
-•1 colher de sopa de agua 
-
-• 5 colheres de sopa de azeite 
-
-• 6 ramos de salsinha 
-
-• Sal e pimenta-do-reino 
-
-## Modo de fazer:
-
-Deixe o grão-de-bico de molho por 12 horas, trocando a água duas vezes nesse periodo. Tire a casca do grao-de-bico após. Amasse o dente de alho e pique a salsinha grosseiramente. No processador de alimentos ou liquidificador, coloque metade do grão-de-bico, o alho, a agua e 3 colheres de sopa de azeite. Bata bem até formar uma pasta lisa – esse passoé importante para bater o grão-de-bico e triturar o alho.Transfira para uma tigela e reserve. Coloque a outra metade do grãode-bico no processador. Junte o restante do azeite e bata novamente.
-
-## Pate de frango saudavel 
+Sal de ervas
 
 Ingredientes:
 
-• 1 litro de agua 
+•	1 colher de sopa de sal (15g) •	3 colheres de louro •	1 colher de sopa de orégano desidratado •	1 colher de sopa de manjericão desidratado •	1 colher de sopa de alecrim desidratado
 
-• 300g de peito de frango (sem osso)
+Modo de fazer: misturar tudo
 
-•1 cenoura (picada)
-
-/4 cebola 
-
-•1 dente de alho 
-
-• 1 colher de chá de sal 
-
-·300g de ricota 
-
-•Salsinha 
-
-• Suco de 1 limão 
-
-## Modo de fazer:
-
-Em uma panela coloque o frango, a cebola, a cenoura, o alho eo sal. Cubra com 1 litro de agua e deixe cozinhar por cerca de 20 minutos. Retire o frango do caldo e deixe esfriar. Desfie o frango de modo gue fi que em pedaços bem pequenos. Pode ser utilizado processador ou liguidifi cador. Coloque o frango em uma tigela, misture a ricota, a salsinha e o suco de 1 limão.
-
-## Maionese caseira sem óleo 
+Pasta de grão-de-bico
 
 Ingredientes:
 
-• 3 ovos cozidos 
+•	1 lata de grão-de-bico (1 ½ xícara de chá de grãos cozidos) •	1 dente de alho •	1 colher de sopa de água •	5 colheres de sopa de azeite •	6 ramos de salsinha •	Sal e pimenta-do-reino
 
-• 100ml de iogurte natural 
+Modo de fazer:
 
-• Suco de 1/2 limão 
+Deixe o grão-de-bico de molho por 12 horas, trocando a água duas vezes nesse período. Tire a casca do grão-de-bico após. Amasse o dente de alho e pique a salsinha grosseiramente. No processador de alimentos ou liquidificador, coloque metade do grão-de-bico, o alho, a água e 3 colheres de sopa de azeite. Bata bem até formar uma pasta lisa – esse passo é importante para bater o grão-de-bico e triturar o alho. Transfira para uma tigela e reserve. Coloque a outra metade do grão- de-bico no processador. Junte o restante do azeite e bata novamente.
 
-• 2 dentes de alho 
+Patê de frango saudável
 
-• 1/2 xicara de salsa picada 
+Ingredientes:
 
-•Sal a gosto 
+•	1 litro de água •	300g de peito de frango (sem osso) •	1 cenoura (picada) •	¼ cebola •	1 dente de alho •	1 colher de chá de sal •	300g de ricota •	Salsinha •	Suco de 1 limão
 
-## Modo de fazer:
+Modo de fazer:
 
-bater todos os ingredientes com mixer ou no liquidifi cador até a mistura fi car homogênea. Deixar na geladeira por 2 horas e servir.
+Em uma panela coloque o frango, a cebola, a cenoura, o alho e o sal. Cubra com 1 litro de água e deixe cozinhar por cerca de 20 minutos. Retire o frango do caldo e deixe esfriar. Desfie o frango de modo que fique em pedaços bem pequenos. Pode ser utilizado processador ou liquidificador. Coloque o frango em uma tigela, misture a ricota, a salsinha e o suco de 1 limão.
 
-Pode ser utilizada para fazer a salada de maionese com batatas, para servir como um molho para saladas e para comer com um aperitivo (päo, torradinhas, carnes etc.).
+Maionese caseira sem óleo
 
+Ingredientes:
 
+•	3 ovos cozidos •	100ml de iogurte natural •	Suco de 1/2 limão •	2 dentes de alho •	1/2 xícara de salsa picada •	Sal a gosto
 
-Aprovado pelo Conselho Editorial em setembro/24municaçaodoHCPA-setembro/24-PES160-311721
+Modo de fazer:
 
-<div style="text-align: center;"><img src="imgs/img_in_image_box_126_875_241_955.jpg" alt="Image" width="13%" /></div>
+bater todos os ingredientes com mixer ou no liquidificador até a mistura ficar homogênea.  Deixar na geladeira por 2 horas e servir.
 
+Pode ser utilizada para fazer a salada de maionese com batatas, para servir como um molho para saladas e para comer com um aperitivo (pão, torradinhas, carnes etc.).
 
-<div style="text-align: center;"><img src="imgs/img_in_image_box_304_877_546_951.jpg" alt="Image" width="29%" /></div>
+Coordenadoria de Comunicação do HCPA - setembro/24 - PES160 - 311721 Aprovado pelo Conselho Editorial em setembro/24
 
+SERVIÇO DE NUTRIÇÃO E DIETÉTICA
 
-SERVIÇO DE NUTRIÇAO E DIETÉTICA 
-
-Rua Ramiro Barcelos, 2350Largo Eduardo Z. Faraco Porto Alegre/RS 90035-903Fones 51 3359 8000www.hcpa.edu.br 
+Rua Ramiro Barcelos, 2350 Largo Eduardo Z. Faraco Porto Alegre/RS  90035-903 Fones 51 3359 8000 www.hcpa.edu.br

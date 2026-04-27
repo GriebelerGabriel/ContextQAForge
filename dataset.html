@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QA Dataset — 20 pairs</title>
+<style>
+  :root { --bg:#0f172a; --card:#1e293b; --border:#334155; --text:#e2e8f0; --muted:#94a3b8; --accent:#3b82f6; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); padding:2rem; max-width:960px; margin:0 auto; }
+  h1 { font-size:1.5rem; margin-bottom:1rem; }
+  .stats { display:flex; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .stat-box { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1rem; flex:1; min-width:180px; }
+  .stat-box h3 { font-size:0.75rem; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem; }
+  .stat-box table { width:100%; font-size:0.85rem; }
+  .stat-box td { padding:2px 0; }
+  .stat-box td:last-child { text-align:right; color:var(--muted); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+  .card-header { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap; }
+  .idx { font-weight:700; color:var(--accent); font-size:0.9rem; }
+  .badge { color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:99px; font-weight:600; }
+  .badge-sm { color:#fff; font-size:0.7rem; padding:1px 6px; border-radius:99px; font-weight:600; }
+  .source { font-size:0.8rem; color:var(--muted); margin-left:auto; }
+  .topic { font-size:0.8rem; color:var(--muted); margin-bottom:0.75rem; }
+  .field { margin-bottom:0.75rem; }
+  .field label { font-size:0.7rem; text-transform:uppercase; color:var(--accent); font-weight:600; display:block; margin-bottom:2px; }
+  .field p { font-size:0.9rem; line-height:1.5; }
+  details { margin-top:0.5rem; }
+  summary { cursor:pointer; font-size:0.8rem; color:var(--muted); }
+  .ctx-list { margin-top:0.5rem; }
+  .ctx-item { background:var(--bg); border-radius:6px; padding:0.75rem; margin-bottom:0.5rem; }
+  .ctx-item strong { font-size:0.75rem; color:var(--accent); }
+  .ctx-item p { font-size:0.82rem; color:var(--muted); line-height:1.5; margin-top:2px; }
+</style></head><body>
+<h1>QA Dataset — 20 pairs</h1>
+<div class="stats">
+  <div class="stat-box"><h3>By Document</h3><table><tr><td>9789241504836_eng</td><td>5</td></tr><tr><td>guia_alimentar_populacao_brasileira_2ed</td><td>5</td></tr><tr><td>lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american</td><td>5</td></tr><tr><td>pes160_-_311421_alimentação_e_saúde_cardiovascular</td><td>5</td></tr></table></div>
+  <div class="stat-box"><h3>By Type</h3><table><tr><td><span class="badge-sm" style="background:#f59e0b">inference</span></td><td>6</td></tr><tr><td><span class="badge-sm" style="background:#3b82f6">single-hop</span></td><td>6</td></tr><tr><td><span class="badge-sm" style="background:#10b981">paraphrase</span></td><td>3</td></tr><tr><td><span class="badge-sm" style="background:#8b5cf6">multi-hop</span></td><td>3</td></tr><tr><td><span class="badge-sm" style="background:#ef4444">true-false</span></td><td>2</td></tr></table></div>
+  <div class="stat-box"><h3>By Difficulty</h3><table><tr><td><span class="badge-sm" style="background:#ef4444">hard</span></td><td>7</td></tr><tr><td><span class="badge-sm" style="background:#f59e0b">medium</span></td><td>7</td></tr><tr><td><span class="badge-sm" style="background:#22c55e">easy</span></td><td>6</td></tr></table></div>
+</div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#1</span>
+            <span class="badge" style="background:#f59e0b">inference</span>
+            <span class="badge" style="background:#ef4444">hard</span>
+            <span class="source">9789241504836_eng</span>
+          </div>
+          <div class="topic">9789241504836_eng.pdf &gt; Guidelines on Sodium Intake to Reduce Noncommunicable Diseases &gt; Background on Noncommunicable Diseases (NCDs)</div>
+          <div class="field"><label>Question</label><p>Se a ingestão de sódio é muito maior do que o recomendado pela Organização Mundial da Saúde, quais são as consequências potenciais para a saúde da população em geral?</p></div>
+          <div class="field"><label>Answer</label><p>Um consumo elevado de sódio está associado a doenças não transmissíveis, como hipertensão, doenças cardiovasculares e acidente vascular cerebral. Reduzir a ingestão de sódio pode diminuir a pressão arterial e o risco de doenças relacionadas, o que é crucial considerando que a maioria das populações consome mais do que os 2 g de sódio/dia recomendados.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Um consumo elevado de sódio está associado a doenças não transmissíveis, como hipertensão, doenças cardiovasculares e acidente vascular cerebral. Reduzir a ingestão de sódio pode diminuir a pressão arterial e o risco de doenças relacionadas, o que é crucial considerando que a maioria das populações consome mais do que os 2 g de sódio/dia recomendados.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Noncommunicable diseases (NCDs) are the main contributor to mortality and morbidity globally, and interventions to reduce the burden of NCDs are highly cost-effective. Elevated sodium intake has been associated with a number of NCDs (including hypertension, cardiovascular disease, and stroke), and decreasing sodium intake may reduce blood pressure and the risk of associated NCDs. Recent data on sodium intake show that populations around the world are consuming much more sodium than is physiologically necessary. In many cases, they are consuming much more than the current World Health Organization (WHO) recommendation on sodium consumption for adults, which is 2 g sodium/day (equivalent to 5 g salt/day). Since the publication of the previous WHO guideline on sodium intake, an appreciable amount of scientific evidence concerning sodium intake, hypertension, and risk of cardiovascular disease has been published. Member States and international partners therefore requested WHO to review the current guideline on sodium intake for adults and to also generate a guideline on sodium intake for children.
+
+NCDs are the leading cause of death globally, killing more people each year than all other causes combined. The major NCDs currently account for approximately 60% of all deaths and 43% of disease burden globally, and these levels are expected to continue to rise. In 2008, 29 million NCD-related deaths (almost 80%) occurred in low and middle-income countries. In those countries, 29% of NCD-related deaths were in people under 60 years of age; in contrast, in high-income countries, only 13% of such deaths were premature. Hypertension is considered a major risk for cardiovascular disease, especially heart attack and stroke. Suboptimal systolic blood pressure (&gt;115 mmHg) is estimated to contribute to 49% of all coronary heart disease and 62% of all stroke.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#2</span>
+            <span class="badge" style="background:#f59e0b">inference</span>
+            <span class="badge" style="background:#22c55e">easy</span>
+            <span class="source">9789241504836_eng</span>
+          </div>
+          <div class="topic">9789241504836_eng.pdf &gt; Guidelines on Sodium Intake to Reduce Noncommunicable Diseases &gt; Objectives and Methods of the Guidelines</div>
+          <div class="field"><label>Question</label><p>Quais são algumas das intervenções de saúde pública recomendadas para reduzir a ingestão de sódio?</p></div>
+          <div class="field"><label>Answer</label><p>As intervenções de saúde pública recomendadas para reduzir a ingestão de sódio incluem rotulagem de alimentos e produtos, educação do consumidor e estabelecimento de diretrizes alimentares baseadas em alimentos.</p></div>
+          <div class="field"><label>Ground Truth</label><p>As intervenções de saúde pública recomendadas para reduzir a ingestão de sódio incluem rotulagem de alimentos e produtos, educação do consumidor e estabelecimento de diretrizes alimentares baseadas em alimentos.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>The objective of this guideline is to provide recommendations on the consumption of sodium to reduce NCDs in most adults and children. The recommendations in this guideline can be used by those developing programmes and policies to assess current sodium intake levels relative to a benchmark. If necessary, the recommendations can also be used to develop measures to decrease sodium intake through public health interventions such as food and product labelling, consumer education, and the establishment of food-based dietary guidelines. WHO developed the present evidence-informed guideline using the procedures outlined in the WHO Handbook for guideline development. The steps in this process included: identification of priority questions and outcomes; retrieval of the evidence; assessment and synthesis of the evidence; formulation of recommendations; identification of research gaps; planning for dissemination, implementation, impact evaluation, and updating of the guideline.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#3</span>
+            <span class="badge" style="background:#3b82f6">single-hop</span>
+            <span class="badge" style="background:#22c55e">easy</span>
+            <span class="source">9789241504836_eng</span>
+          </div>
+          <div class="topic">Guidelines on Sodium Intake to Reduce Noncommunicable Diseases &gt; Evidence on Sodium Intake and Health Outcomes &gt; Health Benefits of Reducing Sodium</div>
+          <div class="field"><label>Question</label><p>Qual é a quantidade máxima de sódio que devo consumir por dia para obter benefícios na redução da pressão arterial?</p></div>
+          <div class="field"><label>Answer</label><p>Para obter benefícios na redução da pressão arterial, é recomendado reduzir a ingestão de sódio para menos de 2 g por dia.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Para obter benefícios na redução da pressão arterial, é recomendado reduzir a ingestão de sódio para menos de 2 g por dia.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Reducing sodium intake significantly reduced systolic and diastolic blood pressure in adults and children. The reduction in blood pressure was detected across a wide range of intake levels, and was independent of baseline sodium intake. Reducing sodium intake to &lt;2 g/day was more beneficial for blood pressure than reducing sodium intake but still consuming &gt;2 g/day. Reducing sodium intake had no significant adverse effect on blood lipids, catecholamine levels, or renal function. Higher sodium intake was associated with a higher risk of incident stroke, fatal stroke, and fatal coronary heart disease. There was no association between sodium intake and all-cause mortality, incident cardiovascular disease, and non-fatal coronary heart disease. However, the strong positive relationship between blood pressure and these outcomes provides indirect evidence that reducing sodium intake can improve these outcomes through a beneficial effect on blood pressure.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#4</span>
+            <span class="badge" style="background:#10b981">paraphrase</span>
+            <span class="badge" style="background:#ef4444">hard</span>
+            <span class="source">9789241504836_eng</span>
+          </div>
+          <div class="topic">Guidelines on Sodium Intake to Reduce Noncommunicable Diseases &gt; Evidence on Sodium Intake and Health Outcomes &gt; Health Risks Associated with Sodium Reduction</div>
+          <div class="field"><label>Question</label><p>É possível que a redução do sódio tenha efeitos negativos sobre as concentrações de lipídios no sangue e a função renal?</p></div>
+          <div class="field"><label>Answer</label><p>Os resultados mostraram pouco ou nenhum efeito adverso da redução do sódio nas concentrações de lipídios no sangue e sugerem que a redução do sódio não tem um efeito adverso na função renal, podendo até ter um efeito benéfico.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Os resultados mostraram pouco ou nenhum efeito adverso da redução do sódio nas concentrações de lipídios no sangue e sugerem que a redução do sódio não tem um efeito adverso na função renal, podendo até ter um efeito benéfico.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Some researchers have reported that reduced sodium could potentially have adverse effects on blood lipid concentrations, catecholamine levels, or renal function. However, the results showed little or no adverse effect of reduced sodium on blood lipid concentrations. The meta-analysis of studies reporting catecholamine levels showed that reduced sodium intake resulted in a nonsignificant increase in plasma noradrenaline and adrenaline. Additionally, the results suggest that reduced sodium does not have an adverse effect on renal function and may potentially have a beneficial effect.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#5</span>
+            <span class="badge" style="background:#ef4444">true-false</span>
+            <span class="badge" style="background:#ef4444">hard</span>
+            <span class="source">9789241504836_eng</span>
+          </div>
+          <div class="topic">9789241504836_eng.pdf &gt; Guidelines on Sodium Intake to Reduce Noncommunicable Diseases &gt; Recommendations for Sodium Intake</div>
+          <div class="field"><label>Question</label><p>Afirme: As recomendações da OMS indicam que a ingestão máxima de sódio para adultos deve ser reduzida para menos de 5g por dia.</p></div>
+          <div class="field"><label>Answer</label><p>VERDADEIRO. Segundo os contextos, a OMS recomenda uma redução na ingestão de sódio para menos de 2 g/dia, o que corresponde a 5 g/dia de sal para adultos.</p></div>
+          <div class="field"><label>Ground Truth</label><p>VERDADEIRO. Segundo os contextos, a OMS recomenda uma redução na ingestão de sódio para menos de 2 g/dia, o que corresponde a 5 g/dia de sal para adultos.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>WHO recommends a reduction in sodium intake to reduce blood pressure and risk of cardiovascular disease, stroke, and coronary heart disease in adults. WHO recommends a reduction to &lt;2 g/day sodium (5 g/day salt) in adults. WHO recommends a reduction in sodium intake to control blood pressure in children. The recommended maximum level of intake of 2 g/day sodium in adults should be adjusted downward based on the energy requirements of children relative to those of adults. These recommendations apply to all individuals, with or without hypertension (including pregnant and lactating women), except for individuals with illnesses or taking drug therapy that may lead to hyponatraemia or acute build-up of body water, or require physician-supervised diets.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#6</span>
+            <span class="badge" style="background:#3b82f6">single-hop</span>
+            <span class="badge" style="background:#f59e0b">medium</span>
+            <span class="source">guia_alimentar_populacao_brasileira_2ed</span>
+          </div>
+          <div class="topic">guia_alimentar_populacao_brasileira_2ed.pdf &gt; Guia Alimentar para a População Brasileira &gt; Background on Brazilian Nutrition</div>
+          <div class="field"><label>Question</label><p>Quais são as principais consequências das mudanças no padrão de saúde e consumo alimentar da população brasileira nas últimas décadas?</p></div>
+          <div class="field"><label>Answer</label><p>As principais consequências incluem uma maior expectativa de vida, redução do número de filhos por mulher e um aumento expressivo do sobrepeso e da obesidade em todas as faixas etárias, além das doenças crônicas sendo a principal causa de morte entre adultos.</p></div>
+          <div class="field"><label>Ground Truth</label><p>As principais consequências incluem uma maior expectativa de vida, redução do número de filhos por mulher e um aumento expressivo do sobrepeso e da obesidade em todas as faixas etárias, além das doenças crônicas sendo a principal causa de morte entre adultos.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Nas últimas décadas, o Brasil passou por diversas mudanças políticas, econômicas, sociais e culturais que evidenciaram transformações no modo de vida da população. A ampliação de políticas sociais na área de saúde, educação, trabalho e emprego e assistência social contribuiu para a redução das desigualdades sociais e permitiu que o País crescesse de forma inclusiva. Também se observou rápida transição demográfica, epidemiológica e nutricional, apresentando como consequência maior expectativa de vida e redução do número de filhos por mulher, além de mudanças importantes no padrão de saúde e consumo alimentar da população brasileira. As principais doenças que atualmente acometem os brasileiros deixaram de ser agudas e passaram a ser crônicas. Apesar da intensa redução da desnutrição em crianças, as deficiências de micronutrientes e a desnutrição crônica ainda são prevalentes em grupos vulneráveis da população, como em indígenas, quilombolas e crianças e mulheres que vivem em áreas vulneráveis. Simultaneamente, o Brasil vem enfrentando aumento expressivo do sobrepeso e da obesidade em todas as faixas etárias, e as doenças crônicas são a principal causa de morte entre adultos. O excesso de peso acomete um em cada dois adultos e uma em cada três crianças brasileiras.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#7</span>
+            <span class="badge" style="background:#10b981">paraphrase</span>
+            <span class="badge" style="background:#22c55e">easy</span>
+            <span class="source">guia_alimentar_populacao_brasileira_2ed</span>
+          </div>
+          <div class="topic">Guia Alimentar para a População Brasileira &gt; Guidelines for Healthy Eating &gt; Core Principles of Healthy Eating</div>
+          <div class="field"><label>Question</label><p>Por que a alimentação vai além da simples ingestão de nutrientes?</p></div>
+          <div class="field"><label>Answer</label><p>A alimentação envolve não apenas a ingestão de nutrientes, mas também os alimentos que os fornecem, como eles são combinados e preparados, além das características do modo de comer e das dimensões culturais e sociais das práticas alimentares, que influenciam a saúde e o bem-estar.</p></div>
+          <div class="field"><label>Ground Truth</label><p>A alimentação envolve não apenas a ingestão de nutrientes, mas também os alimentos que os fornecem, como eles são combinados e preparados, além das características do modo de comer e das dimensões culturais e sociais das práticas alimentares, que influenciam a saúde e o bem-estar.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Toda ação humana estruturada é implícita ou explicitamente guiada por princípios. A formulação de guias alimentares não foge a esta regra. Os princípios que orientaram a elaboração deste guia são apresentados neste capítulo. Alimentação é mais que ingestão de nutrientes. Alimentação diz respeito à ingestão de nutrientes, mas também aos alimentos que contêm e fornecem os nutrientes, a como alimentos são combinados entre si e preparados, a características do modo de comer e às dimensões culturais e sociais das práticas alimentares. Todos esses aspectos influenciam a saúde e o bem-estar. A ingestão de nutrientes, propiciada pela alimentação, é essencial para a boa saúde. Igualmente importantes para a saúde são os alimentos específicos que fornecem os nutrientes, as inúmeras possíveis combinações entre eles e suas formas de preparo, as características do modo de comer e as dimensões sociais e culturais das práticas alimentares.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#8</span>
+            <span class="badge" style="background:#8b5cf6">multi-hop</span>
+            <span class="badge" style="background:#ef4444">hard</span>
+            <span class="source">guia_alimentar_populacao_brasileira_2ed</span>
+          </div>
+          <div class="topic">Guia Alimentar para a População Brasileira &gt; Guidelines for Healthy Eating &gt; Food Choices and Recommendations</div>
+          <div class="field"><label>Question</label><p>O que devo priorizar na minha alimentação para garantir uma dieta saudável e sustentável, considerando o tipo de processamento dos alimentos?</p></div>
+          <div class="field"><label>Answer</label><p>Devo fazer de alimentos in natura ou minimamente processados a base da minha alimentação, utilizando óleos, gorduras, sal e açúcar em pequenas quantidades, e limitar o consumo de alimentos ultraprocessados.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Devo fazer de alimentos in natura ou minimamente processados a base da minha alimentação, utilizando óleos, gorduras, sal e açúcar em pequenas quantidades, e limitar o consumo de alimentos ultraprocessados.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Este capítulo apresenta recomendações gerais que orientam a escolha de alimentos para compor uma alimentação nutricionalmente balanceada, saborosa e culturalmente apropriada e, ao mesmo tempo, promotora de sistemas alimentares socialmente e ambientalmente sustentáveis. As recomendações deste capítulo dão grande importância ao tipo de processamento a que são submetidos os alimentos antes de sua aquisição, preparo e consumo. Quatro categorias de alimentos, definidas de acordo com o tipo de processamento empregado na sua produção, são abrangidas pelas recomendações deste capítulo. A primeira reúne alimentos in natura ou minimamente processados. Alimentos in natura são aqueles obtidos diretamente de plantas ou de animais e adquiridos para consumo sem que tenham sofrido qualquer alteração após deixarem a natureza. Alimentos minimamente processados são alimentos in natura que, antes de sua aquisição, foram submetidos a alterações mínimas.
+
+1. Fazer de alimentos in natura ou minimamente processados a base da alimentação. 2. Utilizar óleos, gorduras, sal e açúcar em pequenas quantidades ao temperar e cozinhar alimentos e criar preparações culinárias. 3. Limitar o consumo de alimentos processados. 4. Evitar o consumo de alimentos ultraprocessados. 5. Comer com regularidade e atenção, em ambientes apropriados e, sempre que possível, com companhia. 6. Fazer compras em locais que ofertem variedades de alimentos in natura ou minimamente processados. 7. Desenvolver, exercitar e partilhar habilidades culinárias. 8. Planejar o uso do tempo para dar à alimentação o espaço que ela merece. 9. Dar preferência, quando fora de casa, a locais que servem refeições feitas na hora. 10. Ser crítico quanto a informações, orientações e mensagens sobre alimentação veiculadas em propagandas comerciais.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#9</span>
+            <span class="badge" style="background:#3b82f6">single-hop</span>
+            <span class="badge" style="background:#f59e0b">medium</span>
+            <span class="source">guia_alimentar_populacao_brasileira_2ed</span>
+          </div>
+          <div class="topic">Guia Alimentar para a População Brasileira &gt; Guidelines for Healthy Eating &gt; Healthy Eating Practices</div>
+          <div class="field"><label>Question</label><p>Quais são os tipos de alimentos que devem ser a base da minha alimentação?</p></div>
+          <div class="field"><label>Answer</label><p>A base da alimentação deve ser composta por alimentos in natura ou minimamente processados, com grande variedade e predominantemente de origem vegetal.</p></div>
+          <div class="field"><label>Ground Truth</label><p>A base da alimentação deve ser composta por alimentos in natura ou minimamente processados, com grande variedade e predominantemente de origem vegetal.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Faça de alimentos in natura ou minimamente processados a base de sua alimentação. Alimentos in natura ou minimamente processados, em grande variedade e predominantemente de origem vegetal, são a base para uma alimentação nutricionalmente balanceada, saborosa, culturalmente apropriada e promotora de um sistema alimentar socialmente e ambientalmente sustentável. Utilize óleos, gorduras, sal e açúcar em pequenas quantidades ao temperar e cozinhar alimentos e criar preparações culinárias. Desde que utilizados com moderação em preparações culinárias com base em alimentos in natura ou minimamente processados, os óleos, as gorduras, o sal e o açúcar contribuem para diversificar e tornar mais saborosa a alimentação sem que fique nutricionalmente desbalanceada.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#10</span>
+            <span class="badge" style="background:#f59e0b">inference</span>
+            <span class="badge" style="background:#ef4444">hard</span>
+            <span class="source">guia_alimentar_populacao_brasileira_2ed</span>
+          </div>
+          <div class="topic">Guia Alimentar para a População Brasileira &gt; Guidelines for Healthy Eating &gt; Meal Composition</div>
+          <div class="field"><label>Question</label><p>Considerando a análise da Pesquisa de Orçamentos Familiares, quais são os alimentos que mais contribuem para o consumo de calorias entre os processados e ultraprocessados na alimentação brasileira?</p></div>
+          <div class="field"><label>Answer</label><p>Os alimentos que mais contribuem para o consumo de calorias entre os processados e ultraprocessados são pães e sanduíches, bolos industriais, biscoitos doces, guloseimas em geral, refrigerantes, salgadinhos de pacote, bebidas lácteas, salsichas e outros embutidos e queijos.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Os alimentos que mais contribuem para o consumo de calorias entre os processados e ultraprocessados são pães e sanduíches, bolos industriais, biscoitos doces, guloseimas em geral, refrigerantes, salgadinhos de pacote, bebidas lácteas, salsichas e outros embutidos e queijos.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Este capítulo fornece orientações específicas para a população brasileira sobre como combinar alimentos na forma de refeições. As características da alimentação brasileira descritas a seguir resultam de análises da Pesquisa de Orçamentos Familiares (POF), realizada pelo Instituto Brasileiro de Geografia e Estatística (IBGE), entre maio de 2008 e maio de 2009. Essas análises foram feitas especialmente para apoiar a elaboração deste guia. Entre os alimentos processados ou ultraprocessados, os que fornecem mais calorias são pães e sanduíches, bolos industriais, biscoitos doces e guloseimas em geral, refrigerantes, “salgadinhos de pacote”, bebidas lácteas, salsichas e outros embutidos e queijos.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#11</span>
+            <span class="badge" style="background:#3b82f6">single-hop</span>
+            <span class="badge" style="background:#22c55e">easy</span>
+            <span class="source">lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american</span>
+          </div>
+          <div class="topic">lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf &gt; Dietary Guidance to Improve Cardiovascular Health &gt; Overview of Dietary Guidance</div>
+          <div class="field"><label>Question</label><p>Quais são algumas características de uma dieta saudável para o coração?</p></div>
+          <div class="field"><label>Answer</label><p>Uma dieta saudável para o coração inclui ajustar a ingestão de energia para manter um peso saudável, consumir muitas frutas e vegetais, escolher grãos integrais em vez de grãos refinados, optar por fontes de proteína saudáveis, usar fontes de gorduras insaturadas em vez de saturadas, escolher alimentos minimamente processados e reduzir a ingestão de açúcares adicionados e sódio.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Uma dieta saudável para o coração inclui ajustar a ingestão de energia para manter um peso saudável, consumir muitas frutas e vegetais, escolher grãos integrais em vez de grãos refinados, optar por fontes de proteína saudáveis, usar fontes de gorduras insaturadas em vez de saturadas, escolher alimentos minimamente processados e reduzir a ingestão de açúcares adicionados e sódio.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Poor diet quality is strongly associated with elevated cardiovascular disease morbidity and mortality risk. This American Heart Association scientific statement for food-based cardiovascular health optimization and cardiovascular disease risk reduction guidance summarizes available evidence and provides contextual guidance for the key features of heart-healthy dietary patterns. It enumerates collateral benefits of adopting a heart-healthy dietary pattern in terms of nutrient intake adequacy and compatibility with other chronic disease risk reduction guidance. The features of a heart-healthy dietary pattern include (1) adjusting energy intake and expenditure to achieve and maintain a healthy body weight; (2) eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains; (4) choosing healthy sources of protein; (5) choosing sources of unsaturated fats in place of sources of saturated fat; (6) choosing minimally processed foods instead of ultraprocessed foods; (7) minimizing intake of added sugars in beverages and foods; (8) reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or no salt; and (9) if alcohol is not consumed, do not start; if alcohol is consumed, limit intake.
+
+This scientific statement for food-based cardiovascular health optimization and CVD risk reduction guidance summarizes the available evidence and provides contextual guidance for the key components of heart-healthy dietary patterns. It reinforces the importance of focusing on heart-healthy dietary patterns rather than on single foods or nutrients; adopting healthy eating habits early in life and maintaining them across the life course; and adhering to the guidance regardless of where foods and beverages are procured, prepared, and consumed. The features of a heart-healthy dietary pattern include (1) adjusting energy intake and expenditure to achieve and maintain a healthy body weight; (2) eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains; (4) choosing healthy sources of protein; (5) choosing sources of unsaturated fats in place of sources of saturated fat; (6) choosing minimally processed foods instead of ultraprocessed foods; (7) minimizing intake of added sugars in beverages and foods; (8) reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or no salt; and (9) if alcohol is not consumed, do not start; if alcohol is consumed, limit intake.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#12</span>
+            <span class="badge" style="background:#8b5cf6">multi-hop</span>
+            <span class="badge" style="background:#f59e0b">medium</span>
+            <span class="source">lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american</span>
+          </div>
+          <div class="topic">lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf &gt; Dietary Guidance to Improve Cardiovascular Health &gt; Overview of Dietary Guidance</div>
+          <div class="field"><label>Question</label><p>Como posso melhorar minha dieta para reduzir o risco de doenças cardiovasculares?</p></div>
+          <div class="field"><label>Answer</label><p>Para melhorar sua dieta e reduzir o risco de doenças cardiovasculares, você deve ajustar sua ingestão calórica para manter um peso saudável, aumentar o consumo de frutas e vegetais, preferir grãos integrais, escolher proteínas saudáveis, usar gorduras insaturadas em vez de saturadas, evitar alimentos ultraprocessados e limitar o sódio e açúcares adicionados.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Para melhorar sua dieta e reduzir o risco de doenças cardiovasculares, você deve ajustar sua ingestão calórica para manter um peso saudável, aumentar o consumo de frutas e vegetais, preferir grãos integrais, escolher proteínas saudáveis, usar gorduras insaturadas em vez de saturadas, evitar alimentos ultraprocessados e limitar o sódio e açúcares adicionados.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Poor diet quality is strongly associated with elevated cardiovascular disease morbidity and mortality risk. This American Heart Association scientific statement for food-based cardiovascular health optimization and cardiovascular disease risk reduction guidance summarizes available evidence and provides contextual guidance for the key features of heart-healthy dietary patterns. It enumerates collateral benefits of adopting a heart-healthy dietary pattern in terms of nutrient intake adequacy and compatibility with other chronic disease risk reduction guidance. The features of a heart-healthy dietary pattern include (1) adjusting energy intake and expenditure to achieve and maintain a healthy body weight; (2) eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains; (4) choosing healthy sources of protein; (5) choosing sources of unsaturated fats in place of sources of saturated fat; (6) choosing minimally processed foods instead of ultraprocessed foods; (7) minimizing intake of added sugars in beverages and foods; (8) reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or no salt; and (9) if alcohol is not consumed, do not start; if alcohol is consumed, limit intake.
+
+This scientific statement for food-based cardiovascular health optimization and CVD risk reduction guidance summarizes the available evidence and provides contextual guidance for the key components of heart-healthy dietary patterns. It reinforces the importance of focusing on heart-healthy dietary patterns rather than on single foods or nutrients; adopting healthy eating habits early in life and maintaining them across the life course; and adhering to the guidance regardless of where foods and beverages are procured, prepared, and consumed. The features of a heart-healthy dietary pattern include (1) adjusting energy intake and expenditure to achieve and maintain a healthy body weight; (2) eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains; (4) choosing healthy sources of protein; (5) choosing sources of unsaturated fats in place of sources of saturated fat; (6) choosing minimally processed foods instead of ultraprocessed foods; (7) minimizing intake of added sugars in beverages and foods; (8) reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or no salt; and (9) if alcohol is not consumed, do not start; if alcohol is consumed, limit intake.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#13</span>
+            <span class="badge" style="background:#f59e0b">inference</span>
+            <span class="badge" style="background:#ef4444">hard</span>
+            <span class="source">lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american</span>
+          </div>
+          <div class="topic">lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf &gt; Dietary Guidance to Improve Cardiovascular Health &gt; Overview of Dietary Guidance</div>
+          <div class="field"><label>Question</label><p>Se eu já consumo álcool, devo limitar a quantidade na minha dieta?</p></div>
+          <div class="field"><label>Answer</label><p>VERDADEIRO. Se você consome álcool, é recomendado limitar a ingestão, conforme mencionado nas orientações sobre padrões alimentares saudáveis para o coração.</p></div>
+          <div class="field"><label>Ground Truth</label><p>VERDADEIRO. Se você consome álcool, é recomendado limitar a ingestão, conforme mencionado nas orientações sobre padrões alimentares saudáveis para o coração.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Poor diet quality is strongly associated with elevated cardiovascular disease morbidity and mortality risk. This American Heart Association scientific statement for food-based cardiovascular health optimization and cardiovascular disease risk reduction guidance summarizes available evidence and provides contextual guidance for the key features of heart-healthy dietary patterns. It enumerates collateral benefits of adopting a heart-healthy dietary pattern in terms of nutrient intake adequacy and compatibility with other chronic disease risk reduction guidance. The features of a heart-healthy dietary pattern include (1) adjusting energy intake and expenditure to achieve and maintain a healthy body weight; (2) eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains; (4) choosing healthy sources of protein; (5) choosing sources of unsaturated fats in place of sources of saturated fat; (6) choosing minimally processed foods instead of ultraprocessed foods; (7) minimizing intake of added sugars in beverages and foods; (8) reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or no salt; and (9) if alcohol is not consumed, do not start; if alcohol is consumed, limit intake.
+
+This scientific statement for food-based cardiovascular health optimization and CVD risk reduction guidance summarizes the available evidence and provides contextual guidance for the key components of heart-healthy dietary patterns. It reinforces the importance of focusing on heart-healthy dietary patterns rather than on single foods or nutrients; adopting healthy eating habits early in life and maintaining them across the life course; and adhering to the guidance regardless of where foods and beverages are procured, prepared, and consumed. The features of a heart-healthy dietary pattern include (1) adjusting energy intake and expenditure to achieve and maintain a healthy body weight; (2) eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains; (4) choosing healthy sources of protein; (5) choosing sources of unsaturated fats in place of sources of saturated fat; (6) choosing minimally processed foods instead of ultraprocessed foods; (7) minimizing intake of added sugars in beverages and foods; (8) reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or no salt; and (9) if alcohol is not consumed, do not start; if alcohol is consumed, limit intake.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#14</span>
+            <span class="badge" style="background:#3b82f6">single-hop</span>
+            <span class="badge" style="background:#22c55e">easy</span>
+            <span class="source">lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american</span>
+          </div>
+          <div class="topic">Dietary Guidance to Improve Cardiovascular Health &gt; Dietary Patterns for Cardiovascular Health &gt; Core Components of Heart-Healthy Dietary Patterns</div>
+          <div class="field"><label>Question</label><p>Quais alimentos são considerados boas fontes de fibra que ajudam na saúde cardiovascular?</p></div>
+          <div class="field"><label>Answer</label><p>Boas fontes de fibra que ajudam na saúde cardiovascular incluem vegetais, frutas, grãos integrais, nozes, leguminosas e sementes.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Boas fontes de fibra que ajudam na saúde cardiovascular incluem vegetais, frutas, grãos integrais, nozes, leguminosas e sementes.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Whole or minimally processed vegetables and fruits are core components of heart-healthy dietary patterns. These patterns are consistently associated with cardiovascular health, including blood lipids, blood pressure, and type 2 diabetes control. Vegetables and fruits provide essential nutrients and dietary fiber, which supports gastrointestinal function, provides fuel for the gut microbiota, and plays a role in the regulation of blood glucose. Dietary patterns rich in fiber have been associated with reduced risk of CVD, type 2 diabetes, and colorectal cancer. Good sources include vegetables, fruits, whole grains, nuts, legumes, and seeds.
+
+Protein is an essential nutrient for growth, development, and overall health, but the relationship between protein quantity and cardiovascular health is uncertain. Recommendations for protein center on promoting heart-healthy protein sources which are determined predominantly by fatty acid profile and fiber content. Given the broad range of protein-rich foods, particularly in terms of these associated components, this feature is divided into subgroups. Shift from meat to plant sources (legumes and nuts) as they are good sources of protein and are rich in unsaturated fat and fiber. Dietary patterns higher in legumes and lower in red and processed meat have been associated with lower CVD and coronary heart disease risk.
+
+Clinical trial evidence consistently shows that replacing sources of saturated fat with sources of polyunsaturated fat and, to a lesser extent, sources of monounsaturated fat reduces low-density lipoprotein cholesterol concentrations, a causal risk factor for CVD. Strong evidence shows that replacing butter with plant oils and spreads containing predominantly unsaturated fat decreases low-density lipoprotein cholesterol concentrations. Dietary patterns high in added sugars are consistently associated with adverse cardiovascular health and higher CVD risk. Systematic reviews have linked sugar-sweetened beverages to higher risk of obesity, type 2 diabetes, coronary heart disease, and cardiovascular mortality.
+
+In general, dietary sodium intake and potassium intake have opposite effects on blood pressure, the leading modifiable risk factor for preventable mortality. An increased intake of sodium chloride (salt) raises blood pressure, whereas an increased intake of potassium lowers blood pressure. Reducing sodium intake lowers blood pressure in both nonhypertensive and hypertensive individuals. In prospective cohort studies, lower sodium intakes are associated with blunted age-related rise in systolic blood pressure and lower CVD risk. Evidence for an independent blood pressure–lowering effect of potassium is consistent but not as persuasive as corresponding evidence for sodium.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#15</span>
+            <span class="badge" style="background:#8b5cf6">multi-hop</span>
+            <span class="badge" style="background:#f59e0b">medium</span>
+            <span class="source">lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american</span>
+          </div>
+          <div class="topic">Dietary Guidance to Improve Cardiovascular Health &gt; Dietary Patterns for Cardiovascular Health &gt; Core Components of Heart-Healthy Dietary Patterns</div>
+          <div class="field"><label>Question</label><p>Se eu reduzir a ingestão de sódio, como isso pode afetar minha pressão arterial e risco de doenças cardiovasculares?</p></div>
+          <div class="field"><label>Answer</label><p>Reduzir a ingestão de sódio pode diminuir a pressão arterial tanto em indivíduos hipertensos quanto em não hipertensos, e estudos mostram que menores ingestões de sódio estão associadas a um menor risco de doenças cardiovasculares.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Reduzir a ingestão de sódio pode diminuir a pressão arterial tanto em indivíduos hipertensos quanto em não hipertensos, e estudos mostram que menores ingestões de sódio estão associadas a um menor risco de doenças cardiovasculares.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Whole or minimally processed vegetables and fruits are core components of heart-healthy dietary patterns. These patterns are consistently associated with cardiovascular health, including blood lipids, blood pressure, and type 2 diabetes control. Vegetables and fruits provide essential nutrients and dietary fiber, which supports gastrointestinal function, provides fuel for the gut microbiota, and plays a role in the regulation of blood glucose. Dietary patterns rich in fiber have been associated with reduced risk of CVD, type 2 diabetes, and colorectal cancer. Good sources include vegetables, fruits, whole grains, nuts, legumes, and seeds.
+
+Protein is an essential nutrient for growth, development, and overall health, but the relationship between protein quantity and cardiovascular health is uncertain. Recommendations for protein center on promoting heart-healthy protein sources which are determined predominantly by fatty acid profile and fiber content. Given the broad range of protein-rich foods, particularly in terms of these associated components, this feature is divided into subgroups. Shift from meat to plant sources (legumes and nuts) as they are good sources of protein and are rich in unsaturated fat and fiber. Dietary patterns higher in legumes and lower in red and processed meat have been associated with lower CVD and coronary heart disease risk.
+
+Clinical trial evidence consistently shows that replacing sources of saturated fat with sources of polyunsaturated fat and, to a lesser extent, sources of monounsaturated fat reduces low-density lipoprotein cholesterol concentrations, a causal risk factor for CVD. Strong evidence shows that replacing butter with plant oils and spreads containing predominantly unsaturated fat decreases low-density lipoprotein cholesterol concentrations. Dietary patterns high in added sugars are consistently associated with adverse cardiovascular health and higher CVD risk. Systematic reviews have linked sugar-sweetened beverages to higher risk of obesity, type 2 diabetes, coronary heart disease, and cardiovascular mortality.
+
+In general, dietary sodium intake and potassium intake have opposite effects on blood pressure, the leading modifiable risk factor for preventable mortality. An increased intake of sodium chloride (salt) raises blood pressure, whereas an increased intake of potassium lowers blood pressure. Reducing sodium intake lowers blood pressure in both nonhypertensive and hypertensive individuals. In prospective cohort studies, lower sodium intakes are associated with blunted age-related rise in systolic blood pressure and lower CVD risk. Evidence for an independent blood pressure–lowering effect of potassium is consistent but not as persuasive as corresponding evidence for sodium.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#16</span>
+            <span class="badge" style="background:#ef4444">true-false</span>
+            <span class="badge" style="background:#f59e0b">medium</span>
+            <span class="source">pes160_-_311421_alimentação_e_saúde_cardiovascular</span>
+          </div>
+          <div class="topic">pes160_-_311421_alimentação_e_saúde_cardiovascular.pdf &gt; Alimentação e Saúde Cardiovascular &gt; Introdução à Saúde Cardiovascular</div>
+          <div class="field"><label>Question</label><p>Afirme: A obesidade, o sedentarismo e o tabagismo são fatores que favorecem o desenvolvimento de doenças cardiovasculares.</p></div>
+          <div class="field"><label>Answer</label><p>VERDADEIRO. De acordo com os contextos, obesidade, sedentarismo e tabagismo são fatores que favorecem o desenvolvimento de doenças cardiovasculares.</p></div>
+          <div class="field"><label>Ground Truth</label><p>VERDADEIRO. De acordo com os contextos, obesidade, sedentarismo e tabagismo são fatores que favorecem o desenvolvimento de doenças cardiovasculares.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>As doenças cardiovasculares estão associadas a pior qualidade de vida e altos níveis de mortalidade. Um padrão alimentar que protege a saúde do coração vai além de consumir alimentos 'bons' ou 'ruins'. É necessário equilíbrio e variedade na alimentação. Os padrões alimentares cardioprotetores se caracterizam pela inclusão de frutas e vegetais, grãos integrais, fontes saudáveis de proteínas, alimentos minimamente processados, pequenas quantidades de açúcar, sal e gorduras. Portanto, manter hábitos alimentares adequados é muito importante tanto na prevenção quanto no controle da doença cardiovascular já presente. Diante disso, para ajudar na adoção de hábitos alimentares cardioprotetores, este manual foi elaborado pela equipe de nutricionistas da Cardiologia do Hospital de Clínicas de Porto Alegre, a partir do Guia Alimentar para a População Brasileira e da literatura científica mais atual sobre o assunto.
+
+De acordo com a Organização Mundial da Saúde (OMS), cerca de três quartos das mortes por doenças cardiovasculares podem ser prevenidas por mudanças de estilo de vida e controle de fatores de risco, como hipertensão, diabetes, obesidade, dislipidemia etc. O que mais favorece o desenvolvimento de doenças cardiovasculares é obesidade, sedentarismo, tabagismo, consumo excessivo de álcool, diabetes não controlada e dieta não saudável.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#17</span>
+            <span class="badge" style="background:#f59e0b">inference</span>
+            <span class="badge" style="background:#22c55e">easy</span>
+            <span class="source">pes160_-_311421_alimentação_e_saúde_cardiovascular</span>
+          </div>
+          <div class="topic">Alimentação e Saúde Cardiovascular &gt; Padrões Alimentares para Saúde do Coração &gt; Dietas Cardioprotetoras</div>
+          <div class="field"><label>Question</label><p>Qual dieta é recomendada para pessoas com hipertensão e quais benefícios ela traz para a saúde do coração?</p></div>
+          <div class="field"><label>Answer</label><p>A dieta recomendada para pessoas com hipertensão é a dieta Dash, que ajuda a controlar a pressão arterial, os níveis de glicose no sangue, a fome e a saciedade. Além disso, essa dieta auxilia na redução do colesterol ruim (LDL) e no aumento do colesterol bom (HDL).</p></div>
+          <div class="field"><label>Ground Truth</label><p>A dieta recomendada para pessoas com hipertensão é a dieta Dash, que ajuda a controlar a pressão arterial, os níveis de glicose no sangue, a fome e a saciedade. Além disso, essa dieta auxilia na redução do colesterol ruim (LDL) e no aumento do colesterol bom (HDL).</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Exemplos de padrões alimentares que protegem a saúde do coração são: a dieta Dash e a dieta mediterrânea. A dieta Dash é um padrão alimentar que foi desenvolvido para pessoas com hipertensão arterial e que demonstra benefícios cardiovasculares, como melhor controle da pressão arterial, dos níveis de glicose no sangue, da fome e da saciedade. Ela também ajuda a reduzir o colesterol ruim (LDL) e aumentar o colesterol bom (HDL). Essa dieta é composta por alimentos ricos em fibras, vitaminas e minerais, como feijões, carnes magras, laticínios com baixo teor de gordura, grãos integrais, frutas e legumes, e possui baixa quantidade de sal, doces e gordura saturada. A Dieta Mediterrânea, por sua vez, é um padrão alimentar voltado para quem precisa de uma alimentação saudável e estimula o consumo de legumes, frutas, verduras, peixe, grãos integrais e azeite de oliva.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#18</span>
+            <span class="badge" style="background:#3b82f6">single-hop</span>
+            <span class="badge" style="background:#ef4444">hard</span>
+            <span class="source">pes160_-_311421_alimentação_e_saúde_cardiovascular</span>
+          </div>
+          <div class="topic">Alimentação e Saúde Cardiovascular &gt; Padrões Alimentares para Saúde do Coração &gt; Montagem de Prato Saudável</div>
+          <div class="field"><label>Question</label><p>Como devo montar meu prato saudável em termos de proporções de alimentos?</p></div>
+          <div class="field"><label>Answer</label><p>Metade do prato deve ser composta por legumes e vegetais, um quarto por cereais e o outro um quarto por proteínas e leguminosas.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Metade do prato deve ser composta por legumes e vegetais, um quarto por cereais e o outro um quarto por proteínas e leguminosas.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>Metade do prato deve ser composto por legumes e vegetais, um quarto por cereais e o outro um quarto por proteínas e leguminosas. Para carboidratos, prefira grãos integrais, como arroz, pães e massas integrais, batata doce, mandioca e mandioquinha, e evite cereais refinados. Para frutas, prefira frutas in natura, sucos naturais sem adição de açúcar e frutas secas, evitando frutas em calda e cristalizadas. Nas leguminosas, prefira feijões, lentilha e grão-de-bico, e evite feijoada com linguiça e carnes processadas. Em proteínas, prefira frango sem pele, peixes assados/cozidos, ovos e carne bovina magra, evitando carnes gordurosas e fritas, embutidos e carne seca.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#19</span>
+            <span class="badge" style="background:#10b981">paraphrase</span>
+            <span class="badge" style="background:#f59e0b">medium</span>
+            <span class="source">pes160_-_311421_alimentação_e_saúde_cardiovascular</span>
+          </div>
+          <div class="topic">Alimentação e Saúde Cardiovascular &gt; Padrões Alimentares para Saúde do Coração &gt; Processamento de Alimentos</div>
+          <div class="field"><label>Question</label><p>O que caracteriza os alimentos que devem compor a base da minha alimentação para ter uma saúde cardiovascular melhor?</p></div>
+          <div class="field"><label>Answer</label><p>A base da alimentação deve ser formada por alimentos in natura ou minimamente processados, como frutas, verduras, legumes, leite, iogurte natural, feijões, cereais, raízes, tubérculos, ovos e carnes resfriadas ou congeladas.</p></div>
+          <div class="field"><label>Ground Truth</label><p>A base da alimentação deve ser formada por alimentos in natura ou minimamente processados, como frutas, verduras, legumes, leite, iogurte natural, feijões, cereais, raízes, tubérculos, ovos e carnes resfriadas ou congeladas.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>A base da alimentação deve ser composta por alimentos in natura ou minimamente processados. Alimentos in natura são aqueles que não sofreram qualquer alteração após deixar a natureza ou que sofreram alterações mínimas, como frutas, verduras, legumes, leite, iogurte natural, feijões, cereais, raízes, tubérculos, ovos, carnes resfriadas ou congeladas. Alimentos ultraprocessados, por outro lado, são produtos feitos pela indústria que possuem muitos ingredientes, sendo a maioria deles aditivos químicos, e uma pequena proporção de alimentos in natura. Esses alimentos geralmente são ricos em aditivos químicos, gorduras trans e saturadas, sódio e corantes, e seu consumo excessivo pode trazer malefícios à saúde.</p></div></div></details>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#20</span>
+            <span class="badge" style="background:#f59e0b">inference</span>
+            <span class="badge" style="background:#f59e0b">medium</span>
+            <span class="source">pes160_-_311421_alimentação_e_saúde_cardiovascular</span>
+          </div>
+          <div class="topic">Alimentação e Saúde Cardiovascular &gt; Padrões Alimentares para Saúde do Coração &gt; Consumo de Bebidas Alcoólicas</div>
+          <div class="field"><label>Question</label><p>Se eu sou homem e quero consumir álcool de forma que minimize os riscos à saúde, qual é a quantidade máxima recomendada por dia?</p></div>
+          <div class="field"><label>Answer</label><p>Para homens saudáveis, a quantidade máxima recomendada de consumo de álcool é de 30g por dia, o que pode ajudar a reduzir os riscos à saúde.</p></div>
+          <div class="field"><label>Ground Truth</label><p>Para homens saudáveis, a quantidade máxima recomendada de consumo de álcool é de 30g por dia, o que pode ajudar a reduzir os riscos à saúde.</p></div>
+          <details><summary>Show contexts (1)</summary><div class="ctx-list"><div class="ctx-item"><strong>Context 1:</strong><p>É importante destacar que não existe uma quantidade segura de consumo de bebidas alcoólicas e esse hábito pode causar danos ao organismo. O consumo de no máximo 30g de álcool por dia para homens e 20g por dia para mulheres, quando saudáveis, parece oferecer menor risco. O que são 30g ou 20g de álcool? Para referência, 90ml de vinho tinto contém 11g de álcool, 350ml de cerveja contém 17g, e 50ml de destilado contém 20g.</p></div></div></details>
+        </div>
+</body></html>

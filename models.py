@@ -13,6 +13,28 @@ class Document(BaseModel):
         default="unknown", description="Document type"
     )
     metadata: Dict[str, Any] = Field(default_factory=dict, description="Additional metadata")
+    pages: List[str] = Field(
+        default_factory=list,
+        description="Per-page text for segmentation (empty if not available)",
+    )
+
+
+class ContentSegment(BaseModel):
+    """A content block identified by the LLM slicer."""
+
+    id: str = Field(..., description="Unique segment ID within the document")
+    title: str = Field(..., description="Descriptive title for the section")
+    content: str = Field(..., description="Verbatim text content of the segment")
+    content_type: Literal["body", "boilerplate", "metadata", "toc"] = Field(
+        ..., description="Classification of the content"
+    )
+    removal_reason: Optional[str] = Field(
+        default=None, description="Why this was excluded (for non-body types)"
+    )
+    source: str = Field(default="", description="Source document filename")
+    page_range: Optional[str] = Field(
+        default=None, description="Approximate page range (e.g., '3-5')"
+    )
 
 
 class Chunk(BaseModel):
@@ -67,7 +89,7 @@ class QAPair(BaseModel):
 class QAType(BaseModel):
     """QA type specification."""
 
-    type: Literal["single-hop", "multi-hop", "inference", "unanswerable", "paraphrase"] = Field(
+    type: Literal["single-hop", "multi-hop", "inference", "unanswerable", "paraphrase", "true-false"] = Field(
         ..., description="Type of question"
     )
     description: str = Field(..., description="Description of this QA type")
@@ -87,3 +109,8 @@ class DatasetEntry(BaseModel):
     answer: str
     contexts: List[str]  # Source chunks used to answer the question
     ground_truth: str
+    source: str = ""  # Source document filename
+    metadata: Dict[str, Any] = Field(
+        default_factory=dict,
+        description="Type, difficulty, topic_path info"
+    )

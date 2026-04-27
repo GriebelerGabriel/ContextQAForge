@@ -47,6 +47,7 @@ def mock_config():
         chunk_overlap=50,
         num_samples=10,
         model_name="gpt-4o-mini",
+        use_llm_pipeline=False,
     )
 
 

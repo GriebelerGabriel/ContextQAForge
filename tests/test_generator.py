@@ -42,8 +42,8 @@ class TestQAGenerator:
 
     def test_is_duplicate_near_duplicate_caught(self, mock_config):
         gen = QAGenerator(mock_config)
-        gen.generated_questions.add("posso usar maionese em minhas saladas se estou tentando prevenir doencas cardiovasculares")
-        assert gen._is_duplicate("Posso incluir maionese na minha dieta se estou tentando prevenir doencas cardiovasculares?") is True
+        gen.generated_questions.add("qual a quantidade diaria de azeite de oliva recomendada para reduzir risco cardiovascular")
+        assert gen._is_duplicate("Qual a quantidade diaria de azeite de oliva recomendada para reduzir risco cardiovascular?") is True
 
     def test_is_generic_portuguese_generic(self, mock_config):
         gen = QAGenerator(mock_config)

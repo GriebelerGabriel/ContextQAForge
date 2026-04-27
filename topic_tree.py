@@ -1,18 +1,14 @@
 """Document-grounded topic tree module.
 
-Builds a hierarchical topic tree from actual document structure (headings),
-then optionally refines it with LLM. Each leaf node holds section content
-that gets chunked for QA generation.
+Builds a hierarchical topic tree from actual document structure (headings).
+Each leaf node holds section content that gets chunked for QA generation.
 """
 
 import json
 import logging
 import re
-import time
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-
-from openai import OpenAI
+from typing import List, Optional, Tuple
 
 from config import PipelineConfig
 from models import Document, SectionNode
@@ -25,14 +21,13 @@ class DocumentTopicTree:
 
     Pipeline:
     1. Parse heading hierarchy from structured Markdown → skeleton tree
-    2. (Optional) LLM refines sections that are too long or vague
+    2. Filter out non-content sections (copyright, TOC, person lists, etc.)
     3. Chunk leaf node content for QA generation
     4. Distribute QA generation across all leaf nodes (round-robin)
     """
 
     def __init__(self, config: PipelineConfig):
         self.config = config
-        self.client = OpenAI(api_key=config.openai_api_key)
         self.root: Optional[SectionNode] = None
 
     # ------------------------------------------------------------------ #
@@ -40,17 +35,46 @@ class DocumentTopicTree:
     # ------------------------------------------------------------------ #
 
     def build_from_documents(self, documents: List[Document]) -> None:
-        """Build tree from document heading structure.
+        """Build tree from documents.
 
-        Each document contributes its section hierarchy as a subtree
-        under the root node.
+        Uses LLM-driven pipeline (slicing + topic building) when
+        config.use_llm_pipeline is True, otherwise falls back to
+        heading-based parsing.
         """
+        if getattr(self.config, "use_llm_pipeline", False):
+            self._build_llm(documents)
+        else:
+            self._build_heading_based(documents)
+
+    # ------------------------------------------------------------------ #
+    #  LLM-driven pipeline                                                #
+    # ------------------------------------------------------------------ #
+
+    def _build_llm(self, documents: List[Document]) -> None:
+        """Build tree using LLM content slicing and topic organization."""
+        from llm_slicer import slice_document
+        from llm_topic_builder import build_topic_tree
+
         children: List[SectionNode] = []
 
         for doc in documents:
-            doc_tree = self._parse_document_headings(doc)
-            if doc_tree:
-                children.append(doc_tree)
+            logger.info(f"LLM pipeline: processing {doc.source}")
+            segments = slice_document(doc, self.config)
+            if not segments:
+                logger.warning(f"No segments produced for {doc.source}, skipping")
+                continue
+
+            tree = build_topic_tree(segments, doc, self.config)
+            if tree:
+                filename = doc.metadata.get("filename", doc.source)
+                file_node = SectionNode(
+                    name=filename,
+                    source=doc.source,
+                    depth=0,
+                    children=[tree],
+                )
+                tree.depth = 1
+                children.append(file_node)
 
         if not children:
             # Fallback: create a single node per document
@@ -69,8 +93,165 @@ class DocumentTopicTree:
             children=children,
         )
 
-        # Phase 2b: LLM refinement
-        self._refine_with_llm(self.root)
+    # ------------------------------------------------------------------ #
+    #  Heading-based pipeline (original)                                  #
+    # ------------------------------------------------------------------ #
+
+    def _build_heading_based(self, documents: List[Document]) -> None:
+        """Build tree from document heading structure (original pipeline).
+
+        Each document is wrapped in a file-level node (not used for QA).
+        Under it, the document's heading hierarchy forms the content tree.
+        """
+        children: List[SectionNode] = []
+
+        for doc in documents:
+            doc_tree = self._parse_document_headings(doc)
+            if doc_tree:
+                doc_tree = self._filter_non_content(doc_tree)
+            if doc_tree:
+                # Wrap in a file-level node so the tree shows which file
+                # each section comes from. File nodes have no content and
+                # always have children → never leaf → never used for QA.
+                filename = doc.metadata.get("filename", doc.source)
+                file_node = SectionNode(
+                    name=filename,
+                    source=doc.source,
+                    depth=0,
+                    children=[doc_tree],
+                )
+                doc_tree.depth = 1
+                children.append(file_node)
+
+        if not children:
+            # Fallback: create a single node per document
+            for doc in documents:
+                children.append(SectionNode(
+                    name=doc.metadata.get("filename", doc.source),
+                    source=doc.source,
+                    depth=0,
+                    content=doc.content,
+                ))
+
+        self.root = SectionNode(
+            name="Document Topics",
+            source="root",
+            depth=0,
+            children=children,
+        )
+
+    # ------------------------------------------------------------------ #
+    #  Content section filtering                                          #
+    # ------------------------------------------------------------------ #
+
+    # Patterns for sections that are NOT real document content
+    _SKIP_SECTION_PATTERNS = [
+        r"©",
+        r"all rights reserved",
+        r"copyright",
+        r"table of contents",
+        r"^contents\s*$",
+        r"abbreviations?\s+(and|&)\s+acronyms?",
+        r"^abbreviations?$",
+        r"^acknowledgements?$",
+        r"members?\s+of\s+(the|who)",
+        r"external\s+experts?",
+        r"stakeholder\s+panel",
+        r"^disclosures?$",
+        r"conflict\s+of\s+interest",
+        r"management\s+of\s+confl",
+        r"^references?$",
+        r"article\s+information",
+        r"permissions\s+and\s+copyright",
+        r"^annex\s+\d+",
+        # Portuguese patterns
+        r"^sumário?$",
+        r"^agradecimentos?$",
+        r"^referências?$",
+        r"^anexo\s+\d+",
+        r"^siglas?\s+e\s+abreviaturas?",
+    ]
+    _SKIP_COMPILED = re.compile(
+        "|".join(_SKIP_SECTION_PATTERNS), re.IGNORECASE
+    )
+
+    @classmethod
+    def _is_content_section(cls, name: str, content: Optional[str]) -> bool:
+        """Check if a section contains real document content (not front matter)."""
+        if cls._SKIP_COMPILED.search(name):
+            return False
+        # Skip leaf nodes with too little content
+        if content is not None and len(content) < 50:
+            return False
+        return True
+
+    # Patterns indicating front-matter text (copyright, ISBN, publisher info, TOC listings)
+    _FRONT_MATTER_PATTERNS = [
+        r"©",
+        r"all rights reserved",
+        r"copyright",
+        r"ISBN",
+        r"WHO Press",
+        r"World Health Organization.*20 Avenue Appia",
+        r"Requests for permission to reproduce",
+        r"designations employed",
+        r"printed by",
+        r"suggested citation",
+        r"WHO Library Cataloguing",
+        r"^\d+\.\s+\w+.*\d+$",  # TOC line like "Acknowledgements  VII"
+    ]
+    _FRONT_MATTER_COMPILED = re.compile(
+        "|".join(_FRONT_MATTER_PATTERNS), re.IGNORECASE
+    )
+
+    @classmethod
+    def _is_front_matter(cls, text: str) -> bool:
+        """Check if text is predominantly front matter (copyright, TOC, etc.)."""
+        if not text:
+            return False
+        lines = text.split("\n")
+        front_matter_lines = sum(
+            1 for line in lines if cls._FRONT_MATTER_COMPILED.search(line)
+        )
+        # If more than 30% of non-empty lines are front matter, consider it all front matter
+        non_empty = [l for l in lines if l.strip()]
+        if not non_empty:
+            return True
+        return front_matter_lines / len(non_empty) > 0.3
+
+    def _filter_non_content(self, node: SectionNode) -> Optional[SectionNode]:
+        """Recursively remove non-content sections from the tree."""
+        # Skip entire subtrees whose name matches skip patterns
+        if self._SKIP_COMPILED.search(node.name):
+            return None
+
+        # Filter children recursively
+        filtered_children = []
+        for child in node.children:
+            filtered = self._filter_non_content(child)
+            if filtered:
+                filtered_children.append(filtered)
+        node.children = filtered_children
+
+        # If this is a leaf (no children left), check if it's content
+        if not node.children:
+            # Leaf with no content — skip
+            if not node.content:
+                return None
+            # Skip leaf nodes with too little content
+            if len(node.content) < 50:
+                return None
+
+        # For non-leaf nodes, strip content that is purely front matter
+        # (copyright, ISBN, TOC listings, etc.) since real content is in children
+        if node.children and node.content and self._is_front_matter(node.content):
+            node.content = None
+
+        return node
+
+    # ------------------------------------------------------------------ #
+    #  Step 1: Build skeleton from document headings                      #
+    # ------------------------------------------------------------------ #
 
     def _parse_document_headings(self, doc: Document) -> Optional[SectionNode]:
         """Parse heading hierarchy from a single document's Markdown content."""
@@ -149,93 +330,6 @@ class DocumentTopicTree:
         return root_node
 
     # ------------------------------------------------------------------ #
-    #  Step 2b: LLM refinement                                           #
-    # ------------------------------------------------------------------ #
-
-    def _refine_with_llm(self, node: SectionNode) -> None:
-        """Recursively refine the tree with LLM.
-
-        Splits long leaf sections into sub-topics, improves vague headings.
-        Uses the cheaper topic_model (gpt-4o-mini).
-        """
-        if node.is_leaf and node.content:
-            # Check if section is long enough to warrant splitting
-            if len(node.content) > self.config.max_section_chars_for_split:
-                self._llm_split_section(node)
-
-        for child in node.children:
-            self._refine_with_llm(child)
-
-    def _llm_split_section(self, node: SectionNode) -> None:
-        """Use LLM to split a long section into sub-topics."""
-        content_preview = node.content[:3000]  # Limit to avoid token overflow
-
-        prompt = f"""Analyze the following text section titled "{node.name}" and split it into 2-5 distinct sub-topics.
-
-For each sub-topic, provide:
-1. A clear, descriptive heading
-2. The relevant excerpt from the text
-
-Section content:
-{content_preview}
-
-Output a JSON array where each element has "name" (sub-topic heading) and "content" (relevant text excerpt).
-Output ONLY the JSON array, no other text:
-[
-  {{"name": "...", "content": "..."}},
-  ...
-]"""
-
-        for attempt in range(2):
-            if attempt > 0:
-                time.sleep(min(2 ** attempt, 8))
-            try:
-                response = self.client.chat.completions.create(
-                    model=self.config.topic_model,
-                    messages=[
-                        {"role": "system", "content": "You are a document structure analyst. Split text into clear sub-topics. Output only valid JSON."},
-                        {"role": "user", "content": prompt},
-                    ],
-                    temperature=0.3,
-                    max_tokens=2000,
-                )
-
-                raw = response.choices[0].message.content.strip()
-                # Strip markdown code blocks
-                if raw.startswith("```json"):
-                    raw = raw[7:]
-                if raw.startswith("```"):
-                    raw = raw[3:]
-                if raw.endswith("```"):
-                    raw = raw[:-3]
-
-                sub_topics = json.loads(raw.strip())
-                if not isinstance(sub_topics, list) or len(sub_topics) == 0:
-                    continue
-
-                # Create child nodes from sub-topics
-                for st in sub_topics[:5]:
-                    if isinstance(st, dict) and "name" in st and "content" in st:
-                        child = SectionNode(
-                            name=str(st["name"]),
-                            source=node.source,
-                            depth=node.depth + 1,
-                            content=str(st["content"]),
-                        )
-                        node.children.append(child)
-
-                # Clear parent content — it's now distributed to children
-                node.content = None
-                logger.info(f"LLM split '{node.name}' into {len(node.children)} sub-topics")
-                return
-
-            except (json.JSONDecodeError, Exception) as e:
-                logger.warning(f"LLM split failed for '{node.name}': {e}")
-                continue
-
-        # If LLM splitting failed, leave node as-is
-
-    # ------------------------------------------------------------------ #
     #  Step 3: Chunk leaf nodes                                          #
     # ------------------------------------------------------------------ #
 
@@ -267,7 +361,7 @@ Output ONLY the JSON array, no other text:
         while start < text_len:
             end = min(start + chunk_size, text_len)
 
-            # Find last space for clean boundary
+            # Find last space for clean boundary (only if not at the end)
             if end < text_len:
                 search_start = max(start, end - 100)
                 last_space = text.rfind(" ", search_start, end)
@@ -278,12 +372,16 @@ Output ONLY the JSON array, no other text:
             if chunk:
                 chunks.append(chunk)
 
+            # If we've reached the end of text, stop
+            if end >= text_len:
+                break
+
             start = max(start + 1, end - chunk_overlap)
 
         return chunks
 
     # ------------------------------------------------------------------ #
-    #  Step 4: QA distribution across leaf nodes                         #
+    #  Step 4: QA distribution across leaf nodes (round-robin)           #
     # ------------------------------------------------------------------ #
 
     def get_all_leaf_nodes(self) -> List[SectionNode]:
@@ -361,12 +459,20 @@ Output ONLY the JSON array, no other text:
         lines.append("")
         return "\n".join(lines)
 
+    def _is_file_node(self, node: SectionNode) -> bool:
+        """Check if a node is a file-level wrapper (named after source file)."""
+        if node.source == "root":
+            return False
+        name_lower = node.name.lower()
+        return name_lower.endswith((".pdf", ".txt", ".md"))
+
     def _visualize_node(self, node: SectionNode, prefix: str, is_last: bool, lines: List[str]) -> None:
         """Recursively build tree visualization."""
         connector = "└── " if is_last else "├── "
         chunk_info = f" [{len(node.chunks)} chunks]" if node.chunks else ""
         content_info = f" ({len(node.content)} chars)" if node.content else ""
-        lines.append(f"{prefix}{connector}{node.name}{content_info}{chunk_info}")
+        file_marker = "[FILE] " if self._is_file_node(node) else ""
+        lines.append(f"{prefix}{connector}{file_marker}{node.name}{content_info}{chunk_info}")
 
         child_prefix = prefix + ("    " if is_last else "│   ")
         for i, child in enumerate(node.children):
