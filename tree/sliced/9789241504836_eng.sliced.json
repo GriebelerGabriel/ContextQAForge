@@ -20,7 +20,7 @@
   {
     "id": "seg_003",
     "title": "Summary of Evidence",
-    "content": "Reducing sodium intake significantly reduced systolic and diastolic blood pressure in adults and children. The reduction in blood pressure was detected across a wide range of intake levels, and was independent of baseline sodium intake. Reducing sodium intake to <2 g/day was more beneficial for blood pressure than reducing sodium intake but still consuming >2 g/day. Reducing sodium intake had no significant adverse effect on blood lipids, catecholamine levels, or renal function. Higher sodium intake was associated with a higher risk of incident stroke, fatal stroke, and fatal coronary heart disease. There was no association between sodium intake and all-cause mortality, incident cardiovascular disease, and non-fatal coronary heart disease. However, the strong positive relationship between blood pressure and these outcomes provides indirect evidence that reducing sodium intake can improve these outcomes through a beneficial effect on blood pressure.",
+    "content": "Reducing sodium intake significantly reduced systolic and diastolic blood pressure in adults and children. The reduction in blood pressure was detected across a wide range of intake levels, and was independent of baseline sodium intake. Reducing sodium intake to <2 g/day was more beneficial for blood pressure than reducing sodium intake but still consuming >2 g/day. Reducing sodium intake had no significant adverse effect on blood lipids, catecholamine levels, or renal function. Higher sodium intake was associated with higher risk of incident stroke, fatal stroke, and fatal coronary heart disease. There was no association between sodium intake and all-cause mortality, incident cardiovascular disease, and non-fatal coronary heart disease. However, the strong positive relationship between blood pressure and these outcomes provides indirect evidence that reducing sodium intake can improve these outcomes through a beneficial effect on blood pressure.",
     "content_type": "body",
     "removal_reason": null,
     "source": "9789241504836_eng.pdf",
@@ -47,7 +47,7 @@
   {
     "id": "seg_006",
     "title": "Sodium Intake and Health Outcomes",
-    "content": "Sodium is the principal cation in extracellular fluid in the body, and is an essential nutrient necessary for maintenance of plasma volume, acid–base balance, transmission of nerve impulses, and normal cell function. In healthy individuals, nearly 100% of ingested sodium is absorbed during digestion, and urinary excretion is the primary mechanism for maintaining sodium balance. Increased sodium consumption is associated with increased blood pressure, whereas lower sodium consumption appears to decrease blood pressure in adults. A number of recent high-quality systematic reviews of randomized-controlled trials have concluded that decreased sodium intake relative to usual or higher intake results in lowered blood pressure in adults with or without hypertension.",
+    "content": "Sodium is the principal cation in extracellular fluid in the body, and is an essential nutrient necessary for maintenance of plasma volume, acid–base balance, transmission of nerve impulses, and normal cell function. In healthy individuals, nearly 100% of ingested sodium is absorbed during digestion, and urinary excretion is the primary mechanism for maintaining sodium balance. Increased sodium consumption is associated with increased blood pressure, whereas lower sodium consumption appears to decrease blood pressure in adults. A number of recent high-quality systematic reviews of randomized-controlled trials (RCTs) have concluded that decreased sodium intake relative to usual or higher intake results in lowered blood pressure in adults with or without hypertension.",
     "content_type": "body",
     "removal_reason": null,
     "source": "9789241504836_eng.pdf",
@@ -55,8 +55,8 @@
   },
   {
     "id": "seg_007",
-    "title": "Potential Adverse Effects of Sodium Reduction",
-    "content": "Some researchers have reported that reduced sodium could potentially have adverse effects on blood lipid concentrations, catecholamine levels, or renal function. However, the results showed little or no adverse effect of reduced sodium on blood lipid concentrations. The meta-analysis of studies reporting catecholamine levels showed that reduced sodium intake resulted in a nonsignificant increase in plasma noradrenaline and adrenaline. Additionally, the results suggest that reduced sodium does not have an adverse effect on renal function and may potentially have a beneficial effect.",
+    "title": "Potential Adverse Effects",
+    "content": "Some researchers have reported that reduced sodium could potentially have adverse effects on blood lipid concentrations (i.e., increase total cholesterol, low-density lipoprotein [LDL] cholesterol and triglyceride, and decrease high-density lipoprotein [HDL] cholesterol), catecholamine levels, or renal function. However, the results showed little or no adverse effect of reduced sodium on blood lipid concentrations. The meta-analysis of studies reporting catecholamine levels showed that reduced sodium intake resulted in a nonsignificant increase in plasma noradrenaline and adrenaline with decreased sodium. Additionally, the results suggest that reduced sodium does not have an adverse effect on renal function and may potentially have a beneficial effect.",
     "content_type": "body",
     "removal_reason": null,
     "source": "9789241504836_eng.pdf",
@@ -64,17 +64,8 @@
   },
   {
     "id": "seg_008",
-    "title": "Implementation and Future Research",
-    "content": "The successful implementation of these recommendations would have an important public health impact through reductions in morbidity and mortality, improvement in the quality of life of millions of people, and substantial reductions in health-care costs. Further high-quality randomized controlled trials testing the effect of reducing sodium to <1.2 g/day on blood pressure and adverse effects are warranted to increase the evidence base. Additionally, further high-quality RCTs with all-cause mortality, cardiovascular disease, stroke, and coronary heart disease as outcomes are warranted to strengthen the evidence base on the effect of sodium intake on these patient-relevant outcomes.",
-    "content_type": "body",
-    "removal_reason": null,
-    "source": "9789241504836_eng.pdf",
-    "page_range": null
-  },
-  {
-    "id": "seg_009",
-    "title": "Sodium Content in Foods",
-    "content": "Examples of sodium content in various food groups include: Table salt, baking soda, baking powder (38,000 mg/100 g); Bouillon cubes, powdered broths, soups, gravies (20,000 mg/100 g); Soy sauce (7,000 mg/100 g); Snack foods (e.g., pretzels, cheese puffs, popcorn) (1,500 mg/100 g); Bacon (1,500 mg/100 g); Processed vegetables (600 mg/100 g); Fresh vegetables (10 mg/100 g); Fresh fruits (5 mg/100 g). This information can be used for approximate comparisons of food groups and should not be used to estimate daily intake.",
+    "title": "Examples of Sodium Content in Foods",
+    "content": "The sodium content in various food groups varies significantly. For instance, table salt, baking soda, and baking powder contain approximately 38,000 mg of sodium per 100 g, while processed foods such as bacon and snack foods can contain around 1,500 mg per 100 g. Fresh fruits and vegetables, on the other hand, have much lower sodium content, with fresh fruits containing about 5 mg and fresh vegetables around 10 mg per 100 g. This information can be used for approximate comparisons of food groups and to guide dietary choices.",
     "content_type": "body",
     "removal_reason": null,
     "source": "9789241504836_eng.pdf",

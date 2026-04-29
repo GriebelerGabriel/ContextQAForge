@@ -247,6 +247,123 @@ def save_dataset(dataset: List[DatasetEntry], output_path: str, logger: logging.
     logger.info(f"Dataset saved to: {output_path}")
 
 
+def _esc(text: str) -> str:
+    """HTML-escape text."""
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+
+def save_dataset_html(dataset: List[DatasetEntry], output_path: str, logger: logging.Logger) -> None:
+    """Save dataset as a human-readable HTML file."""
+    html_path = Path(output_path).with_suffix(".html")
+
+    # Stats
+    by_source = {}
+    by_type = {}
+    by_diff = {}
+    for e in dataset:
+        s = Path(e.source).stem
+        by_source[s] = by_source.get(s, 0) + 1
+        t = e.metadata.get("type", "-")
+        by_type[t] = by_type.get(t, 0) + 1
+        d = e.metadata.get("difficulty", "-")
+        by_diff[d] = by_diff.get(d, 0) + 1
+
+    # Type badge colors
+    type_colors = {
+        "single-hop": "#3b82f6", "multi-hop": "#8b5cf6", "inference": "#f59e0b",
+        "paraphrase": "#10b981", "true-false": "#ef4444",
+    }
+    diff_colors = {"easy": "#22c55e", "medium": "#f59e0b", "hard": "#ef4444"}
+
+    cards = ""
+    for i, entry in enumerate(dataset, 1):
+        src = Path(entry.source).stem
+        t = entry.metadata.get("type", "-")
+        d = entry.metadata.get("difficulty", "-")
+        topic = " > ".join(entry.metadata.get("topic_path", [])[-3:])
+        tc = type_colors.get(t, "#6b7280")
+        dc = diff_colors.get(d, "#6b7280")
+
+        ctx_html = ""
+        if entry.contexts:
+            ctx_items = "".join(
+                f'<div class="ctx-item"><strong>Context {j}:</strong><p>{_esc(ctx)}</p></div>'
+                for j, ctx in enumerate(entry.contexts, 1)
+            )
+            ctx_html = f'<details><summary>Show contexts ({len(entry.contexts)})</summary><div class="ctx-list">{ctx_items}</div></details>'
+
+        cards += f"""
+        <div class="card">
+          <div class="card-header">
+            <span class="idx">#{i}</span>
+            <span class="badge" style="background:{tc}">{t}</span>
+            <span class="badge" style="background:{dc}">{d}</span>
+            <span class="source">{_esc(src)}</span>
+          </div>
+          <div class="topic">{_esc(topic)}</div>
+          <div class="field"><label>Question</label><p>{_esc(entry.question)}</p></div>
+          <div class="field"><label>Answer</label><p>{_esc(entry.answer)}</p></div>
+          <div class="field"><label>Ground Truth</label><p>{_esc(entry.ground_truth)}</p></div>
+          {ctx_html}
+        </div>"""
+
+    # Summary table rows
+    summary_rows = "".join(
+        f'<tr><td>{_esc(s)}</td><td>{c}</td></tr>' for s, c in sorted(by_source.items(), key=lambda x: -x[1])
+    )
+    type_rows = "".join(
+        f'<tr><td><span class="badge-sm" style="background:{type_colors.get(t, "#6b7280")}">{t}</span></td><td>{c}</td></tr>'
+        for t, c in sorted(by_type.items(), key=lambda x: -x[1])
+    )
+    diff_rows = "".join(
+        f'<tr><td><span class="badge-sm" style="background:{diff_colors.get(d, "#6b7280")}">{d}</span></td><td>{c}</td></tr>'
+        for d, c in sorted(by_diff.items(), key=lambda x: -x[1])
+    )
+
+    html = f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QA Dataset — {len(dataset)} pairs</title>
+<style>
+  :root {{ --bg:#0f172a; --card:#1e293b; --border:#334155; --text:#e2e8f0; --muted:#94a3b8; --accent:#3b82f6; }}
+  * {{ margin:0; padding:0; box-sizing:border-box; }}
+  body {{ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); padding:2rem; max-width:960px; margin:0 auto; }}
+  h1 {{ font-size:1.5rem; margin-bottom:1rem; }}
+  .stats {{ display:flex; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }}
+  .stat-box {{ background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1rem; flex:1; min-width:180px; }}
+  .stat-box h3 {{ font-size:0.75rem; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem; }}
+  .stat-box table {{ width:100%; font-size:0.85rem; }}
+  .stat-box td {{ padding:2px 0; }}
+  .stat-box td:last-child {{ text-align:right; color:var(--muted); }}
+  .card {{ background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }}
+  .card-header {{ display:flex; align-items:center; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap; }}
+  .idx {{ font-weight:700; color:var(--accent); font-size:0.9rem; }}
+  .badge {{ color:#fff; font-size:0.7rem; padding:2px 8px; border-radius:99px; font-weight:600; }}
+  .badge-sm {{ color:#fff; font-size:0.7rem; padding:1px 6px; border-radius:99px; font-weight:600; }}
+  .source {{ font-size:0.8rem; color:var(--muted); margin-left:auto; }}
+  .topic {{ font-size:0.8rem; color:var(--muted); margin-bottom:0.75rem; }}
+  .field {{ margin-bottom:0.75rem; }}
+  .field label {{ font-size:0.7rem; text-transform:uppercase; color:var(--accent); font-weight:600; display:block; margin-bottom:2px; }}
+  .field p {{ font-size:0.9rem; line-height:1.5; }}
+  details {{ margin-top:0.5rem; }}
+  summary {{ cursor:pointer; font-size:0.8rem; color:var(--muted); }}
+  .ctx-list {{ margin-top:0.5rem; }}
+  .ctx-item {{ background:var(--bg); border-radius:6px; padding:0.75rem; margin-bottom:0.5rem; }}
+  .ctx-item strong {{ font-size:0.75rem; color:var(--accent); }}
+  .ctx-item p {{ font-size:0.82rem; color:var(--muted); line-height:1.5; margin-top:2px; }}
+</style></head><body>
+<h1>QA Dataset — {len(dataset)} pairs</h1>
+<div class="stats">
+  <div class="stat-box"><h3>By Document</h3><table>{summary_rows}</table></div>
+  <div class="stat-box"><h3>By Type</h3><table>{type_rows}</table></div>
+  <div class="stat-box"><h3>By Difficulty</h3><table>{diff_rows}</table></div>
+</div>
+{cards}
+</body></html>"""
+
+    html_path.write_text(html, encoding="utf-8")
+    logger.info(f"HTML dataset saved to: {html_path}")
+
+
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(
@@ -404,6 +521,7 @@ def main():
     try:
         dataset = run_pipeline(args.documents_folder, config, logger)
         save_dataset(dataset, args.output, logger)
+        save_dataset_html(dataset, args.output, logger)
         logger.info("Pipeline completed successfully")
     except Exception as e:
         logger.error(f"Pipeline failed: {e}", exc_info=True)

@@ -50,48 +50,48 @@ class QAGenerator:
     # Difficulty levels
     DIFFICULTIES: List[str] = ["easy", "medium", "hard"]
 
-    # Few-shot examples for each type (in Portuguese)
+    # Few-shot examples for each type (patient/person perspective, in Portuguese)
     FEW_SHOT_EXAMPLES = {
         "single-hop": {
             "contexts": [
-                "The Python programming language was created by Guido van Rossum and first released in 1991.",
+                "The recommended daily sodium intake for adults is 2g per day (equivalent to 5g of salt).",
             ],
-            "question": "Quem criou o Python e quando ele foi lançado pela primeira vez?",
-            "ground_truth": "O Python foi criado por Guido van Rossum e lançado pela primeira vez em 1991.",
+            "question": "Quanto de sal posso consumir por dia sem passar do limite recomendado?",
+            "ground_truth": "Você pode consumir no máximo 5g de sal por dia, o que equivale a 2g de sódio.",
             "difficulty": "easy",
         },
         "multi-hop": {
             "contexts": [
-                "Python was created by Guido van Rossum and first released in 1991.",
-                "Guido van Rossum worked at Google from 2005 to 2012.",
+                "The DASH diet was developed for people with hypertension and helps control blood pressure.",
+                "The DASH diet is rich in fiber, vitamins and minerals, and low in salt, sweets and saturated fat.",
             ],
-            "question": "Em qual empresa o criador do Python trabalhou durante os anos 2000?",
-            "ground_truth": "Guido van Rossum, o criador do Python, trabalhou na Google de 2005 a 2012.",
+            "question": "Se eu tenho pressão alta, qual dieta devo seguir e quais alimentos ela inclui?",
+            "ground_truth": "Se você tem pressão alta, a dieta Dash foi feita especialmente para isso. Ela inclui alimentos ricos em fibras, vitaminas e minerais (como feijões, grãos integrais, frutas e legumes) e tem pouco sal, doces e gordura saturada.",
             "difficulty": "medium",
         },
         "inference": {
             "contexts": [
-                "Python 2.7 was released in 2010 and reached end-of-life in January 2020.",
-                "Python 3.0 was released in December 2008 and is actively maintained.",
+                "Reducing sodium intake to <2 g/day was more beneficial for blood pressure than consuming >2 g/day.",
+                "Higher sodium intake was associated with higher risk of stroke and coronary heart disease.",
             ],
-            "question": "Considerando a linha do tempo, por que a maioria dos desenvolvedores recomendaria Python 3 em vez de Python 2 para novos projetos iniciados em 2021?",
-            "ground_truth": "O Python 2.7 chegou ao fim da vida útil em janeiro de 2020, o que significa que não recebe mais atualizações de segurança ou correções de bugs. O Python 3.0, lançado em 2008, é mantido ativamente. Portanto, para um novo projeto em 2021, o Python 3 seria a escolha segura e suportada.",
+            "question": "Se eu consigo reduzir meu consumo de sódio para menos de 2g por dia, isso realmente faz diferença na minha pressão arterial?",
+            "ground_truth": "Sim, faz muita diferença. Consumir menos de 2g de sódio por dia foi mais eficaz para reduzir a pressão arterial do que apenas diminuir mas continuar acima de 2g. Além disso, consumir mais sódio está ligado a maior risco de derrame e doenças cardíacas.",
             "difficulty": "hard",
         },
         "paraphrase": {
             "contexts": [
-                "Machine learning is a subset of artificial intelligence that enables systems to learn from data.",
+                "Replacing butter with plant oils containing predominantly unsaturated fat decreases LDL cholesterol concentrations.",
             ],
-            "question": "Como os sistemas de IA adquirem conhecimento a partir de informações sem programação explícita?",
-            "ground_truth": "Através do aprendizado de máquina (machine learning), um subconjunto da inteligência artificial que permite que sistemas aprendam com dados.",
+            "question": "É melhor cozinhar com óleo vegetal ou manteiga se eu quiser baixar meu colesterol?",
+            "ground_truth": "É melhor usar óleos vegetais, porque eles têm gorduras insaturadas que ajudam a reduzir o colesterol ruim (LDL), ao contrário da manteiga.",
             "difficulty": "medium",
         },
         "true-false": {
             "contexts": [
                 "Reducing sodium intake to <2 g/day was more beneficial for blood pressure than reducing sodium intake but still consuming >2 g/day.",
             ],
-            "question": "Afirme: Consumir menos de 2g de sódio por dia é mais benéfico para a pressão arterial do que reduzir o consumo mas ainda ingerir mais de 2g por dia.",
-            "ground_truth": "VERDADEIRO. Segundo os contextos, reduzir a ingestão de sódio para menos de 2 g/dia foi mais benéfico para a pressão arterial do que reduzir a ingestão mas ainda consumir mais de 2 g/dia.",
+            "question": "Afirme: Consumir menos de 2g de sódio por dia é mais benéfico para a minha pressão arterial do que apenas reduzir mas continuar consumindo mais de 2g.",
+            "ground_truth": "VERDADEIRO. Reduzir a ingestão de sódio para menos de 2 g/dia foi mais benéfico para a pressão arterial do que reduzir mas ainda consumir mais de 2 g/dia.",
             "difficulty": "easy",
         },
     }
@@ -124,25 +124,36 @@ class QAGenerator:
         # Domain-specific perspective instructions
         if domain in ("general", "health", "nutrition", "medicine", "healthcare"):
             perspective_instruction = (
-                "CRITICAL: You MUST write questions as if a REAL PATIENT is asking for PRACTICAL PERSONAL ADVICE:\n\n"
-                "   FORBIDDEN (academic/professional perspective):\n"
-                '   - "Como os nutricionistas recomendam..." (asking about professionals)\n'
+                "CRITICAL: You MUST write questions as if a REAL PERSON is asking for PERSONAL, PRACTICAL ADVICE.\n"
+                "The person is talking to a doctor, nutritionist, or pharmacist — NOT reading a textbook.\n\n"
+                "   FORBIDDEN (academic/impersonal):\n"
                 '   - "Quais são as diretrizes para..." (asking about guidelines)\n'
-                '   - "Defina proteínas" (definition for memorization)\n'
-                '   - "O que é glicose?" (vocabulary test)\n'
-                '   - "Liste os 3 tipos de..." (list memorization)\n'
                 '   - "Explique o papel de..." (academic explanation)\n'
+                '   - "Qual a importância de..." (essay question)\n'
+                '   - "Por que é importante considerar..." (academic analysis)\n'
+                '   - "Quais são os fatores de risco..." (textbook question)\n'
+                '   - "O que são doenças não transmissíveis?" (definition)\n'
+                '   - "Descreva as características de..." (describe)\n'
                 "   \n"
-                "   REQUIRED (patient perspective - personal, actionable):\n"
+                "   REQUIRED (real person asking about THEIR life):\n"
                 '   - "O que devo comer para..." (what should I eat)\n'
                 '   - "Posso comer ovos todos os dias se tenho colesterol alto?" (can I eat this)\n'
-                '   - "Qual é melhor para mim: arroz integral ou branco?" (which is better for me)\n'
-                '   - "O que devo evitar antes de uma cirurgia?" (what should I avoid)\n'
+                '   - "Qual é melhor: arroz integral ou branco?" (which is better)\n'
+                '   - "O que devo evitar se quiser baixar a pressão?" (what should I avoid)\n'
                 '   - "Como posso preparar uma refeição saudável?" (how can I prepare)\n'
                 '   - "Quanto de sal posso consumir por dia?" (how much can I consume)\n'
+                '   - "É verdade que consumir menos de 2g de sódio por dia ajuda?" (is it true that...)\n'
+                '   - "Se eu tiver pressão alta, qual dieta devo seguir?" (if I have X, what should I do)\n'
+                '   - "Tenho hipertensão, posso beber vinho?" (I have X, can I do Y)\n'
                 "   \n"
-                '   The patient asks about THEIR OWN choices, actions, and health. '
-                'Use "eu", "posso", "devo", "qual", "como" - first person, seeking guidance for themselves.'
+                "   PATTERNS TO USE:\n"
+                '   - "Posso...?" / "Devo...?" / "Qual é o melhor...?" / "Quanto...?" / "É verdade que...?"\n'
+                '   - "Se eu [situação], o que [acontece/devo fazer]?"\n'
+                '   - "O que [posso/devo] fazer para [objetivo]?"\n'
+                "   \n"
+                '   Every question must sound like someone sitting in front of a health professional. '
+                'Use first person: "eu", "posso", "devo", "meu", "minha". '
+                'The answer should sound like that professional giving direct personal advice.'
             )
             domain_description = domain if domain != "general" else "their health and nutrition"
         else:
@@ -433,10 +444,11 @@ Difficulty: {example["difficulty"]}
 Generate a NEW {qa_type} question at {difficulty} difficulty level.
 
 CRITICAL REQUIREMENTS:
-1. The question MUST require the SPECIFIC information in the contexts to answer
-2. The contexts are the source of truth — ground answers only in what the contexts say
-3. Do NOT ask questions answerable from general/popular knowledge
-4. Ask about specific details: numbers, names, recommendations, lists from the text
+1. The question MUST be written as a REAL PERSON asking for personal advice (use "eu", "posso", "devo")
+2. The question MUST require the SPECIFIC information in the contexts to answer
+3. The contexts are the source of truth — ground answers only in what the contexts say
+4. Do NOT ask questions answerable from general/popular knowledge
+5. Ask about specific details: numbers, names, recommendations, lists from the text
 5. The ground_truth MUST cite or closely paraphrase information from the contexts
 
 Output ONLY the JSON object, no additional text:
@@ -572,11 +584,12 @@ Generate {num_pairs} NEW QA pairs, one for each type/difficulty combination.
 {"For true-false entries, follow the TRUE/FALSE polarity specified above for each pair." if any(t == "true-false" for t in qa_types) else ""}
 
 CRITICAL REQUIREMENTS:
-1. Every question MUST require SPECIFIC information from the contexts
-2. Ground answers only in what the contexts say
-3. Do NOT ask questions answerable from general/popular knowledge
-4. Each ground_truth MUST cite or closely paraphrase the contexts
-5. Questions must be DISTINCT (no duplicates or near-duplicates)
+1. Every question MUST be written as a REAL PERSON asking for personal advice (use "eu", "posso", "devo")
+2. Every question MUST require SPECIFIC information from the contexts
+3. Ground answers only in what the contexts say
+4. Do NOT ask questions answerable from general/popular knowledge
+5. Each ground_truth MUST cite or closely paraphrase the contexts
+6. Questions must be DISTINCT (no duplicates or near-duplicates)
 
 Output ONLY a JSON array with {num_pairs} objects:
 [

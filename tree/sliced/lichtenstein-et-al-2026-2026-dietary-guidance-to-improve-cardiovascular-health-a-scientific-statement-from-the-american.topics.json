@@ -9,7 +9,7 @@
       "name": "Overview of Dietary Guidance",
       "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
       "depth": 1,
-      "content": "Poor diet quality is strongly associated with elevated cardiovascular disease morbidity and mortality risk. This American Heart Association scientific statement for food-based cardiovascular health optimization and cardiovascular disease risk reduction guidance summarizes available evidence and provides contextual guidance for the key features of heart-healthy dietary patterns. It enumerates collateral benefits of adopting a heart-healthy dietary pattern in terms of nutrient intake adequacy and compatibility with other chronic disease risk reduction guidance. The features of a heart-healthy dietary pattern include (1) adjusting energy intake and expenditure to achieve and maintain a healthy body weight; (2) eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains; (4) choosing healthy sources of protein; (5) choosing sources of unsaturated fats in place of sources of saturated fat; (6) choosing minimally processed foods instead of ultraprocessed foods; (7) minimizing intake of added sugars in beverages and foods; (8) reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or no salt; and (9) if alcohol is not consumed, do not start; if alcohol is consumed, limit intake.\n\nThis scientific statement for food-based cardiovascular health optimization and CVD risk reduction guidance summarizes the available evidence and provides contextual guidance for the key components of heart-healthy dietary patterns. It reinforces the importance of focusing on heart-healthy dietary patterns rather than on single foods or nutrients; adopting healthy eating habits early in life and maintaining them across the life course; and adhering to the guidance regardless of where foods and beverages are procured, prepared, and consumed. The features of a heart-healthy dietary pattern include (1) adjusting energy intake and expenditure to achieve and maintain a healthy body weight; (2) eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains; (4) choosing healthy sources of protein; (5) choosing sources of unsaturated fats in place of sources of saturated fat; (6) choosing minimally processed foods instead of ultraprocessed foods; (7) minimizing intake of added sugars in beverages and foods; (8) reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or no salt; and (9) if alcohol is not consumed, do not start; if alcohol is consumed, limit intake.",
+      "content": "Poor diet quality is strongly associated with elevated cardiovascular disease morbidity and mortality risk. This American Heart Association scientific statement for food-based cardiovascular health optimization and cardiovascular disease risk reduction guidance summarizes available evidence and provides contextual guidance for the key features of heart-healthy dietary patterns. It enumerates collateral benefits of adopting a heart-healthy dietary pattern in terms of nutrient intake adequacy and compatibility with other chronic disease risk reduction guidance. The features of a heart-healthy dietary pattern include (1) adjusting energy intake and expenditure to achieve and maintain a healthy body weight; (2) eating plenty of vegetables and fruits and choosing a wide variety; (3) choosing foods made mostly with whole grains rather than refined grains; (4) choosing healthy sources of protein; (5) choosing sources of unsaturated fats in place of sources of saturated fat; (6) choosing minimally processed foods instead of ultraprocessed foods; (7) minimizing intake of added sugars in beverages and foods; (8) reducing sodium intake by choosing foods low in sodium and preparing foods with minimal or no salt; and (9) if alcohol is not consumed, do not start; if alcohol is consumed, limit intake.",
       "chunks": [],
       "children": []
     },
@@ -21,14 +21,79 @@
       "chunks": [],
       "children": [
         {
-          "name": "Core Components of Heart-Healthy Dietary Patterns",
+          "name": "Features of Heart-Healthy Dietary Patterns",
           "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
           "depth": 2,
-          "content": "Whole or minimally processed vegetables and fruits are core components of heart-healthy dietary patterns. These patterns are consistently associated with cardiovascular health, including blood lipids, blood pressure, and type 2 diabetes control. Vegetables and fruits provide essential nutrients and dietary fiber, which supports gastrointestinal function, provides fuel for the gut microbiota, and plays a role in the regulation of blood glucose. Dietary patterns rich in fiber have been associated with reduced risk of CVD, type 2 diabetes, and colorectal cancer. Good sources include vegetables, fruits, whole grains, nuts, legumes, and seeds.\n\nProtein is an essential nutrient for growth, development, and overall health, but the relationship between protein quantity and cardiovascular health is uncertain. Recommendations for protein center on promoting heart-healthy protein sources which are determined predominantly by fatty acid profile and fiber content. Given the broad range of protein-rich foods, particularly in terms of these associated components, this feature is divided into subgroups. Shift from meat to plant sources (legumes and nuts) as they are good sources of protein and are rich in unsaturated fat and fiber. Dietary patterns higher in legumes and lower in red and processed meat have been associated with lower CVD and coronary heart disease risk.\n\nClinical trial evidence consistently shows that replacing sources of saturated fat with sources of polyunsaturated fat and, to a lesser extent, sources of monounsaturated fat reduces low-density lipoprotein cholesterol concentrations, a causal risk factor for CVD. Strong evidence shows that replacing butter with plant oils and spreads containing predominantly unsaturated fat decreases low-density lipoprotein cholesterol concentrations. Dietary patterns high in added sugars are consistently associated with adverse cardiovascular health and higher CVD risk. Systematic reviews have linked sugar-sweetened beverages to higher risk of obesity, type 2 diabetes, coronary heart disease, and cardiovascular mortality.\n\nIn general, dietary sodium intake and potassium intake have opposite effects on blood pressure, the leading modifiable risk factor for preventable mortality. An increased intake of sodium chloride (salt) raises blood pressure, whereas an increased intake of potassium lowers blood pressure. Reducing sodium intake lowers blood pressure in both nonhypertensive and hypertensive individuals. In prospective cohort studies, lower sodium intakes are associated with blunted age-related rise in systolic blood pressure and lower CVD risk. Evidence for an independent blood pressure–lowering effect of potassium is consistent but not as persuasive as corresponding evidence for sodium.",
+          "content": "The Table summarizes the features of a heart-healthy dietary pattern. The origins of CVD begin early in life. Establishing a heart-healthy dietary pattern is fundamental to maintaining cardiovascular health throughout the life course. The relevance of diet quality on cardiovascular health starts as early as the prenatal period. Prepregnancy maternal dietary patterns and other lifestyle behaviors are associated with risk of gestational diabetes and hypertensive disorders of pregnancy. Dietary patterns early in life are linked not only to childhood cardiovascular parameters such as obesity, metabolic syndrome, hypertension, dyslipidemia, and type 2 diabetes but also to lifelong dietary patterns and cardiovascular risk. Thus, a heart-healthy dietary pattern is recommended for children starting at 1 year of age and is a key component of a favorable cardiovascular health trajectory throughout adulthood.",
           "chunks": [],
           "children": []
+        },
+        {
+          "name": "Core Components of Dietary Patterns",
+          "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+          "depth": 2,
+          "content": null,
+          "chunks": [],
+          "children": [
+            {
+              "name": "Vegetables and Fruits",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 3,
+              "content": "Whole or minimally processed vegetables and fruits are core components of heart-healthy dietary patterns. These patterns are consistently associated with cardiovascular health, including blood lipids, blood pressure, and type 2 diabetes control. Vegetables and fruits provide essential nutrients and dietary fiber, which supports gastrointestinal function, provides fuel for the gut microbiota, and plays a role in the regulation of blood glucose. Dietary patterns rich in fiber have been associated with reduced risk of CVD, type 2 diabetes, and colorectal cancer. Good sources include vegetables, fruits, whole grains, nuts, legumes, and seeds.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Whole Grains",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 3,
+              "content": "Whole grains are defined by the presence of all 3 components of the grain kernel—the starchy endosperm, inner germ, and outer bran—and provide a complex matrix of dietary fiber, vitamins, minerals, and other bioactive compounds. Commonly consumed whole grains are whole wheat, oats, brown rice, quinoa, barley, and rye. A substantial body of observational evidence from large cohort studies demonstrates that regular consumption of whole-grain foods compared with infrequent intake is associated with lower risks of CVD, coronary heart disease, stroke, type 2 diabetes, and metabolic syndrome and more favorable cardiovascular risk factors, including blood pressure, blood lipids, and glycemic control.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Healthy Sources of Protein",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 3,
+              "content": "Protein is an essential nutrient for growth, development, and overall health, but the relationship between protein quantity and cardiovascular health is uncertain. Recommendations for protein center on promoting heart-healthy protein sources which are determined predominantly by fatty acid profile and fiber content. Legumes (beans, peas, and lentils) and nuts are good sources of protein and are rich in unsaturated fat and fiber. Dietary patterns higher in legumes and lower in red and processed meat have been associated with lower CVD and coronary heart disease risk. Likewise, dietary patterns higher in nuts have been associated with lower CVD and all-cause mortality risk.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Sources of Unsaturated Fat",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 3,
+              "content": "Clinical trial evidence consistently shows that replacing sources of saturated fat with sources of polyunsaturated fat and, to a lesser extent, sources of monounsaturated fat reduces low-density lipoprotein cholesterol concentrations, a causal risk factor for CVD. Strong evidence shows that replacing butter with plant oils and spreads containing predominantly unsaturated fat decreases low-density lipoprotein cholesterol concentrations. Limited evidence shows that substituting butter with plant oils and spreads with predominantly unsaturated fat is associated with a lower CVD morbidity and mortality risk.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Minimizing Added Sugars",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 3,
+              "content": "Added sugars are defined as all forms of sugar that are added to foods and beverages during processing or preparation. There is strong evidence to support recommendations to minimize added sugar intake across the life course. Dietary patterns high in added sugars are consistently associated with adverse cardiovascular health and higher CVD risk. Systematic reviews have linked sugar-sweetened beverages to higher risk of obesity, type 2 diabetes, coronary heart disease, and cardiovascular mortality.",
+              "chunks": [],
+              "children": []
+            },
+            {
+              "name": "Low Sodium Foods",
+              "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+              "depth": 3,
+              "content": "In general, dietary sodium intake and potassium intake have opposite effects on blood pressure, the leading modifiable risk factor for preventable mortality. An increased intake of sodium chloride (salt) raises blood pressure, whereas an increased intake of potassium lowers blood pressure. Reducing sodium intake lowers blood pressure in both nonhypertensive and hypertensive individuals. In prospective cohort studies, lower sodium intakes are associated with blunted age-related rise in systolic blood pressure and lower CVD risk.",
+              "chunks": [],
+              "children": []
+            }
+          ]
         }
       ]
+    },
+    {
+      "name": "Energy Intake and Expenditure",
+      "source": "lichtenstein-et-al-2026-2026-dietary-guidance-to-improve-cardiovascular-health-a-scientific-statement-from-the-american.pdf",
+      "depth": 1,
+      "content": "Preserving a healthy body weight across the life course is central to optimizing cardiovascular health. Currently, obesity affects 21% of children and adolescents, and 40% of adults in the United States. Excess body fat contributes to the development of type 2 diabetes, hypertension, and cardiovascular-kidney metabolic syndrome, which negatively influences cardiovascular health. Excess energy intake coupled with inadequate physical activity results in positive energy balance and subsequent overweight and obesity. Individual energy needs depend on a number of factors such as age, sex, height, weight, physical activity level, and pregnancy or lactation status. Energy intake should be adjusted to achieve and maintain a healthy body weight. Dietary habits and dietary patterns are shared, experienced, and transmitted among household members. They are learned early in life, although there are key inflection points where dietary trajectories can change along the life course, including childhood, adolescence, and young adulthood.",
+      "chunks": [],
+      "children": []
     }
   ]
 }

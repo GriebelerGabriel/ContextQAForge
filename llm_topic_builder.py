@@ -33,33 +33,39 @@ original section titles.
 6. Every body segment must appear in at least one topic.
 7. Order topics logically (background first, then evidence, then \
 recommendations, then implementation).
+8. IMPORTANT: The target number of LEAF nodes (nodes with no subtopics) is \
+{target_leaves}. Split or merge topics to get close to this number. \
+More leaves means more diverse QA coverage.
 
 Output ONLY valid JSON matching this schema:
-{
+{{
   "document_title": "concise document title",
   "topics": [
-    {
+    {{
       "topic": "Topic Name",
       "segment_ids": ["seg_001", "seg_002"],
       "subtopics": [
-        {
+        {{
           "topic": "Subtopic Name",
           "segment_ids": ["seg_001"],
           "subtopics": []
-        }
+        }}
       ]
-    }
+    }}
   ]
-}
+}}
 """
 
 TOPIC_USER_TEMPLATE = """\
 CONTENT SEGMENTS from document: {doc_source}
+TARGET LEAF NODES for this document: {target_leaves} \
+(give or take 1-2, but aim for this number)
 ---
 {segment_list}
 ---
 
-Organize these segments into a hierarchical topic tree and output valid JSON."""
+Organize these segments into a hierarchical topic tree with approximately \
+{target_leaves} leaf nodes and output valid JSON."""
 
 
 def build_topic_tree(
@@ -67,6 +73,7 @@ def build_topic_tree(
     doc: Document,
     config: PipelineConfig,
     client: Optional[OpenAI] = None,
+    target_leaves: int = 0,
 ) -> Optional[SectionNode]:
     """Build a topic tree from content segments using LLM.
 
@@ -75,6 +82,7 @@ def build_topic_tree(
         doc: Source document.
         config: Pipeline configuration.
         client: Optional OpenAI client.
+        target_leaves: Approximate number of leaf nodes to create.
 
     Returns:
         Root SectionNode of the topic tree, or None if building fails.
@@ -82,6 +90,10 @@ def build_topic_tree(
     if not segments:
         logger.warning(f"No segments to build topic tree for {doc.source}")
         return None
+
+    # Default: aim for ~1 leaf per segment if not specified
+    if target_leaves <= 0:
+        target_leaves = len(segments)
 
     # Check cache
     cache_dir = Path(config.slicer_cache_dir)
@@ -97,8 +109,10 @@ def build_topic_tree(
 
     # Format segment list for the prompt
     segment_list = _format_segment_list(segments)
+    system_prompt = TOPIC_SYSTEM_PROMPT.format(target_leaves=target_leaves)
     user_prompt = TOPIC_USER_TEMPLATE.format(
         doc_source=doc.source,
+        target_leaves=target_leaves,
         segment_list=segment_list,
     )
 
@@ -114,7 +128,7 @@ def build_topic_tree(
             response = client.chat.completions.create(
                 model=config.topic_model,
                 messages=[
-                    {"role": "system", "content": TOPIC_SYSTEM_PROMPT},
+                    {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt},
                 ],
                 temperature=0.2,

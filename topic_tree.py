@@ -56,6 +56,8 @@ class DocumentTopicTree:
         from llm_topic_builder import build_topic_tree
 
         children: List[SectionNode] = []
+        num_docs = max(len(documents), 1)
+        target_per_doc = max(self.config.num_samples // num_docs, 1)
 
         for doc in documents:
             logger.info(f"LLM pipeline: processing {doc.source}")
@@ -64,7 +66,10 @@ class DocumentTopicTree:
                 logger.warning(f"No segments produced for {doc.source}, skipping")
                 continue
 
-            tree = build_topic_tree(segments, doc, self.config)
+            # Cap leaves: at most 2x the number of segments — keeps topics
+            # meaningful and leaves with enough content for good QA grounding
+            target_leaves = min(target_per_doc, len(segments) * 2)
+            tree = build_topic_tree(segments, doc, self.config, target_leaves=target_leaves)
             if tree:
                 filename = doc.metadata.get("filename", doc.source)
                 file_node = SectionNode(

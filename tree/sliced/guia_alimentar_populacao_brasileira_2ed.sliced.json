@@ -1,8 +1,8 @@
 [
   {
     "id": "seg_001",
-    "title": "Contextual Background on Brazilian Nutrition",
-    "content": "Nas últimas décadas, o Brasil passou por diversas mudanças políticas, econômicas, sociais e culturais que evidenciaram transformações no modo de vida da população. A ampliação de políticas sociais na área de saúde, educação, trabalho e emprego e assistência social contribuiu para a redução das desigualdades sociais e permitiu que o País crescesse de forma inclusiva. Também se observou rápida transição demográfica, epidemiológica e nutricional, apresentando como consequência maior expectativa de vida e redução do número de filhos por mulher, além de mudanças importantes no padrão de saúde e consumo alimentar da população brasileira. As principais doenças que atualmente acometem os brasileiros deixaram de ser agudas e passaram a ser crônicas. Apesar da intensa redução da desnutrição em crianças, as deficiências de micronutrientes e a desnutrição crônica ainda são prevalentes em grupos vulneráveis da população, como em indígenas, quilombolas e crianças e mulheres que vivem em áreas vulneráveis. Simultaneamente, o Brasil vem enfrentando aumento expressivo do sobrepeso e da obesidade em todas as faixas etárias, e as doenças crônicas são a principal causa de morte entre adultos. O excesso de peso acomete um em cada dois adultos e uma em cada três crianças brasileiras.",
+    "title": "Introduction to the Dietary Guidelines",
+    "content": "The Dietary Guidelines for the Brazilian population present a set of information and recommendations about food aimed at promoting the health of individuals, families, communities, and Brazilian society as a whole, both now and in the future. This guide is intended for all Brazilians, including workers whose profession involves promoting the health of the population, such as health professionals, community agents, educators, and human resources trainers. These workers will be fundamental for the widespread dissemination of this material and for ensuring that the content is understood by all, including those with reading difficulties. It is hoped that this guide will be used in people's homes, health units, schools, and any space where health promotion activities take place, such as community centers, social assistance reference centers, unions, training centers for workers, and social movement headquarters. Although the focus of this material is on health promotion and disease prevention, its recommendations may also be useful for those suffering from specific diseases. In such cases, it is essential that nutritionists adapt the recommendations to the specific conditions of each individual, supporting health professionals in organizing nutritional care.",
     "content_type": "body",
     "removal_reason": null,
     "source": "guia_alimentar_populacao_brasileira_2ed.pdf",
@@ -10,8 +10,8 @@
   },
   {
     "id": "seg_002",
-    "title": "Guidelines for Healthy Eating",
-    "content": "O Guia Alimentar para a População Brasileira apresenta um conjunto de informações e recomendações sobre alimentação que objetivam promover a saúde de pessoas, famílias e comunidades e da sociedade brasileira como um todo, hoje e no futuro. Este guia é para todos os brasileiros. Alguns destes serão trabalhadores cujo ofício envolve a promoção da saúde da população, incluindo profissionais de saúde, agentes comunitários, educadores, formadores de recursos humanos e outros. Esses trabalhadores serão fundamentais para a ampla divulgação deste material e para que o conteúdo seja compreendido por todos, incluídas as pessoas que tenham alguma dificuldade de leitura. Almeja-se que este guia seja utilizado nas casas das pessoas, nas unidades de saúde, nas escolas e em todo e qualquer espaço onde atividades de promoção da saúde tenham lugar, como centros comunitários, centros de referência de assistência social, sindicatos, centros de formação de trabalhadores e sedes de movimentos sociais.",
+    "title": "Principles of the Dietary Guidelines",
+    "content": "Every structured human action is implicitly or explicitly guided by principles. The formulation of dietary guidelines is no exception. The principles that guided the preparation of this guide are presented in this chapter. Food is more than nutrient intake; it concerns the foods that contain and provide nutrients, how foods are combined and prepared, the characteristics of eating habits, and the cultural and social dimensions of food practices. All these aspects influence health and well-being. Nutrient intake, provided by food, is essential for good health. Equally important for health are the specific foods that provide nutrients, the numerous possible combinations between them, and their preparation methods, as well as the characteristics of eating habits and the cultural and social dimensions of food practices. The science of nutrition emerged with the identification and isolation of nutrients present in foods and with studies on the effect of individual nutrients on the incidence of certain diseases. These studies were fundamental for formulating policies and actions aimed at preventing specific nutritional deficiencies and cardiovascular diseases associated with excessive sodium or animal fat consumption. However, the effect of individual nutrients has progressively proven insufficient to explain the relationship between food and health.",
     "content_type": "body",
     "removal_reason": null,
     "source": "guia_alimentar_populacao_brasileira_2ed.pdf",
@@ -19,8 +19,8 @@
   },
   {
     "id": "seg_003",
-    "title": "Principles of Healthy Eating",
-    "content": "Toda ação humana estruturada é implícita ou explicitamente guiada por princípios. A formulação de guias alimentares não foge a esta regra. Os princípios que orientaram a elaboração deste guia são apresentados neste capítulo. Alimentação é mais que ingestão de nutrientes. Alimentação diz respeito à ingestão de nutrientes, mas também aos alimentos que contêm e fornecem os nutrientes, a como alimentos são combinados entre si e preparados, a características do modo de comer e às dimensões culturais e sociais das práticas alimentares. Todos esses aspectos influenciam a saúde e o bem-estar. A ingestão de nutrientes, propiciada pela alimentação, é essencial para a boa saúde. Igualmente importantes para a saúde são os alimentos específicos que fornecem os nutrientes, as inúmeras possíveis combinações entre eles e suas formas de preparo, as características do modo de comer e as dimensões sociais e culturais das práticas alimentares.",
+    "title": "Recommendations for Food Choices",
+    "content": "This chapter presents general recommendations that guide the choice of foods to compose a nutritionally balanced, tasty, culturally appropriate diet that also promotes socially and environmentally sustainable food systems. These recommendations were developed according to the principles outlined in the previous chapter and aim to maximize the health and well-being of all, now and in the future. The recommendations emphasize the type of processing that foods undergo before acquisition, preparation, and consumption. The type of processing employed in their production conditions the nutrient profile, taste, and flavor they add to the diet, as well as influencing with which other foods they will be consumed, in what circumstances (when, where, with whom), and even in what quantity. Four categories of foods, defined according to the type of processing employed in their production, are covered by the recommendations of this chapter.",
     "content_type": "body",
     "removal_reason": null,
     "source": "guia_alimentar_populacao_brasileira_2ed.pdf",
@@ -28,8 +28,8 @@
   },
   {
     "id": "seg_004",
-    "title": "Recommendations for Food Choices",
-    "content": "Este capítulo apresenta recomendações gerais que orientam a escolha de alimentos para compor uma alimentação nutricionalmente balanceada, saborosa e culturalmente apropriada e, ao mesmo tempo, promotora de sistemas alimentares socialmente e ambientalmente sustentáveis. As recomendações deste capítulo dão grande importância ao tipo de processamento a que são submetidos os alimentos antes de sua aquisição, preparo e consumo. Quatro categorias de alimentos, definidas de acordo com o tipo de processamento empregado na sua produção, são abrangidas pelas recomendações deste capítulo. A primeira reúne alimentos in natura ou minimamente processados. Alimentos in natura são aqueles obtidos diretamente de plantas ou de animais e adquiridos para consumo sem que tenham sofrido qualquer alteração após deixarem a natureza. Alimentos minimamente processados são alimentos in natura que, antes de sua aquisição, foram submetidos a alterações mínimas.",
+    "title": "Food Categories and Recommendations",
+    "content": "The first category includes in natura or minimally processed foods. In natura foods are those obtained directly from plants or animals and acquired for consumption without any alteration after leaving nature. Minimally processed foods are in natura foods that have undergone minimal alterations before acquisition. Examples include dried grains, polished and packaged or ground into flour, washed roots and tubers, refrigerated or frozen cuts of meat, and pasteurized milk. The second category corresponds to products extracted from in natura foods or directly from nature and used by people to season and cook foods and create culinary preparations. Examples of these products include oils, fats, sugar, and salt. The third category corresponds to products manufactured essentially with the addition of salt or sugar to an in natura or minimally processed food, such as pickled vegetables, canned fruits, cheeses, and breads. The fourth category corresponds to products whose manufacturing involves various stages and techniques of processing and multiple ingredients, many of which are used exclusively in industrial settings. Examples include soft drinks, filled cookies, packaged snacks, and instant noodles.",
     "content_type": "body",
     "removal_reason": null,
     "source": "guia_alimentar_populacao_brasileira_2ed.pdf",
@@ -37,8 +37,8 @@
   },
   {
     "id": "seg_005",
-    "title": "Healthy Eating Practices",
-    "content": "Faça de alimentos in natura ou minimamente processados a base de sua alimentação. Alimentos in natura ou minimamente processados, em grande variedade e predominantemente de origem vegetal, são a base para uma alimentação nutricionalmente balanceada, saborosa, culturalmente apropriada e promotora de um sistema alimentar socialmente e ambientalmente sustentável. Utilize óleos, gorduras, sal e açúcar em pequenas quantidades ao temperar e cozinhar alimentos e criar preparações culinárias. Desde que utilizados com moderação em preparações culinárias com base em alimentos in natura ou minimamente processados, os óleos, as gorduras, o sal e o açúcar contribuem para diversificar e tornar mais saborosa a alimentação sem que fique nutricionalmente desbalanceada.",
+    "title": "Practical Recommendations for Food Consumption",
+    "content": "Make in natura or minimally processed foods the basis of your diet. In natura or minimally processed foods, in a wide variety and predominantly of plant origin, are the foundation for a nutritionally balanced, tasty, culturally appropriate diet that promotes a socially and environmentally sustainable food system. These foods include many varieties of grains, tubers and roots, legumes and vegetables, fruits, milk, eggs, fish, meats, and also water. The acquisition of in natura foods is limited to some varieties such as fruits, vegetables, greens, roots, tubers, and eggs. Even so, it is common for even these foods to undergo some alteration before being acquired, such as cleaning, removal of inedible parts, and refrigeration. Other foods like rice, beans, milk, and meat are commonly acquired after drying, packaging, pasteurization, cooling, or freezing. The guide recommends making in natura or minimally processed foods the basis of your diet due to their nutritional benefits and their role in promoting a sustainable food system.",
     "content_type": "body",
     "removal_reason": null,
     "source": "guia_alimentar_populacao_brasileira_2ed.pdf",
@@ -46,8 +46,8 @@
   },
   {
     "id": "seg_006",
-    "title": "Combining Foods into Meals",
-    "content": "Este capítulo fornece orientações específicas para a população brasileira sobre como combinar alimentos na forma de refeições. As características da alimentação brasileira descritas a seguir resultam de análises da Pesquisa de Orçamentos Familiares (POF), realizada pelo Instituto Brasileiro de Geografia e Estatística (IBGE), entre maio de 2008 e maio de 2009. Essas análises foram feitas especialmente para apoiar a elaboração deste guia. Entre os alimentos processados ou ultraprocessados, os que fornecem mais calorias são pães e sanduíches, bolos industriais, biscoitos doces e guloseimas em geral, refrigerantes, “salgadinhos de pacote”, bebidas lácteas, salsichas e outros embutidos e queijos.",
+    "title": "Ten Steps for Adequate and Healthy Eating",
+    "content": "1. Make in natura or minimally processed foods the basis of your diet. 2. Use oils, fats, salt, and sugar in small quantities when seasoning and cooking foods and creating culinary preparations. 3. Limit the consumption of processed foods, consuming them in small quantities as ingredients in culinary preparations or as part of meals based on in natura or minimally processed foods. 4. Avoid ultraprocessed foods. 5. Eat regularly and attentively, in appropriate environments, and whenever possible, in company. 6. Shop in places that offer a variety of in natura or minimally processed foods. 7. Develop, practice, and share culinary skills. 8. Plan the use of time to give food the space it deserves. 9. Prefer, when eating out, places that serve freshly prepared meals. 10. Be critical of information, guidance, and messages about food conveyed in commercial advertisements.",
     "content_type": "body",
     "removal_reason": null,
     "source": "guia_alimentar_populacao_brasileira_2ed.pdf",
@@ -55,8 +55,8 @@
   },
   {
     "id": "seg_007",
-    "title": "The Importance of Eating Together",
-    "content": "Neste capítulo, falaremos do ato de comer e de dimensões deste ato que influenciam, entre outros aspectos, o aproveitamento dos alimentos consumidos e o prazer proporcionado pela alimentação. Abordaremos o tempo e a atenção dedicados ao comer, o ambiente onde ele se dá e a partilha de refeições. Três orientações básicas são apresentadas: comer com regularidade e com atenção; comer em ambientes apropriados; e comer em companhia. As características do ambiente onde comemos influenciam a quantidade de alimentos que ingerimos e o prazer que podemos desfrutar da alimentação. Cheiros, sons, iluminação, conforto, condições de limpeza e outras características do lugar são importantes.",
+    "title": "Obstacles to Healthy Eating",
+    "content": "This chapter addresses potential obstacles to adopting the recommendations regarding food choices, food combinations, and the act of eating. These obstacles are identified as: information, availability, cost, culinary skills, time, and advertising. Overcoming these obstacles may be easier or more difficult depending on the nature of the obstacle, the resources available to individuals, and the environment in which they live. Some obstacles may be completely and quickly removed, while others will require persistence. In some cases, removing obstacles will require individuals to reflect on the importance of food in their lives and to assign greater value to the process of acquiring, preparing, and consuming food. In other cases, it will require public policies and regulatory actions by the state to make the environment more conducive to adopting the recommendations.",
     "content_type": "body",
     "removal_reason": null,
     "source": "guia_alimentar_populacao_brasileira_2ed.pdf",
@@ -64,17 +64,8 @@
   },
   {
     "id": "seg_008",
-    "title": "Overcoming Obstacles to Healthy Eating",
-    "content": "Este capítulo aborda obstáculos potenciais para a adoção das recomendações sobre a escolha de alimentos, sobre a combinação de alimentos na forma de refeições e sobre o ato de comer e a comensalidade. Esses obstáculos são identificados como: informação, oferta, custo, habilidades culinárias, tempo e publicidade. A superação de obstáculos poderá ser mais fácil ou mais difícil a depender da natureza do obstáculo, dos recursos com que as pessoas contam para superá-lo e do ambiente onde vivem. Em algumas vezes, a remoção de obstáculos demandará, sobretudo, que as pessoas reflitam sobre a importância que a alimentação tem ou pode ter para suas vidas e concedam maior valor ao processo de adquirir, preparar e consumir alimentos.",
-    "content_type": "body",
-    "removal_reason": null,
-    "source": "guia_alimentar_populacao_brasileira_2ed.pdf",
-    "page_range": null
-  },
-  {
-    "id": "seg_009",
-    "title": "Ten Steps for Adequate and Healthy Eating",
-    "content": "1. Fazer de alimentos in natura ou minimamente processados a base da alimentação. 2. Utilizar óleos, gorduras, sal e açúcar em pequenas quantidades ao temperar e cozinhar alimentos e criar preparações culinárias. 3. Limitar o consumo de alimentos processados. 4. Evitar o consumo de alimentos ultraprocessados. 5. Comer com regularidade e atenção, em ambientes apropriados e, sempre que possível, com companhia. 6. Fazer compras em locais que ofertem variedades de alimentos in natura ou minimamente processados. 7. Desenvolver, exercitar e partilhar habilidades culinárias. 8. Planejar o uso do tempo para dar à alimentação o espaço que ela merece. 9. Dar preferência, quando fora de casa, a locais que servem refeições feitas na hora. 10. Ser crítico quanto a informações, orientações e mensagens sobre alimentação veiculadas em propagandas comerciais.",
+    "title": "Practical Advice for Overcoming Obstacles",
+    "content": "To overcome the obstacles identified, individuals can take several actions. For information, use this guide as a reliable source and discuss its content with family and friends. For availability, shop at markets and fairs that offer in natura or minimally processed foods. For cost, prefer seasonal fruits and vegetables and consider community-supported agriculture. For culinary skills, develop and share cooking skills with others. For time, plan meals and share responsibilities for food preparation with family members. For advertising, educate children about the purpose of advertising and advocate for regulations that protect consumers from misleading food marketing.",
     "content_type": "body",
     "removal_reason": null,
     "source": "guia_alimentar_populacao_brasileira_2ed.pdf",

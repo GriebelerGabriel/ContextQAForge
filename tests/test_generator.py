@@ -65,7 +65,7 @@ class TestQAGenerator:
         gen = QAGenerator(mock_config)
         prompt = gen._get_system_prompt()
         assert "PORTUGUESE" in prompt
-        assert "PATIENT" in prompt
+        assert "REAL PERSON" in prompt
 
     def test_system_prompt_english(self):
         config = PipelineConfig(openai_api_key="test-key", language="en")
