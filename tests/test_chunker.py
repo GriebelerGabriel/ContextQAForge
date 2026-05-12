@@ -10,7 +10,7 @@ class TestChunkDocuments:
         assert len(chunks) > 0
         for chunk in chunks:
             assert len(chunk.content) > 0
-            assert chunk.source in ("test1.txt", "test2.md")
+            assert chunk.source in ("test1.md", "test2.md")
 
     def test_small_document_single_chunk(self):
         doc = Document(

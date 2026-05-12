@@ -68,11 +68,6 @@ class SectionNode(BaseModel):
         """Whether this node has no children."""
         return len(self.children) == 0
 
-    @property
-    def path(self) -> List[str]:
-        """Get the topic path by traversing up (requires parent context)."""
-        return [self.name]
-
 
 class QAPair(BaseModel):
     """A question-answer pair with contexts and metadata."""

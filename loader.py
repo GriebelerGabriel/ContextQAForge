@@ -55,7 +55,8 @@ def load_documents(
                 if doc:
                     documents.append(doc)
             except Exception as e:
-                print(f"Error loading {file_path}: {e}")
+                import logging
+                logging.getLogger(__name__).error(f"Failed to load {file_path}: {e}", exc_info=True)
 
     return documents
 
@@ -115,13 +116,14 @@ def _is_digital_pdf(pdf_path: Path) -> bool:
     import fitz
 
     doc = fitz.open(str(pdf_path))
-    for page in doc:
-        text = page.get_text().strip()
-        if len(text) > 50:
-            doc.close()
-            return True
-    doc.close()
-    return False
+    try:
+        for page in doc:
+            text = page.get_text().strip()
+            if len(text) > 50:
+                return True
+        return False
+    finally:
+        doc.close()
 
 
 # ------------------------------------------------------------------ #
@@ -504,19 +506,29 @@ def _load_pdf_file(
     if parsed_cache_dir:
         cache_path = Path(parsed_cache_dir) / f"{file_path.stem}.md"
         if cache_path.exists():
-            with open(cache_path, "r", encoding="utf-8") as f:
-                content = f.read()
-            return Document(
-                content=content,
-                source=file_path.name,
-                doc_type="pdf",
-                metadata={
-                    "filename": file_path.name,
-                    "size": len(content),
-                    "cached": True,
-                },
-                pages=[],  # per-page text not available from cache
-            )
+            try:
+                with open(cache_path, "r", encoding="utf-8") as f:
+                    content = f.read()
+                if not content.strip():
+                    raise ValueError("Empty cache file")
+            except Exception:
+                import logging
+                logging.getLogger(__name__).warning(f"Corrupted cache for {file_path.name}, re-parsing")
+                cache_path.unlink(missing_ok=True)
+                content = None
+
+            if content:
+                return Document(
+                    content=content,
+                    source=file_path.name,
+                    doc_type="pdf",
+                    metadata={
+                        "filename": file_path.name,
+                        "size": len(content),
+                        "cached": True,
+                    },
+                    pages=[],  # per-page text not available from cache
+                )
 
     # Detect if digital or scanned
     is_digital = _is_digital_pdf(file_path)
@@ -532,7 +544,7 @@ def _load_pdf_file(
             paddleocr_lang=paddleocr_lang,
             use_table_recognition=use_table_recognition,
         )
-        num_pages = len(content)  # approximate
+        num_pages = _count_pdf_pages(file_path)
 
     # Ensure cache directory exists and save
     if parsed_cache_dir:

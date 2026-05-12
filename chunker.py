@@ -24,14 +24,17 @@ def chunk_documents(
         List of Chunk objects
     """
     chunks = []
-    chunk_id = 0
+    global_chunk_id = 0
 
     for doc in documents:
-        doc_chunks = _chunk_single_document(doc, chunk_size, chunk_overlap, chunk_id)
+        doc_chunks = _chunk_single_document(doc, chunk_size, chunk_overlap, global_chunk_id)
         # Filter out low-quality chunks (headers, footers, metadata)
         doc_chunks = [c for c in doc_chunks if _is_quality_content(c.content, quality_patterns)]
+        # Re-number IDs sequentially after filtering to avoid gaps/collisions
+        for chunk in doc_chunks:
+            chunk.chunk_id = global_chunk_id
+            global_chunk_id += 1
         chunks.extend(doc_chunks)
-        chunk_id += len(doc_chunks)
 
     return chunks
 

@@ -66,9 +66,12 @@ class DocumentTopicTree:
                 logger.warning(f"No segments produced for {doc.source}, skipping")
                 continue
 
-            # Cap leaves: at most 2x the number of segments — keeps topics
-            # meaningful and leaves with enough content for good QA grounding
-            target_leaves = min(target_per_doc, len(segments) * 2)
+            # Target leaves: aim for ~1.5x per-doc QA target, capped at 3x segments
+            # to keep each leaf with enough content for good QA grounding.
+            target_leaves = min(
+                max(target_per_doc, int(target_per_doc * 1.5)),
+                len(segments) * 3,
+            )
             tree = build_topic_tree(segments, doc, self.config, target_leaves=target_leaves)
             if tree:
                 filename = doc.metadata.get("filename", doc.source)
@@ -398,8 +401,8 @@ class DocumentTopicTree:
         return leaves
 
     def _collect_leaves(self, node: SectionNode, leaves: List[SectionNode]) -> None:
-        """Recursively collect leaf nodes."""
-        if node.is_leaf:
+        """Recursively collect leaf nodes. Skips 'Other Content' buckets."""
+        if node.is_leaf and node.name != "Other Content":
             leaves.append(node)
         for child in node.children:
             self._collect_leaves(child, leaves)
@@ -471,13 +474,21 @@ class DocumentTopicTree:
         name_lower = node.name.lower()
         return name_lower.endswith((".pdf", ".txt", ".md"))
 
+    def _total_chars(self, node: SectionNode) -> int:
+        """Recursively count all content chars under a node."""
+        total = len(node.content) if node.content else 0
+        for child in node.children:
+            total += self._total_chars(child)
+        return total
+
     def _visualize_node(self, node: SectionNode, prefix: str, is_last: bool, lines: List[str]) -> None:
         """Recursively build tree visualization."""
         connector = "└── " if is_last else "├── "
         chunk_info = f" [{len(node.chunks)} chunks]" if node.chunks else ""
         content_info = f" ({len(node.content)} chars)" if node.content else ""
         file_marker = "[FILE] " if self._is_file_node(node) else ""
-        lines.append(f"{prefix}{connector}{file_marker}{node.name}{content_info}{chunk_info}")
+        total_info = f" — total: {self._total_chars(node)} chars" if self._is_file_node(node) else ""
+        lines.append(f"{prefix}{connector}{file_marker}{node.name}{content_info}{total_info}{chunk_info}")
 
         child_prefix = prefix + ("    " if is_last else "│   ")
         for i, child in enumerate(node.children):
@@ -488,15 +499,21 @@ class DocumentTopicTree:
     # ------------------------------------------------------------------ #
 
     def save(self, path: str) -> None:
-        """Save tree to JSON file."""
+        """Save tree to JSON file (atomic write)."""
         if not self.root:
             return
         Path(path).parent.mkdir(parents=True, exist_ok=True)
 
         data = self.root.model_dump()
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-        logger.info(f"Tree saved to {path}")
+        tmp_path = path + ".tmp"
+        try:
+            with open(tmp_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+            Path(tmp_path).replace(path)
+            logger.info(f"Tree saved to {path}")
+        except Exception:
+            Path(tmp_path).unlink(missing_ok=True)
+            raise
 
     def load(self, path: str) -> None:
         """Load tree from JSON file."""

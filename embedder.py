@@ -1,35 +1,11 @@
 """OpenAI embeddings module with batching support."""
 
-from typing import Dict, List
+from typing import List
 
 import numpy as np
 from openai import OpenAI
 
 from config import PipelineConfig
-
-
-class EmbeddingCache:
-    """Caches embedding vectors to avoid redundant API calls."""
-
-    def __init__(self, embedder: "Embedder"):
-        self._embedder = embedder
-        self._cache: Dict[str, np.ndarray] = {}
-
-    def embed_query(self, text: str) -> np.ndarray:
-        """Get embedding for text, using cache if available."""
-        key = text.strip().lower()
-        if key not in self._cache:
-            self._cache[key] = self._embedder.embed_query(text)
-        return self._cache[key]
-
-    def precompute(self, texts: List[str]) -> None:
-        """Pre-compute embeddings for multiple texts in one batch call."""
-        # Find uncached texts
-        uncached = [t for t in texts if t.strip().lower() not in self._cache]
-        if uncached:
-            embeddings = self._embedder.embed_chunks(uncached)
-            for text, embedding in zip(uncached, embeddings):
-                self._cache[text.strip().lower()] = embedding
 
 
 class Embedder:
@@ -38,7 +14,7 @@ class Embedder:
     def __init__(self, config: PipelineConfig):
         self.config = config
         self.client = OpenAI(api_key=config.openai_api_key)
-        self.model = config.embedding_model
+        self.model = getattr(config, "embedding_model", "text-embedding-3-small")
         self.dimension: int = 0  # Set during first embed_chunks call
 
     def embed_chunks(self, texts: List[str], batch_size: int = 100) -> np.ndarray:

@@ -10,7 +10,8 @@ import logging
 import random
 import re
 import time
-from typing import Dict, List, Literal, Optional, Set
+from collections import deque
+from typing import Dict, List, Optional, Set
 
 from openai import OpenAI
 
@@ -96,13 +97,87 @@ class QAGenerator:
         },
     }
 
+    # Step 1 extraction few-shot examples (contexts -> extracted fact)
+    EXTRACT_EXAMPLES = {
+        "single-hop": {
+            "contexts": [
+                "The recommended daily sodium intake for adults is 2g per day (equivalent to 5g of salt).",
+            ],
+            "extracted_fact": "The recommended daily sodium intake for adults is 2g per day, which is equivalent to 5g of salt.",
+        },
+        "multi-hop": {
+            "contexts": [
+                "The DASH diet was developed for people with hypertension and helps control blood pressure.",
+                "The DASH diet is rich in fiber, vitamins and minerals, and low in salt, sweets and saturated fat.",
+            ],
+            "extracted_fact": "The DASH diet was developed specifically for people with hypertension to help control blood pressure. It is rich in fiber, vitamins, and minerals, and low in salt, sweets, and saturated fat.",
+        },
+        "inference": {
+            "contexts": [
+                "Reducing sodium intake to <2 g/day was more beneficial for blood pressure than consuming >2 g/day.",
+                "Higher sodium intake was associated with higher risk of stroke and coronary heart disease.",
+            ],
+            "extracted_fact": "Reducing sodium intake to less than 2g per day is more beneficial for blood pressure than reducing but still consuming more than 2g. Higher sodium intake is linked to higher risk of stroke and coronary heart disease.",
+        },
+        "paraphrase": {
+            "contexts": [
+                "Replacing butter with plant oils containing predominantly unsaturated fat decreases LDL cholesterol concentrations.",
+            ],
+            "extracted_fact": "Replacing butter with plant oils that contain predominantly unsaturated fat reduces LDL cholesterol levels.",
+        },
+        "true-false": {
+            "contexts": [
+                "Reducing sodium intake to <2 g/day was more beneficial for blood pressure than reducing sodium intake but still consuming >2 g/day.",
+            ],
+            "extracted_fact": "Reducing sodium intake to less than 2g per day is more beneficial for blood pressure than reducing sodium but still consuming more than 2g per day.",
+        },
+    }
+
+    # Step 2 question-generation few-shot examples (fact -> question)
+    QUESTION_EXAMPLES = {
+        "single-hop": {
+            "extracted_fact": "The recommended daily sodium intake for adults is 2g per day, which is equivalent to 5g of salt.",
+            "question": "Quanto de sal posso consumir por dia sem passar do limite recomendado?",
+            "ground_truth": "Você pode consumir no máximo 5g de sal por dia, o que equivale a 2g de sódio.",
+            "difficulty": "easy",
+        },
+        "multi-hop": {
+            "extracted_fact": "The DASH diet was developed specifically for people with hypertension to help control blood pressure. It is rich in fiber, vitamins, and minerals, and low in salt, sweets, and saturated fat.",
+            "question": "Se eu tenho pressão alta, qual dieta devo seguir e quais alimentos ela inclui?",
+            "ground_truth": "Se você tem pressão alta, a dieta Dash foi feita especialmente para isso. Ela inclui alimentos ricos em fibras, vitaminas e minerais (como feijões, grãos integrais, frutas e legumes) e tem pouco sal, doces e gordura saturada.",
+            "difficulty": "medium",
+        },
+        "inference": {
+            "extracted_fact": "Reducing sodium intake to less than 2g per day is more beneficial for blood pressure than reducing but still consuming more than 2g. Higher sodium intake is linked to higher risk of stroke and coronary heart disease.",
+            "question": "Se eu consigo reduzir meu consumo de sódio para menos de 2g por dia, isso realmente faz diferença na minha pressão arterial?",
+            "ground_truth": "Sim, faz muita diferença. Consumir menos de 2g de sódio por dia foi mais eficaz para reduzir a pressão arterial do que apenas diminuir mas continuar acima de 2g. Além disso, consumir mais sódio está ligado a maior risco de derrame e doenças cardíacas.",
+            "difficulty": "hard",
+        },
+        "paraphrase": {
+            "extracted_fact": "Replacing butter with plant oils that contain predominantly unsaturated fat reduces LDL cholesterol levels.",
+            "question": "É melhor cozinhar com óleo vegetal ou manteiga se eu quiser baixar meu colesterol?",
+            "ground_truth": "É melhor usar óleos vegetais, porque eles têm gorduras insaturadas que ajudam a reduzir o colesterol ruim (LDL), ao contrário da manteiga.",
+            "difficulty": "medium",
+        },
+        "true-false": {
+            "extracted_fact": "Reducing sodium intake to less than 2g per day is more beneficial for blood pressure than reducing sodium but still consuming more than 2g per day.",
+            "question": "Afirme: Consumir menos de 2g de sódio por dia é mais benéfico para a minha pressão arterial do que apenas reduzir mas continuar consumindo mais de 2g.",
+            "ground_truth": "VERDADEIRO. Reduzir a ingestão de sódio para menos de 2 g/dia foi mais benéfico para a pressão arterial do que reduzir mas ainda consumir mais de 2 g/dia.",
+            "difficulty": "easy",
+        },
+    }
+
     # Maximum number of past questions to check for duplicates
     DEDUP_WINDOW = 20
+    # Number of candidate facts to extract per Step 1 call
+    NUM_CANDIDATE_FACTS = 3
 
     def __init__(self, config: PipelineConfig):
         self.config = config
         self.client = OpenAI(api_key=config.openai_api_key)
         self.generated_questions: Set[str] = set()
+        self._recent_questions: deque = deque(maxlen=self.DEDUP_WINDOW)
+        self._recent_facts: deque = deque(maxlen=self.DEDUP_WINDOW)
         self.true_false_count = {"true": 0, "false": 0}
 
     def _get_system_prompt(self) -> str:
@@ -146,10 +221,12 @@ class QAGenerator:
                 '   - "Se eu tiver pressão alta, qual dieta devo seguir?" (if I have X, what should I do)\n'
                 '   - "Tenho hipertensão, posso beber vinho?" (I have X, can I do Y)\n'
                 "   \n"
-                "   PATTERNS TO USE:\n"
+                "   PATTERNS TO USE (vary these — do NOT always start with 'Se eu'):\n"
                 '   - "Posso...?" / "Devo...?" / "Qual é o melhor...?" / "Quanto...?" / "É verdade que...?"\n'
-                '   - "Se eu [situação], o que [acontece/devo fazer]?"\n'
                 '   - "O que [posso/devo] fazer para [objetivo]?"\n'
+                '   - "Quais alimentos [ajudam/pioram]...?" / "Qual a diferença entre X e Y?"\n'
+                '   - "Tenho [condição], posso [ação]?" / "É seguro [ação] se eu tenho [condição]?"\n'
+                '   - Use "Se eu..." AT MOST once per 5 questions. Use other patterns for the rest.\n'
                 "   \n"
                 '   Every question must sound like someone sitting in front of a health professional. '
                 'Use first person: "eu", "posso", "devo", "meu", "minha". '
@@ -283,9 +360,7 @@ For type "true-false":
         if question_normalized in self.generated_questions:
             return True
 
-        # Only check against recent questions, and only block near-identical ones
-        recent = list(self.generated_questions)[-self.DEDUP_WINDOW:]
-        for existing in recent:
+        for existing in self._recent_questions:
             # Skip if very different length (can't be near-identical)
             if abs(len(existing) - len(question_normalized)) > len(question_normalized) * 0.3:
                 continue
@@ -300,38 +375,298 @@ For type "true-false":
     def _is_ground_truth_grounded(self, ground_truth: str, contexts: List[str]) -> bool:
         """Check that ground truth is grounded in the provided contexts.
 
-        Uses heuristic matching: shared numbers with units, entity overlap,
-        or word overlap >= 15%.
+        With the two-step pipeline, grounding is guaranteed by construction
+        (facts are extracted directly from contexts in Step 1).
+        This is kept as a lightweight sanity check.
         """
         if not ground_truth.strip():
             return False
+        return True
 
-        import re as _re
-        context_text = " ".join(contexts)
+    # ── Step 1: Fact extraction ──────────────────────────────────────
 
-        # Check specific quantities from contexts
-        ctx_numbers = set(_re.findall(
-            r'\b\d+[.,]?\d*\s*(?:mg|g|ml|mmol|%|mcg|kg|lb|cal|kcal|cm|mm)\b',
-            context_text.lower()
-        ))
-        gt_numbers = set(_re.findall(
-            r'\b\d+[.,]?\d*\s*(?:mg|g|ml|mmol|%|mcg|kg|lb|cal|kcal|cm|mm)\b',
-            ground_truth.lower()
-        ))
-        if gt_numbers and gt_numbers & ctx_numbers:
-            return True
+    def _get_extract_system_prompt(self) -> str:
+        """System prompt for Step 1: extract a key fact from contexts."""
+        language = self.config.language
+        if language == "pt-BR":
+            lang_instruction = (
+                "The input contexts may be in ENGLISH, but you MUST output in PORTUGUESE (Brazilian Portuguese)."
+            )
+        else:
+            lang_instruction = f"Output in: {language}."
 
-        # Check named entities
-        ctx_entities = set(_re.findall(r'\b[A-Z][a-zA-Z]{2,}\b', context_text))
-        gt_entities = set(_re.findall(r'\b[A-Z][a-zA-Z]{2,}\b', ground_truth))
-        if len(gt_entities & ctx_entities) >= 2:
-            return True
+        return (
+            "You are a precise fact extractor. Your job is to extract ONE specific, substantive fact "
+            "from the provided document contexts.\n\n"
+            f"{lang_instruction}\n\n"
+            "RULES:\n"
+            "1. Extract ONLY information that is explicitly stated in the contexts.\n"
+            "2. Do NOT add outside knowledge or inference.\n"
+            "3. Keep specific numbers, quantities, names, and details from the text.\n"
+            "4. The fact should be detailed enough that a question can be written about it.\n"
+            "5. Write in a clear, complete sentence.\n\n"
+            'Output ONLY a JSON object: {"extracted_fact": "the fact here"}'
+        )
 
-        # Fallback: word overlap
-        gt_words = set(ground_truth.lower().split())
-        context_words = set(context_text.lower().split())
-        overlap = len(gt_words & context_words) / max(len(gt_words), 1)
-        return overlap >= self.config.grounding_threshold
+    def _get_extract_prompt(
+        self,
+        contexts: List[str],
+        topic_path: List[str],
+        source: str,
+        qa_type: str,
+        full_content: str = "",
+        related_chunks: Optional[List[str]] = None,
+    ) -> str:
+        """Build the Step 1 extraction prompt."""
+        topic_str = " -> ".join(topic_path)
+        context_text = "\n\n".join(f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts))
+
+        example = self.EXTRACT_EXAMPLES.get(qa_type, self.EXTRACT_EXAMPLES["single-hop"])
+        example_contexts = "\n\n".join(example["contexts"])
+
+        supplement = ""
+        if full_content and full_content not in context_text:
+            supplement += f"\n=== FULL SECTION TEXT ===\n{full_content}\n"
+
+        if related_chunks:
+            related_text = "\n\n".join(
+                f"[Related - {i+1}]: {chunk}" for i, chunk in enumerate(related_chunks)
+            )
+            supplement += f"\n=== RELATED CONTENT ===\n{related_text}\n"
+
+        # Build avoidance hint from recently extracted facts
+        avoidance = ""
+        if self._recent_facts:
+            recent_samples = list(self._recent_facts)[-3:]
+            avoidance = (
+                "\n=== FACTS ALREADY USED (pick DIFFERENT facts) ===\n"
+                + "\n".join(f"- {f}" for f in recent_samples)
+                + "\n"
+            )
+
+        return f"""Extract {self.NUM_CANDIDATE_FACTS} distinct key facts from these contexts.
+
+=== TOPIC ANGLE ===
+{topic_str}
+
+=== CONTEXTS ===
+{context_text}
+{supplement}{avoidance}
+=== EXAMPLE ===
+Contexts:
+{example_contexts}
+
+Extracted fact: {example["extracted_fact"]}
+
+=== YOUR TASK ===
+Extract {self.NUM_CANDIDATE_FACTS} DIFFERENT facts from the contexts above.
+Each fact should be substantive (contain specific details, numbers, or recommendations).
+Do NOT repeat or rephrase the same information — each fact must cover a different detail.
+
+Output ONLY a JSON array:
+[
+  {{"extracted_fact": "fact 1"}},
+  {{"extracted_fact": "fact 2"}},
+  ...
+]"""
+
+    def _step1_extract_fact(
+        self,
+        contexts: List[str],
+        topic_path: List[str],
+        source: str,
+        qa_type: str,
+        full_content: str = "",
+        related_chunks: Optional[List[str]] = None,
+    ) -> Optional[str]:
+        """Step 1: Extract candidate facts from contexts and pick the freshest one."""
+        prompt = self._get_extract_prompt(
+            contexts, topic_path, source, qa_type, full_content, related_chunks,
+        )
+        try:
+            response = self.client.chat.completions.create(
+                model=self.config.model_name,
+                messages=[
+                    {"role": "system", "content": self._get_extract_system_prompt()},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.config.temperature,
+                max_tokens=800,
+            )
+            content = response.choices[0].message.content
+            data = self._parse_json_response(content)
+
+            # Handle both single object and array responses
+            if isinstance(data, dict):
+                candidates = [data.get("extracted_fact", "").strip()]
+            elif isinstance(data, list):
+                candidates = [
+                    item.get("extracted_fact", "").strip()
+                    for item in data if isinstance(item, dict)
+                ]
+            else:
+                return None
+
+            candidates = [c for c in candidates if c]
+            if not candidates:
+                return None
+
+            picked = self._pick_freshest_fact(candidates)
+            self._recent_facts.append(picked)
+            return picked
+
+        except Exception as e:
+            logger.warning(f"[Step 1] Extract error: {e}")
+            return None
+
+    def _pick_freshest_fact(self, candidates: List[str]) -> str:
+        """Pick the candidate with least overlap with recently extracted facts."""
+        if not self._recent_facts:
+            return random.choice(candidates)
+
+        def overlap_score(fact: str) -> float:
+            fact_words = set(fact.lower().split())
+            max_overlap = 0.0
+            for recent in self._recent_facts:
+                recent_words = set(recent.lower().split())
+                overlap = len(fact_words & recent_words) / max(len(fact_words), 1)
+                max_overlap = max(max_overlap, overlap)
+            return max_overlap
+
+        scored = [(c, overlap_score(c)) for c in candidates]
+        scored.sort(key=lambda x: x[1])
+        # Pick among the lowest-overlap candidates (bottom 40%)
+        top_n = max(1, len(scored) * 2 // 5)
+        freshest = [s[0] for s in scored[:top_n]]
+        return random.choice(freshest)
+
+    # ── Step 2: Question generation ─────────────────────────────────
+
+    def _get_question_prompt(
+        self,
+        extracted_fact: str,
+        contexts: List[str],
+        topic_path: List[str],
+        source: str,
+        qa_type: str,
+        difficulty: str,
+        tf_polarity: Optional[str] = None,
+    ) -> str:
+        """Build the Step 2 question-generation prompt."""
+        topic_str = " -> ".join(topic_path)
+        context_text = "\n\n".join(f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts))
+
+        example = self.QUESTION_EXAMPLES.get(qa_type, self.QUESTION_EXAMPLES["single-hop"])
+
+        polarity_instruction = ""
+        if qa_type == "true-false" and tf_polarity:
+            if tf_polarity == "true":
+                polarity_instruction = (
+                    "\nIMPORTANT: This assertion MUST be TRUE (VERDADEIRO). "
+                    "Generate a statement that is factually correct according to the extracted fact."
+                )
+            else:
+                polarity_instruction = (
+                    "\nIMPORTANT: This assertion MUST be FALSE (FALSO). "
+                    "Subtly alter one detail from the extracted fact so the statement becomes incorrect."
+                )
+
+        type_hints = {
+            "single-hop": "The question should be directly answerable from the extracted fact.",
+            "multi-hop": "The question should require connecting the extracted fact with information visible in the contexts.",
+            "inference": "The question should require reasoning or inference based on the extracted fact and contexts.",
+            "paraphrase": "The question should use different wording than the context — rephrase naturally.",
+            "true-false": (
+                'The question field should be a STATEMENT starting with "Afirme:" that can be verified as true or false. '
+                'The ground_truth MUST start with "VERDADEIRO." or "FALSO." followed by evidence.'
+            ),
+        }
+
+        return f"""Generate a question that is answered by the extracted fact.
+
+=== EXTRACTED FACT (this is the answer) ===
+{extracted_fact}
+
+=== ORIGINAL CONTEXTS (for reference) ===
+{context_text}
+
+=== TOPIC ANGLE ===
+{topic_str}
+
+=== TYPE: {qa_type} | DIFFICULTY: {difficulty} ===
+{type_hints.get(qa_type, type_hints["single-hop"])}
+{polarity_instruction}
+
+=== EXAMPLE ({qa_type}) ===
+Extracted fact: {example["extracted_fact"]}
+Question: {example["question"]}
+Ground Truth: {example["ground_truth"]}
+
+=== YOUR TASK ===
+Generate a NEW {qa_type} question at {difficulty} difficulty.
+The question MUST be written as a REAL PERSON asking for personal advice (use "eu", "posso", "devo").
+The ground_truth MUST be based on the extracted fact, written in a natural conversational tone.
+Do NOT ask questions answerable from general/popular knowledge.
+
+Output ONLY the JSON object:"""
+
+    def _step2_generate_question(
+        self,
+        extracted_fact: str,
+        contexts: List[str],
+        topic_path: List[str],
+        source: str,
+        qa_type: str,
+        difficulty: str,
+        tf_polarity: Optional[str] = None,
+    ) -> Optional[QAPair]:
+        """Step 2: Generate a question for the extracted fact."""
+        prompt = self._get_question_prompt(
+            extracted_fact, contexts, topic_path, source,
+            qa_type, difficulty, tf_polarity,
+        )
+        try:
+            response = self.client.chat.completions.create(
+                model=self.config.model_name,
+                messages=[
+                    {"role": "system", "content": self._get_system_prompt()},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.config.temperature,
+                max_tokens=1000,
+            )
+            content = response.choices[0].message.content
+            data = self._parse_json_response(content)
+            if not data:
+                return None
+
+            question = data.get("question", "").strip()
+            ground_truth = data.get("ground_truth", "").strip()
+            if not question or not ground_truth:
+                return None
+
+            # Validate true-false polarity
+            if qa_type == "true-false" and tf_polarity:
+                gt_lower = ground_truth.strip().lower()
+                if tf_polarity == "true" and gt_lower.startswith("falso"):
+                    return None
+                if tf_polarity == "false" and gt_lower.startswith("verdadeiro"):
+                    return None
+
+            return QAPair(
+                question=question,
+                ground_truth=ground_truth,
+                contexts=contexts,
+                metadata={
+                    "type": data.get("type", qa_type),
+                    "difficulty": data.get("difficulty", difficulty),
+                    "topic_path": topic_path,
+                    "source": source,
+                },
+            )
+        except Exception as e:
+            logger.warning(f"[Step 2] Question generation error: {e}")
+            return None
 
     def generate_qa_from_section(
         self,
@@ -364,142 +699,65 @@ For type "true-false":
         else:
             contexts = random.sample(chunks, min(3, len(chunks)))
 
-        # Store full content and related chunks for prompt enrichment
-        self._current_full_content = full_content
-        self._current_related = related_chunks or []
-
         if num_pairs == 1:
-            pair = self._generate_single(contexts, topic_path, source)
+            pair = self._generate_single(contexts, topic_path, source, full_content, related_chunks)
             return [pair] if pair else []
         else:
-            return self._generate_batch(contexts, topic_path, source, num_pairs)
+            return self._generate_batch(contexts, topic_path, source, num_pairs, full_content, related_chunks)
 
     def _generate_single(
         self,
         contexts: List[str],
         topic_path: List[str],
         source: str,
+        full_content: str = "",
+        related_chunks: Optional[List[str]] = None,
     ) -> Optional[QAPair]:
-        """Generate a single QA pair."""
+        """Generate a single QA pair using the two-step pipeline."""
         qa_type = random.choice([t["type"] for t in self.QA_TYPES])
         difficulty = random.choice(self.DIFFICULTIES)
 
-        # For true-false: enforce 50/50 balance by forcing the polarity
-        tf_instruction = ""
+        tf_polarity = None
         if qa_type == "true-false" and self.config.balance_true_false:
             if self.true_false_count["true"] <= self.true_false_count["false"]:
-                tf_instruction = "\n\nIMPORTANT: This assertion MUST be TRUE (VERDADEIRO). Generate a statement that is factually correct according to the contexts."
-                self.true_false_count["true"] += 1
+                tf_polarity = "true"
             else:
-                tf_instruction = "\n\nIMPORTANT: This assertion MUST be FALSE (FALSO). Subtly alter a detail from the context (number, fact, recommendation) so the statement becomes incorrect."
-                self.true_false_count["false"] += 1
-        topic_str = " -> ".join(topic_path)
-        example = self.FEW_SHOT_EXAMPLES.get(qa_type, self.FEW_SHOT_EXAMPLES["single-hop"])
-
-        context_text = "\n\n".join([f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts)])
-
-        # Build supplementary context from full content and related chunks
-        supplement = ""
-        full_content = getattr(self, "_current_full_content", "")
-        related = getattr(self, "_current_related", [])
-
-        if full_content and full_content not in context_text:
-            supplement += f"\n=== FULL SECTION TEXT ===\n{full_content}\n"
-
-        if related:
-            related_text = "\n\n".join(
-                f"[Related - {i+1}]: {chunk}" for i, chunk in enumerate(related)
-            )
-            supplement += f"\n=== RELATED CONTENT FROM OTHER DOCUMENTS ===\n{related_text}\n"
-
-        # All text the LLM sees (for grounding validation)
-        all_source_text = " ".join(contexts)
-        if full_content:
-            all_source_text += " " + full_content
-        for r in related:
-            all_source_text += " " + r
-
-        prompt = f"""Generate a QA pair based on the following contexts.
-
-=== TOPIC GUIDANCE ===
-Suggested topic angle: {topic_str}
-Use this topic as inspiration for the question's angle, but the contexts are the source of truth.
-Source document: {source}
-
-=== CONTEXTS (SOURCE OF TRUTH) ===
-{context_text}
-{supplement}
-=== EXAMPLE ({qa_type}, {difficulty}) ===
-Contexts:
-"""
-        prompt += "\n\n".join(example["contexts"])
-        prompt += f"""
-
-Question: {example["question"]}
-Ground Truth: {example["ground_truth"]}
-Type: {qa_type}
-Difficulty: {example["difficulty"]}
-
-=== YOUR TASK ===
-Generate a NEW {qa_type} question at {difficulty} difficulty level.
-
-CRITICAL REQUIREMENTS:
-1. The question MUST be written as a REAL PERSON asking for personal advice (use "eu", "posso", "devo")
-2. The question MUST require the SPECIFIC information in the contexts to answer
-3. The contexts are the source of truth — ground answers only in what the contexts say
-4. Do NOT ask questions answerable from general/popular knowledge
-5. Ask about specific details: numbers, names, recommendations, lists from the text
-5. The ground_truth MUST cite or closely paraphrase information from the contexts
-
-Output ONLY the JSON object, no additional text:
-"""
+                tf_polarity = "false"
 
         for attempt in range(self.config.max_retries):
             if attempt > 0:
                 time.sleep(min(2 ** attempt, 16))
 
-            try:
-                response = self.client.chat.completions.create(
-                    model=self.config.model_name,
-                    messages=[
-                        {"role": "system", "content": self._get_system_prompt()},
-                        {"role": "user", "content": prompt},
-                    ],
-                    temperature=self.config.temperature,
-                    max_tokens=1000,
-                )
-
-                content = response.choices[0].message.content
-                data = self._parse_json_response(content)
-                if not data:
-                    continue
-
-                question = data.get("question", "").strip()
-                ground_truth = data.get("ground_truth", "").strip()
-
-                if not question or not ground_truth:
-                    continue
-                if self._is_duplicate(question):
-                    logger.debug(f"[Rejected] Duplicate question: {question[:60]}...")
-                    continue
-
-                self.generated_questions.add(question.lower().strip().rstrip("?"))
-
-                return QAPair(
-                    question=question,
-                    ground_truth=ground_truth,
-                    contexts=contexts,
-                    metadata={
-                        "type": data.get("type", qa_type),
-                        "difficulty": data.get("difficulty", difficulty),
-                        "topic_path": topic_path,
-                        "source": source,
-                    },
-                )
-
-            except Exception as e:
-                logger.warning(f"[QA rejected] API error: {e}")
+            # Step 1: Extract fact from contexts
+            extracted_fact = self._step1_extract_fact(
+                contexts, topic_path, source, qa_type, full_content, related_chunks,
+            )
+            if not extracted_fact:
                 continue
+
+            # Step 2: Generate question for the extracted fact
+            qa_pair = self._step2_generate_question(
+                extracted_fact, contexts, topic_path, source,
+                qa_type, difficulty, tf_polarity,
+            )
+            if not qa_pair:
+                continue
+
+            # Validate (grounding is guaranteed by construction)
+            if self._is_generic_question(qa_pair.question):
+                logger.info(f"[Rejected] Generic question: {qa_pair.question[:60]}...")
+                continue
+            if self._is_duplicate(qa_pair.question):
+                logger.info(f"[Rejected] Duplicate question: {qa_pair.question[:60]}...")
+                continue
+
+            normalized = qa_pair.question.lower().strip().rstrip("?")
+            self.generated_questions.add(normalized)
+            self._recent_questions.append(normalized)
+            if tf_polarity:
+                self.true_false_count[tf_polarity] += 1
+
+            return qa_pair
 
         return None
 
@@ -509,148 +767,245 @@ Output ONLY the JSON object, no additional text:
         topic_path: List[str],
         source: str,
         num_pairs: int,
+        full_content: str = "",
+        related_chunks: Optional[List[str]] = None,
     ) -> List[QAPair]:
-        """Generate multiple QA pairs in a single LLM call."""
+        """Generate multiple QA pairs using the two-step pipeline."""
         all_types = [t["type"] for t in self.QA_TYPES]
         qa_types = [all_types[i % len(all_types)] for i in range(num_pairs)]
         difficulties = [self.DIFFICULTIES[i % len(self.DIFFICULTIES)] for i in range(num_pairs)]
-        topic_str = " -> ".join(topic_path)
 
-        context_text = "\n\n".join([f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts)])
-
-        # Build supplementary context from full content and related chunks
-        supplement = ""
-        full_content = getattr(self, "_current_full_content", "")
-        related = getattr(self, "_current_related", [])
-
-        if full_content and full_content not in context_text:
-            supplement += f"\n=== FULL SECTION TEXT ===\n{full_content}\n"
-
-        if related:
-            related_text = "\n\n".join(
-                f"[Related - {i+1}]: {chunk}" for i, chunk in enumerate(related)
-            )
-            supplement += f"\n=== RELATED CONTENT FROM OTHER DOCUMENTS ===\n{related_text}\n"
-
-        # All text the LLM sees (for grounding validation)
-        all_source_text = " ".join(contexts)
-        if full_content:
-            all_source_text += " " + full_content
-        for r in related:
-            all_source_text += " " + r
-
-        # Build per-pair type/difficulty lines, with true/false polarity instructions
-        type_difficulty_lines = []
-        for i in range(num_pairs):
-            line = f"{i+1}. Type: {qa_types[i]}, Difficulty: {difficulties[i]}"
-            if qa_types[i] == "true-false" and self.config.balance_true_false:
+        # Track true-false polarities
+        tf_polarities: List[Optional[str]] = []
+        for qt in qa_types:
+            if qt == "true-false" and self.config.balance_true_false:
                 if self.true_false_count["true"] <= self.true_false_count["false"]:
-                    line += " — This assertion MUST be TRUE (VERDADEIRO)."
-                    self.true_false_count["true"] += 1
+                    tf_polarities.append("true")
                 else:
-                    line += " — This assertion MUST be FALSE (FALSO). Subtly alter a detail."
-                    self.true_false_count["false"] += 1
-            type_difficulty_lines.append(line)
-        type_difficulty_str = "\n".join(type_difficulty_lines)
-
-        example = self.FEW_SHOT_EXAMPLES[qa_types[0]]
-
-        prompt = f"""Generate {num_pairs} distinct QA pairs based on the following contexts.
-
-=== TOPIC GUIDANCE ===
-Suggested topic angle: {topic_str}
-Use this topic as inspiration, but the contexts are the source of truth.
-Source document: {source}
-
-=== CONTEXTS (SOURCE OF TRUTH) ===
-{context_text}
-{supplement}
-=== TYPES AND DIFFICULTIES FOR EACH PAIR ===
-{type_difficulty_str}
-
-=== EXAMPLE ({qa_types[0]}, {difficulties[0]}) ===
-Contexts:
-"""
-        prompt += "\n\n".join(example["contexts"])
-        prompt += f"""
-
-Question: {example["question"]}
-Ground Truth: {example["ground_truth"]}
-Type: {qa_types[0]}
-Difficulty: {example["difficulty"]}
-
-=== YOUR TASK ===
-Generate {num_pairs} NEW QA pairs, one for each type/difficulty combination.
-{"For true-false entries, follow the TRUE/FALSE polarity specified above for each pair." if any(t == "true-false" for t in qa_types) else ""}
-
-CRITICAL REQUIREMENTS:
-1. Every question MUST be written as a REAL PERSON asking for personal advice (use "eu", "posso", "devo")
-2. Every question MUST require SPECIFIC information from the contexts
-3. Ground answers only in what the contexts say
-4. Do NOT ask questions answerable from general/popular knowledge
-5. Each ground_truth MUST cite or closely paraphrase the contexts
-6. Questions must be DISTINCT (no duplicates or near-duplicates)
-
-Output ONLY a JSON array with {num_pairs} objects:
-[
-  {{"question": "...", "ground_truth": "...", "type": "...", "difficulty": "..."}},
-  ...
-]
-"""
+                    tf_polarities.append("false")
+            else:
+                tf_polarities.append(None)
 
         for attempt in range(self.config.max_retries):
             if attempt > 0:
                 time.sleep(min(2 ** attempt, 16))
 
-            try:
-                response = self.client.chat.completions.create(
-                    model=self.config.model_name,
-                    messages=[
-                        {"role": "system", "content": self._get_system_prompt()},
-                        {"role": "user", "content": prompt},
-                    ],
-                    temperature=self.config.temperature,
-                    max_tokens=2000,
-                )
-
-                content = response.choices[0].message.content
-                data_list = self._parse_json_response(content)
-
-                if not isinstance(data_list, list):
-                    continue
-
-                accepted: List[QAPair] = []
-                for i, data in enumerate(data_list[:num_pairs]):
-                    question = data.get("question", "").strip()
-                    ground_truth = data.get("ground_truth", "").strip()
-
-                    if not question or not ground_truth:
-                        continue
-                    if self._is_duplicate(question):
-                        continue
-
-                    self.generated_questions.add(question.lower().strip().rstrip("?"))
-                    accepted.append(QAPair(
-                        question=question,
-                        ground_truth=ground_truth,
-                        contexts=contexts,
-                        metadata={
-                            "type": data.get("type", qa_types[i % len(qa_types)]),
-                            "difficulty": data.get("difficulty", difficulties[i % len(difficulties)]),
-                            "topic_path": topic_path,
-                            "source": source,
-                        },
-                    ))
-
-                if accepted:
-                    logger.info(f"[Batch] Accepted {len(accepted)}/{len(data_list)} pairs from '{source}'")
-                return accepted
-
-            except Exception as e:
-                logger.warning(f"[Batch] API error: {e}")
+            # Step 1: Extract N facts
+            facts = self._step1_extract_facts_batch(
+                contexts, topic_path, source, num_pairs, full_content, related_chunks,
+            )
+            if not facts:
                 continue
 
+            # Step 2: Generate questions for each fact
+            qa_pairs = self._step2_generate_questions_batch(
+                facts, contexts, topic_path, source, qa_types, difficulties, tf_polarities,
+            )
+            if not qa_pairs:
+                continue
+
+            # Validate and accept
+            accepted: List[QAPair] = []
+            for i, pair in enumerate(qa_pairs):
+                if self._is_generic_question(pair.question):
+                    continue
+                if self._is_duplicate(pair.question):
+                    continue
+
+                normalized = pair.question.lower().strip().rstrip("?")
+                self.generated_questions.add(normalized)
+                self._recent_questions.append(normalized)
+                if i < len(tf_polarities) and tf_polarities[i]:
+                    self.true_false_count[tf_polarities[i]] += 1
+                accepted.append(pair)
+
+            if accepted:
+                logger.info(f"[Batch] Accepted {len(accepted)} pairs from '{source}'")
+            return accepted
+
         return []
+
+    def _step1_extract_facts_batch(
+        self,
+        contexts: List[str],
+        topic_path: List[str],
+        source: str,
+        num_facts: int,
+        full_content: str = "",
+        related_chunks: Optional[List[str]] = None,
+    ) -> Optional[List[str]]:
+        """Step 1 batch: Extract N facts from contexts in one LLM call."""
+        topic_str = " -> ".join(topic_path)
+        context_text = "\n\n".join(f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts))
+
+        supplement = ""
+        if full_content and full_content not in context_text:
+            supplement += f"\n=== FULL SECTION TEXT ===\n{full_content}\n"
+        if related_chunks:
+            related_text = "\n\n".join(
+                f"[Related - {i+1}]: {chunk}" for i, chunk in enumerate(related_chunks)
+            )
+            supplement += f"\n=== RELATED CONTENT ===\n{related_text}\n"
+
+        example = self.EXTRACT_EXAMPLES["single-hop"]
+        example_contexts = "\n\n".join(example["contexts"])
+
+        prompt = f"""Extract {num_facts} distinct key facts from these contexts.
+
+=== TOPIC ANGLE ===
+{topic_str}
+
+=== CONTEXTS ===
+{context_text}
+{supplement}
+=== EXAMPLE ===
+Contexts:
+{example_contexts}
+
+Extracted fact: {example["extracted_fact"]}
+
+=== YOUR TASK ===
+Extract {num_facts} DIFFERENT facts from the contexts.
+Each fact should be substantive (contain specific details, numbers, or recommendations).
+Facts must be distinct — do not repeat the same information.
+
+Output ONLY a JSON array:
+[
+  {{"extracted_fact": "fact 1"}},
+  {{"extracted_fact": "fact 2"}},
+  ...
+]"""
+
+        try:
+            response = self.client.chat.completions.create(
+                model=self.config.model_name,
+                messages=[
+                    {"role": "system", "content": self._get_extract_system_prompt()},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.config.temperature,
+                max_tokens=1500,
+            )
+            content = response.choices[0].message.content
+            data_list = self._parse_json_response(content)
+
+            if not isinstance(data_list, list):
+                return None
+
+            facts = []
+            for item in data_list[:num_facts]:
+                fact = item.get("extracted_fact", "").strip() if isinstance(item, dict) else ""
+                if fact:
+                    facts.append(fact)
+
+            return facts if facts else None
+        except Exception as e:
+            logger.warning(f"[Step 1 Batch] Extract error: {e}")
+            return None
+
+    def _step2_generate_questions_batch(
+        self,
+        facts: List[str],
+        contexts: List[str],
+        topic_path: List[str],
+        source: str,
+        qa_types: List[str],
+        difficulties: List[str],
+        tf_polarities: List[Optional[str]],
+    ) -> Optional[List[QAPair]]:
+        """Step 2 batch: Generate questions for N facts in one LLM call."""
+        topic_str = " -> ".join(topic_path)
+        context_text = "\n\n".join(f"Context {i+1}:\n{ctx}" for i, ctx in enumerate(contexts))
+
+        # Build per-fact instructions
+        fact_lines = []
+        for i, fact in enumerate(facts):
+            line = f'{i+1}. Fact: "{fact}" | Type: {qa_types[i]} | Difficulty: {difficulties[i]}'
+            if i < len(tf_polarities) and tf_polarities[i]:
+                if tf_polarities[i] == "true":
+                    line += " — MUST be TRUE (VERDADEIRO)"
+                else:
+                    line += " — MUST be FALSE (FALSO). Subtly alter one detail."
+            fact_lines.append(line)
+        facts_str = "\n".join(fact_lines)
+
+        example = self.QUESTION_EXAMPLES.get(qa_types[0], self.QUESTION_EXAMPLES["single-hop"])
+
+        prompt = f"""Generate a question for each extracted fact.
+
+=== ORIGINAL CONTEXTS (for reference) ===
+{context_text}
+
+=== FACTS AND TYPES ===
+{facts_str}
+
+=== EXAMPLE ({qa_types[0]}) ===
+Extracted fact: {example["extracted_fact"]}
+Question: {example["question"]}
+Ground Truth: {example["ground_truth"]}
+
+=== YOUR TASK ===
+Generate a question for EACH fact above.
+Every question MUST be written as a REAL PERSON asking for personal advice (use "eu", "posso", "devo").
+The ground_truth MUST be based on the extracted fact, written naturally.
+Do NOT ask questions answerable from general/popular knowledge.
+
+Output ONLY a JSON array:
+[
+  {{"question": "...", "ground_truth": "...", "type": "...", "difficulty": "..."}},
+  ...
+]"""
+
+        try:
+            response = self.client.chat.completions.create(
+                model=self.config.model_name,
+                messages=[
+                    {"role": "system", "content": self._get_system_prompt()},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.config.temperature,
+                max_tokens=2000,
+            )
+            content = response.choices[0].message.content
+            data_list = self._parse_json_response(content)
+
+            if not isinstance(data_list, list):
+                return None
+
+            pairs: List[QAPair] = []
+            for i, data in enumerate(data_list[:len(facts)]):
+                if not isinstance(data, dict):
+                    continue
+                question = data.get("question", "").strip()
+                ground_truth = data.get("ground_truth", "").strip()
+                if not question or not ground_truth:
+                    continue
+
+                # Validate true-false polarity
+                polarity = tf_polarities[i] if i < len(tf_polarities) else None
+                if qa_types[i] == "true-false" and polarity:
+                    gt_lower = ground_truth.strip().lower()
+                    if polarity == "true" and gt_lower.startswith("falso"):
+                        continue
+                    if polarity == "false" and gt_lower.startswith("verdadeiro"):
+                        continue
+
+                pairs.append(QAPair(
+                    question=question,
+                    ground_truth=ground_truth,
+                    contexts=contexts,
+                    metadata={
+                        "type": data.get("type", qa_types[i]),
+                        "difficulty": data.get("difficulty", difficulties[i]),
+                        "topic_path": topic_path,
+                        "source": source,
+                    },
+                ))
+
+            return pairs if pairs else None
+        except Exception as e:
+            logger.warning(f"[Step 2 Batch] Question generation error: {e}")
+            return None
 
     @staticmethod
     def _parse_json_response(content: str):

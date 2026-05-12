@@ -10,7 +10,10 @@ import sys
 from pathlib import Path
 from typing import List, Tuple
 
+import numpy as np
+
 from config import PipelineConfig
+from embedder import Embedder
 from generator import QAGenerator
 from loader import load_documents
 from models import DatasetEntry, SectionNode
@@ -34,6 +37,7 @@ def run_pipeline(
     documents_folder: str,
     config: PipelineConfig,
     logger: logging.Logger,
+    qa_only: bool = False,
 ) -> List[DatasetEntry]:
     """
     Run the complete RAG QA generation pipeline.
@@ -42,6 +46,7 @@ def run_pipeline(
         documents_folder: Path to folder containing documents
         config: Pipeline configuration
         logger: Logger instance
+        qa_only: If True, skip document loading and tree building, load cached tree only.
 
     Returns:
         List of dataset entries
@@ -50,38 +55,57 @@ def run_pipeline(
     logger.info("RAG QA Dataset Generation Pipeline")
     logger.info("=" * 60)
 
-    # Step 1: Load & parse documents (PaddleOCR for PDFs)
-    logger.info(f"Loading documents from: {documents_folder}")
-    logger.info(f"PaddleOCR language: {config.paddleocr_lang}")
-    documents = load_documents(
-        documents_folder,
-        paddleocr_lang=config.paddleocr_lang,
-        use_table_recognition=config.use_table_recognition,
-        pdf_remove_patterns=config.pdf_remove_patterns,
-        parsed_cache_dir=config.parsed_path,
-    )
-    logger.info(f"Loaded {len(documents)} documents")
-
-    if not documents:
-        raise ValueError("No documents found in the specified folder")
-
-    for doc in documents:
-        logger.info(f"  - {doc.source}: {len(doc.content)} chars ({doc.doc_type})")
-
-    # Step 2: Build document-grounded topic tree (heading skeleton + LLM refinement)
-    logger.info("Building document-grounded topic tree")
     tree = DocumentTopicTree(config)
-    tree.build_from_documents(documents)
 
-    # Visualize before chunking
-    tree_viz = tree.visualize()
-    logger.info(tree_viz)
+    if qa_only:
+        # QA-only mode: load cached tree, skip document loading and tree building
+        if not Path(config.tree_path).exists():
+            raise FileNotFoundError(
+                f"No cached tree found at {config.tree_path}. "
+                "Run the full pipeline first to build the tree."
+            )
+        logger.info(f"QA-only mode: loading cached tree from {config.tree_path}")
+        tree.load(config.tree_path)
+    else:
+        # Step 1: Load & parse documents (PaddleOCR for PDFs)
+        logger.info(f"Loading documents from: {documents_folder}")
+        logger.info(f"PaddleOCR language: {config.paddleocr_lang}")
+        documents = load_documents(
+            documents_folder,
+            paddleocr_lang=config.paddleocr_lang,
+            use_table_recognition=config.use_table_recognition,
+            pdf_remove_patterns=config.pdf_remove_patterns,
+            parsed_cache_dir=config.parsed_path,
+        )
+        logger.info(f"Loaded {len(documents)} documents")
 
-    # Step 3: Chunk per leaf node
-    logger.info(
-        f"Chunking leaf nodes (size={config.chunk_size}, overlap={config.chunk_overlap})"
-    )
-    tree.chunk_leaves(chunk_size=config.chunk_size, chunk_overlap=config.chunk_overlap)
+        if not documents:
+            raise ValueError("No documents found in the specified folder")
+
+        for doc in documents:
+            logger.info(f"  - {doc.source}: {len(doc.content)} chars ({doc.doc_type})")
+
+        # Step 2: Build document-grounded topic tree (heading skeleton + LLM refinement)
+        logger.info("Building document-grounded topic tree")
+        tree.build_from_documents(documents)
+
+        # Visualize before chunking
+        tree_viz = tree.visualize()
+        logger.info(tree_viz)
+
+        # Step 3: Chunk per leaf node
+        logger.info(
+            f"Chunking leaf nodes (size={config.chunk_size}, overlap={config.chunk_overlap})"
+        )
+        tree.chunk_leaves(chunk_size=config.chunk_size, chunk_overlap=config.chunk_overlap)
+
+        leaves = tree.get_all_leaf_nodes()
+        total_chunks = sum(len(leaf.chunks) for leaf in leaves)
+        logger.info(f"Tree has {len(leaves)} leaf nodes, {total_chunks} total chunks")
+
+        # Save tree JSON (after chunking so chunks are persisted)
+        tree.save(config.tree_path)
+        logger.info(f"Tree saved to {config.tree_path}")
 
     leaves = tree.get_all_leaf_nodes()
     total_chunks = sum(len(leaf.chunks) for leaf in leaves)
@@ -113,13 +137,13 @@ def run_pipeline(
             target = per_doc + (1 if doc_idx < doc_remainder else 0)
             if not leaves or target <= 0:
                 continue
-            # Distribute within document's leaves round-robin
-            per_leaf = target // len(leaves)
-            leaf_remainder = target % len(leaves)
+            # Distribute within document's leaves weighted by content length
+            content_weights = [max(len(leaf.content or ""), 100) for leaf in leaves]
+            total_weight = sum(content_weights)
             for leaf_idx, leaf in enumerate(leaves):
-                count = per_leaf + (1 if leaf_idx < leaf_remainder else 0)
-                if count > 0:
-                    distribution.append((leaf, count))
+                weight = content_weights[leaf_idx]
+                count = max(1, round(target * weight / total_weight))
+                distribution.append((leaf, count))
     else:
         # Standard mode: round-robin across all leaves (original behavior)
         distribution = tree.get_qa_distribution(config.num_samples)
@@ -136,40 +160,51 @@ def run_pipeline(
     # Step 5: Generate QA pairs
     logger.info(f"Generating QA pairs using {config.model_name}...")
     generator = QAGenerator(config)
+
+    # Pre-compute embeddings for embedding-based related-chunk matching
+    embedder = Embedder(config)
+    leaf_titles = [leaf.name for leaf in all_leaves]
+    title_embeddings = embedder.embed_chunks(leaf_titles) if leaf_titles else np.array([])
+
     dataset: List[DatasetEntry] = []
 
+    # Pre-build leaf index lookup and production counter
+    leaf_to_idx = {id(leaf): i for i, leaf in enumerate(all_leaves)}
+    leaf_produced: dict = {}  # (source, name) -> count
+
     # Keep generating until we hit the target (or exhaust max_total_attempts)
-    max_total_attempts = config.num_samples * 2  # safety limit: 2x target
+    max_total_attempts = config.num_samples * 5
     total_attempts = 0
+    consecutive_stall_passes = 0
+    max_stall_passes = 3  # break if 3 full passes produce zero new pairs
 
     while len(dataset) < config.num_samples and total_attempts < max_total_attempts:
+        progress_before_pass = len(dataset)
+
         for leaf, count in distribution:
             if len(dataset) >= config.num_samples:
                 break
 
-            # Use full content (entire segment text) as primary context
             if not leaf.content and not leaf.chunks:
                 continue
 
-            # Check how many this leaf has produced so far
             leaf_key = (leaf.source, leaf.name)
-            produced = sum(1 for e in dataset if (e.source, e.metadata.get("topic_path", [""])[-1]) == leaf_key)
+            produced = leaf_produced.get(leaf_key, 0)
             remaining_for_leaf = count - produced
             if remaining_for_leaf <= 0:
                 continue
 
             topic_path = tree.get_leaf_path(leaf)
 
-            # Use the full segment content as context (not tiny 500-char chunks)
-            # Also gather related content from other documents on similar topics
-            related_chunks = _find_related_chunks(leaf, all_leaves, max_chunks=3)
+            leaf_idx = leaf_to_idx[id(leaf)]
+            related_chunks = _find_related_chunks_embedding(
+                leaf_idx, all_leaves, title_embeddings, max_chunks=3,
+            )
             full_content = leaf.content or ""
-            # Use full content as the primary context for the LLM
             contexts = [full_content] if full_content else leaf.chunks
             if not contexts:
                 continue
 
-            # Use batch generation if count > 1 and batch_size allows
             if remaining_for_leaf > 1 and config.batch_size > 1:
                 batch_count = min(remaining_for_leaf, config.batch_size)
                 qa_pairs = generator.generate_qa_from_section(
@@ -184,6 +219,7 @@ def run_pipeline(
                     if len(dataset) < config.num_samples:
                         entry = generator.to_dataset_entry(qa_pair)
                         dataset.append(entry)
+                        leaf_produced[leaf_key] = leaf_produced.get(leaf_key, 0) + 1
             else:
                 qa_pairs = generator.generate_qa_from_section(
                     chunks=contexts,
@@ -197,44 +233,80 @@ def run_pipeline(
                     if len(dataset) < config.num_samples:
                         entry = generator.to_dataset_entry(qa_pair)
                         dataset.append(entry)
+                        leaf_produced[leaf_key] = leaf_produced.get(leaf_key, 0) + 1
 
             total_attempts += 1
 
-            # Progress
             if len(dataset) % 5 == 0 or len(dataset) >= config.num_samples:
                 logger.info(f"  Progress: {len(dataset)}/{config.num_samples} QA pairs (attempts: {total_attempts})")
+
+        # Stall detection: if a full pass produced nothing, count it
+        if len(dataset) == progress_before_pass:
+            consecutive_stall_passes += 1
+            logger.info(
+                f"  Stall: no progress this pass ({consecutive_stall_passes}/{max_stall_passes})"
+            )
+            if consecutive_stall_passes >= max_stall_passes:
+                logger.info(
+                    f"  Breaking: {max_stall_passes} consecutive passes with no new pairs"
+                )
+                break
+        else:
+            consecutive_stall_passes = 0
 
     logger.info(f"Successfully generated {len(dataset)} QA pairs")
     return dataset
 
 
-def _find_related_chunks(
-    leaf: SectionNode,
+def _find_related_chunks_embedding(
+    leaf_idx: int,
     all_leaves: List[SectionNode],
-    max_chunks: int = 5,
+    title_embeddings: np.ndarray,
+    max_chunks: int = 3,
+    similarity_threshold: float = 0.5,
 ) -> List[str]:
-    """Find related content from other documents on similar topics.
+    """Find related content from other documents using embedding cosine similarity.
 
-    Uses simple keyword overlap between leaf names to find related leaves,
-    then returns chunks from those leaves as additional context.
+    Converts leaf titles to vectors and checks cosine similarity.
+    This handles synonyms (e.g., "Vitamin C" matches "Ascorbic Acid")
+    because the embedding model understands semantics.
     """
-    # Extract keywords from the leaf name
-    name_words = set(leaf.name.lower().split())
+    if title_embeddings.size == 0 or leaf_idx >= len(title_embeddings):
+        return []
+
+    query_emb = title_embeddings[leaf_idx]
+    query_norm = np.linalg.norm(query_emb)
+    if query_norm == 0:
+        return []
+    query_emb = query_emb / query_norm
 
     related: List[str] = []
-    for other in all_leaves:
-        if other is leaf:
+    scored: List[Tuple[float, int]] = []
+
+    for i, other in enumerate(all_leaves):
+        if i == leaf_idx:
             continue
-        if other.source == leaf.source:
+        if other.source == all_leaves[leaf_idx].source:
             continue  # skip same document
+        if not other.content:
+            continue
 
-        other_words = set(other.name.lower().split())
-        overlap = name_words & other_words - {"and", "or", "the", "of", "in", "to", "for", "a", "de", "e", "da", "do", "em"}
+        other_emb = title_embeddings[i]
+        other_norm = np.linalg.norm(other_emb)
+        if other_norm == 0:
+            continue
+        other_emb = other_emb / other_norm
 
-        if overlap and other.content:
-            related.append(other.content)
+        similarity = float(np.dot(query_emb, other_emb))
+        if similarity >= similarity_threshold:
+            scored.append((similarity, i))
 
-    return related[:max_chunks]
+    # Sort by similarity descending, take top max_chunks
+    scored.sort(key=lambda x: -x[0])
+    for _, idx in scored[:max_chunks]:
+        related.append(all_leaves[idx].content)
+
+    return related
 
 
 def save_dataset(dataset: List[DatasetEntry], output_path: str, logger: logging.Logger) -> None:
@@ -476,11 +548,17 @@ def main():
         default=False,
         help="Clear all caches (parsed OCR, sliced segments, topic tree) before running",
     )
+    parser.add_argument(
+        "--qa-only",
+        action="store_true",
+        default=False,
+        help="Skip document loading and tree building. Load cached tree and generate QA only.",
+    )
 
     args = parser.parse_args()
 
-    # Setup
-    config = PipelineConfig(
+    # Setup — use from_env() to respect .env.local, with CLI overrides
+    config = PipelineConfig.from_env(
         chunk_size=args.chunk_size,
         chunk_overlap=args.chunk_overlap,
         num_samples=args.num_samples,
@@ -519,7 +597,7 @@ def main():
 
     # Run pipeline
     try:
-        dataset = run_pipeline(args.documents_folder, config, logger)
+        dataset = run_pipeline(args.documents_folder, config, logger, qa_only=args.qa_only)
         save_dataset(dataset, args.output, logger)
         save_dataset_html(dataset, args.output, logger)
         logger.info("Pipeline completed successfully")

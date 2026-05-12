@@ -55,24 +55,8 @@ class TestVectorStore:
         except ValueError:
             pass
 
-    def test_get_random_chunks(self):
-        store = VectorStore(dimension=8)
-        chunks = [
-            Chunk(content=f"chunk {i}", source="test.txt", chunk_id=i, start_pos=0, end_pos=10)
-            for i in range(5)
-        ]
-        embeddings = np.random.rand(5, 8).astype(np.float32)
-        store.add_documents(chunks, embeddings)
-
-        random_chunks = store.get_random_chunks(n=3)
-        assert len(random_chunks) == 3
-
-    def test_get_random_chunks_empty(self):
-        store = VectorStore(dimension=8)
-        assert store.get_random_chunks(n=3) == []
-
-    def test_embeddings_not_mutated(self):
-        """Verify that add_documents does not mutate the input embeddings array."""
+    def test_embeddings_normalized_in_place(self):
+        """Verify that add_documents normalizes embeddings in-place for IP metric."""
         dim = 4
         store = VectorStore(dimension=dim, metric=0)  # METRIC_INNER_PRODUCT = 0
 
@@ -80,12 +64,12 @@ class TestVectorStore:
             Chunk(content="test", source="t.txt", chunk_id=0, start_pos=0, end_pos=4),
         ]
         embeddings = np.array([[1.0, 2.0, 3.0, 4.0]], dtype=np.float32)
-        original = embeddings.copy()
 
         store.add_documents(chunks, embeddings)
 
-        # The original array should NOT be modified
-        np.testing.assert_array_equal(embeddings, original)
+        # Embeddings should be L2-normalized (unit vectors)
+        norms = np.linalg.norm(embeddings, axis=1)
+        np.testing.assert_allclose(norms, [1.0], atol=1e-5)
 
     def test_len(self):
         store = VectorStore(dimension=8)

@@ -108,7 +108,7 @@ class PipelineConfig:
     use_llm_pipeline: bool = True
     slicer_model: str = "gpt-4o-mini"
     topic_model: str = "gpt-4o-mini"
-    segment_max_chars: int = 15000
+    embedding_model: str = "text-embedding-3-small"
     slicer_cache_dir: str = "tree/sliced"
 
     # QA distribution
@@ -155,7 +155,7 @@ class PipelineConfig:
             use_llm_pipeline=overrides.get("use_llm_pipeline", _env_bool("USE_LLM_PIPELINE", True)),
             slicer_model=overrides.get("slicer_model", _env_str("SLICER_MODEL", "gpt-4o-mini")),
             topic_model=overrides.get("topic_model", _env_str("TOPIC_MODEL", "gpt-4o-mini")),
-            segment_max_chars=overrides.get("segment_max_chars", _env_int("SEGMENT_MAX_CHARS", 15000)),
+            embedding_model=overrides.get("embedding_model", _env_str("EMBEDDING_MODEL", "text-embedding-3-small")),
             slicer_cache_dir=overrides.get("slicer_cache_dir", _env_str("SLICER_CACHE_DIR", "tree/sliced")),
             balance_per_document=overrides.get("balance_per_document", _env_bool("BALANCE_PER_DOCUMENT", True)),
             balance_true_false=overrides.get("balance_true_false", _env_bool("BALANCE_TRUE_FALSE", True)),

@@ -40,7 +40,7 @@ class VectorStore:
 
         # Normalize embeddings for cosine similarity if using inner product
         if self.metric == faiss.METRIC_INNER_PRODUCT:
-            faiss.normalize_L2(embeddings.copy())
+            faiss.normalize_L2(embeddings)
 
         # Create index if not exists
         if self.index is None:
@@ -119,13 +119,6 @@ class VectorStore:
             if overlap > threshold:
                 return True
         return False
-
-    def get_random_chunks(self, n: int = 1) -> List[Chunk]:
-        """Get n random chunks from the store."""
-        if not self.chunks:
-            return []
-        import random
-        return random.sample(self.chunks, min(n, len(self.chunks)))
 
     def __len__(self) -> int:
         """Return number of chunks in store."""
